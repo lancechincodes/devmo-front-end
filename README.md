@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Devmo 💎
+Brace yourself – a brand-new way to showcase your programming projects is coming soon! Currently, in development! 👷🏻‍♂️ 🔨
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Technology and Tools 🛠
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/-FRAMER%20MOTION-blueviolet?style=for-the-badge&logo=framer)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=Express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![Amazon AWS](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Jest](https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)
+![Mocha.js](https://img.shields.io/badge/mocha.js-323330?style=for-the-badge&logo=mocha&logoColor=Brown)
+![Chai.js](https://img.shields.io/badge/chai.js-323330?style=for-the-badge&logo=chai&logoColor=red)
 
-## Available Scripts
+## Installation Instructions and Contribution Guidelines 📲
+To view this project locally:
+1. Fork and clone this repository
+2. Change into the new directory and create a development branch 
+3. Add and commit suggested edits
+4. Push edits to the remote
+5. Submit a pull request for me to view
 
-In the project directory, you can run:
+## User Stories 🗣
+As a developer, I want to...
+- Showcase my projects in a beautiful UI
+- Record my statistics (number of projects and technologies)
+- View my profile
+- Post, edit, and delete a new project
 
-### `npm start`
+As someone fascinated with technology, I want to...
+- View and demo programming projects 
+- Be inspired to build my own projects
+- Interact with the UI in a fun and unique way
+- View top-rated and most recent projects
+- Know which types of technologies were used to make these amazing projects
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+As a general user, I want to...
+- Be able to view projects without authenticating an account
+- Be able to authenticate an account if I want a more in-depth experience (contributing projects)
+- Be able to upload images from computer as thumbnails for project
+- Toggle between light and dark mode
+- Read more about Devmo in an informational page
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Mobile Wireframes 📱 🕸
+![Page 1](/planning/wireframes/mobile/wireframe-m1.png)
+![Page 2](/planning/wireframes/mobile/wireframe-m2.png)
 
-### `npm test`
+## Desktop Wireframes 🖥 🕸
+![Page 1](/planning/wireframes/desktop/wireframe-d1.png)
+![Page 2](/planning/wireframes/desktop/wireframe-d2.png)
+![Page 3](/planning/wireframes/desktop/wireframe-d3.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Entity-Relationship Diagram 📝
+![ERD](/planning/erd/erd.png)
+## Connect With Me 👥
+<p align="left">
+    <a 
+    target="_blank" href="https://www.linkedin.com/in/lance-chin/"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="LinkedIn Icon" height="30" width="40"/>
+    </a>
+</p>
