@@ -13,14 +13,6 @@ Brace yourself – a brand-new way to showcase your programming projects is com
 ![Mocha.js](https://img.shields.io/badge/mocha.js-323330?style=for-the-badge&logo=mocha&logoColor=Brown)
 ![Chai.js](https://img.shields.io/badge/chai.js-323330?style=for-the-badge&logo=chai&logoColor=red)
 
-## Installation Instructions and Contribution Guidelines 📲
-To view this project locally:
-1. Fork and clone this repository
-2. Change into the new directory and create a development branch 
-3. Add and commit suggested edits
-4. Push edits to the remote
-5. Submit a pull request for me to view
-
 ## User Stories 🗣
 As a developer, I want to...
 - Showcase my projects in a beautiful UI
@@ -50,6 +42,9 @@ As a general user, I want to...
 ![Page 1](/planning/wireframes/desktop/wireframe-d1.png)
 ![Page 2](/planning/wireframes/desktop/wireframe-d2.png)
 ![Page 3](/planning/wireframes/desktop/wireframe-d3.png)
+
+## Component Hierarchy 🧩
+![Component Hierarchy](/planning/component-hierarchy/component-hierarchy.png)
 
 ## Entity-Relationship Diagram 📝
 ![ERD](/planning/erd/erd.png)
