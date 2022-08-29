@@ -52,7 +52,8 @@ As a general user, I want to...
 ![Page 3](/planning/wireframes/desktop/wireframe-d3.png)
 
 ## Component Hierarchy 🧩
-![Component Hierarchy](/planning/component-hierarchy/component-heirarchy.png)
+![Component Hierarchy](/planning/component-hierarchy/component-hierarchy.png)
+
 ## Entity-Relationship Diagram 📝
 ![ERD](/planning/erd/erd.png)
 ## Connect With Me 👥
