@@ -57,9 +57,14 @@ function Landing() {
             </AnimatePresence>
 
             {showWelcome && 
-                <p>Welcome to Devmo</p>
+                <div className="welcome">
+                    <p className="welcome-message">Welcome to</p>
+                    <div className="brand">
+                        <p className="brand-letters">DEVM</p>
+                        <img className="brand-logo" src={logo} alt="Devmo Logo as an O"/>
+                    </div>
+                </div>
             }
-
         </div>
     );
 };
