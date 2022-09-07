@@ -7,9 +7,31 @@
 }
 
 .logo {
-    width: 100px;
+  width: 100px;
+  border-radius: 50%;
+  overflow: visible;
+  stroke: #264DE4;
+  stroke-width: 5;
+  stroke-linejoin: bevel;
+  stroke-linecap: bevel;
 }
 
-.brand-logo {
-    width: 50px;
+.welcome-to {
+  font-size: 15px;
+  text-align: center;
+  margin: 0;
+}
+
+.full-logo {
+  display: flex;
+}
+
+.inline-logo-text {
+  font-size: 55px;
+  margin: 15px 0 0 0;
+  color: #264DE4;
+}
+
+.inline-logo-image {
+  width: 50px;
 }
