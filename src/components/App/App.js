@@ -1,10 +1,10 @@
-import '../styles/App.css';
+import './App.css';
 import { Routes, Route } from 'react-router-dom'
-import Landing from './Landing'
-import Gallery from './Gallery'
-import Auth from './Auth'
-import About from './About'
-import Form from './Form'
+import Landing from '../Landing/Landing'
+import Gallery from '../Gallery/Gallery'
+import Auth from '../Auth/Auth'
+import About from '../About/About'
+import Form from '../Form/Form'
 
 function App() {
 

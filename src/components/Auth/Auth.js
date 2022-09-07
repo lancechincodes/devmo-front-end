@@ -1,4 +1,4 @@
-import '../styles/Auth.css'
+import './Auth.css'
 
 function Auth() {
     return (
