@@ -1,9 +1,9 @@
 import './Landing.css'
-import logo from '../../assets/logo.svg'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { logoVariants, welcomeVariants } from '../../animation'
+import { logoVariants, fadeVariants, childVariants } from '../../animation'
+import Logo from '../Logo/Logo'
 
 function Landing() {
     const [startAnimation, setStartAnimation] = useState(true)
@@ -21,11 +21,11 @@ function Landing() {
     
         setTimeout(() => {
             setSecondAnimation(false)
-        }, 5500)
+        }, 6000)
 
         setTimeout(() => {
             navigate("/gallery")
-        }, 6500)
+        }, 8000)
     }, [])
 
     return (
@@ -54,16 +54,24 @@ function Landing() {
             <AnimatePresence>
                 {secondAnimation && <motion.div
                     className="welcome-container"
-                    variants={welcomeVariants}
+                    variants={fadeVariants}
                     initial="hidden"
                     animate="visible"
                     exit="exit"
                 >
-                    <p className="welcome-to">WELCOME TO</p>
-                    <div className="full-logo">
-                        <h1 className="inline-logo-text">DEVM</h1>
-                        <img className="inline-logo-image" src={logo} alt=""/>
-                    </div>
+                    <motion.p 
+                        className="welcome-to"
+                        variants={childVariants}
+                    >
+                    WELCOME TO
+                    </motion.p>
+
+                    <motion.div
+                        variants={childVariants}
+                    >
+                        <Logo/>
+                    </motion.div>
+                    
                 </motion.div>}
             </AnimatePresence>
         </div>

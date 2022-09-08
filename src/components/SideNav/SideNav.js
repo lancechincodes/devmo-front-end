@@ -1,6 +1,6 @@
-import './Nav.css'
+import './SideNav.css'
 
-function Nav() {
+function SideNav() {
     return (
         <div>
             
@@ -8,4 +8,4 @@ function Nav() {
     );
 };
 
-export default Nav;
+export default SideNav;

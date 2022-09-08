@@ -18,8 +18,8 @@ export const logoVariants = {
     }
 }
 
-// Welcome animation
-export const welcomeVariants = {
+// Fade in/out animation
+export const fadeVariants = {
   hidden: {
     opacity: 0
   },
@@ -27,7 +27,8 @@ export const welcomeVariants = {
     opacity: 1,
     transition: {
       delay: .2,
-      duration: .7
+      duration: 1,
+      staggerChildren: 1
     }
   },
   exit: {
@@ -35,5 +36,15 @@ export const welcomeVariants = {
     transition: {
       duration: .7
     }
+  }
+}
+
+// Stagger child animations
+export const childVariants = {
+  hidden: { 
+    opacity: 0 
+  },
+  visible: { 
+    opacity: 1 
   }
 }

@@ -1,9 +1,10 @@
 import './Gallery.css'
+import TopNav from '../TopNav/TopNav';
 
 function Gallery() {
     return (
         <div>
-            Hello from the gallery page
+            <TopNav/>
         </div>
     );
 };
