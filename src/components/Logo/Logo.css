@@ -1,0 +1,25 @@
+.full-logo {
+    display: flex;
+  }
+  
+/* Medium size */
+.inline-logo-text-md {
+  font-size: 55px;
+  margin: 15px 0 0 0;
+  color: #264DE4;
+}
+
+.inline-logo-image-md {
+  width: 50px;
+}
+
+/* Small size */
+.inline-logo-text-sm {
+  font-size: 30px;
+  margin: 8px 0 0 0;
+  color: #264DE4;
+}
+
+.inline-logo-image-sm {
+  width: 27px;
+}

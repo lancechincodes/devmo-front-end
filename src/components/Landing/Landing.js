@@ -69,7 +69,7 @@ function Landing() {
                     <motion.div
                         variants={childVariants}
                     >
-                        <Logo/>
+                        <Logo size="md"/>
                     </motion.div>
                     
                 </motion.div>}

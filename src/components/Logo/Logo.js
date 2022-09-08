@@ -1,11 +1,11 @@
 import './Logo.css'
 import logo from '../../assets/logo.svg'
 
-function Logo() {
+function Logo({size}) {
     return (
         <div className="full-logo">
-            <h1 className="inline-logo-text">DEVM</h1>
-            <img className="inline-logo-image" src={logo} alt=""/>
+            <h1 className={`inline-logo-text-${size}`}>DEVM</h1>
+            <img className={`inline-logo-image-${size}`} src={logo} alt=""/>
         </div>
     );
 };
