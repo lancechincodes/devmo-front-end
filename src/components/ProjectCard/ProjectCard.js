@@ -2,8 +2,8 @@ import './ProjectCard.css'
 
 function ProjectCard() {
     return (
-        <div>
-            
+        <div className="project-card">
+            Hello
         </div>
     );
 };
