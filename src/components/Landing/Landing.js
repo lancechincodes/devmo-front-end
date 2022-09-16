@@ -2,7 +2,7 @@ import './Landing.css'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { logoVariants, fadeVariants, childVariants } from '../../animation'
+import { logoVariants, fadeVariants } from '../../animation'
 import Logo from '../Logo/Logo'
 
 function Landing() {
@@ -59,19 +59,13 @@ function Landing() {
                     animate="visible"
                     exit="exit"
                 >
-                    <motion.p 
-                        className="welcome-to"
-                        variants={childVariants}
-                    >
-                    WELCOME TO
-                    </motion.p>
+                    <p className="welcome-to">
+                        WELCOME TO
+                    </p>
 
-                    <motion.div
-                        variants={childVariants}
-                    >
+                    <div>
                         <Logo size="md"/>
-                    </motion.div>
-                    
+                    </div>                
                 </motion.div>}
             </AnimatePresence>
         </div>

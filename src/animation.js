@@ -38,13 +38,3 @@ export const fadeVariants = {
     }
   }
 }
-
-// Stagger child animations
-export const childVariants = {
-  hidden: { 
-    opacity: 0 
-  },
-  visible: { 
-    opacity: 1 
-  }
-}
