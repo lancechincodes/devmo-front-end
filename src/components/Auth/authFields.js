@@ -1,5 +1,18 @@
 import { ACTION } from './authReducer'
 
+export const loginFields = [
+    {
+        label: "Email",
+        type: "email",
+        reducerType: ACTION.SET_EMAIL
+    },
+    {
+        label: "Password",
+        type: "password",
+        reducerType: ACTION.SET_PASSWORD
+    }
+]
+
 export const signUpFields = [
     {
         label: "First name",
