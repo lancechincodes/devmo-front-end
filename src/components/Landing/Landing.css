@@ -1,0 +1,23 @@
+.landing-page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+  width: 100px;
+  border-radius: 50%;
+  overflow: visible;
+  stroke: #264DE4;
+  stroke-width: 5;
+  stroke-linejoin: bevel;
+  stroke-linecap: bevel;
+}
+
+.welcome-to {
+  font-size: 15px;
+  text-align: center;
+  margin: 0;
+}

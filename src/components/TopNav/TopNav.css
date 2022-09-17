@@ -1,0 +1,31 @@
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: .5px solid black;
+}
+
+.left-nav {
+  display: flex;
+  align-items: center;
+}
+
+.right-nav {
+  margin: 0 10px;
+  display: flex;
+  align-content: center;
+}
+
+.full-logo {
+  display: flex;
+}
+
+.inline-logo-text {
+  font-size: 55px;
+  margin: 15px 0 0 0;
+  color: #264DE4;
+}
+
+.inline-logo-image {
+  width: 50px;
+}
