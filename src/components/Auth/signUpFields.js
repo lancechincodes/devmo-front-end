@@ -1,22 +1,29 @@
+import { ACTION } from './authReducer'
+
 export const signUpFields = [
     {
         label: "First name",
-        type: "text"
+        type: "text",
+        reducerType: ACTION.SET_FIRST_NAME
     },
     {
         label: "Last name",
-        type: "text"
+        type: "text",
+        reducerType: ACTION.SET_LAST_NAME
     },
     {
         label: "Email",
-        type: "email"
+        type: "email",
+        reducerType: ACTION.SET_EMAIL
     },
     {
         label: "Password",
-        type: "password"
+        type: "password",
+        reducerType: ACTION.SET_PASSWORD
     },
     {
         label: "Confirm password",
-        type: "password"
+        type: "password",
+        reducerType: ACTION.SET_CONFIRM_PASSWORD
     }
 ]
