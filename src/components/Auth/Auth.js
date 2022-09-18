@@ -59,7 +59,7 @@ function Auth() {
                     Sign Up
                 </button>
                 <p className="switch">Already have an account? 
-                    <span className="bold" onClick={handleSwitch}>Login</span>
+                    <span className="bold" onClick={handleSwitch}> Login</span>
                 </p>
             </form>}
 
@@ -85,7 +85,7 @@ function Auth() {
                     Log in
                 </button>
                 <p className="switch">Need an account? 
-                    <span className="bold" onClick={handleSwitch}>Sign up</span>
+                    <span className="bold" onClick={handleSwitch}> Sign up</span>
                 </p>
             </form>}
 
