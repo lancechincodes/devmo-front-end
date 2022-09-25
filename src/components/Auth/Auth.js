@@ -1,15 +1,17 @@
 import './Auth.css'
-import TopNav from '../TopNav/TopNav'
 import { useReducer, useState } from 'react'
-import TextField from '@mui/material/TextField';
 import { signUpFields, loginFields } from './authFields';
 import { authReducer } from './authReducer'
+import { useNavigate } from 'react-router-dom'
+import TopNav from '../TopNav/TopNav'
+import TextField from '@mui/material/TextField';
 import axios from 'axios'
 
 function Auth() {
     const [error, setError] = useState(null)
     const [state, dispatch] = useReducer(authReducer, 
-        {signUp: true, firstName: '', lastName: '', password: '', confirmPassword: ''})
+        {signUp: true, firstName: '', lastName: '', email: '', password: '', confirmPassword: ''})
+    const navigate = useNavigate()
 
     function handleSwitch() {
         dispatch({type: 'setSignUp'})
@@ -29,7 +31,30 @@ function Auth() {
                 email: state.email,
                 password: state.password
             })
-                .then(res => console.log(res))
+                .then(res => {
+                    console.log(res)
+                    dispatch({type: 'setSignUp'})
+                })
+                .catch(err => {
+                    console.log(err.response.data)
+                    setError(err.response.data)
+                })
+        }
+        else {
+            axios.post(`http://localhost:8000/api/users/login`, {
+                email: state.email,
+                password: state.password
+            })
+                .then(res => {
+                    console.log(res.data)
+                    window.localStorage.setItem("Token", res.data)
+                })
+                .then(() => {
+                    navigate('/gallery')
+                })
+                .catch(err => {
+                    setError("Provided email or password is incorrect")
+                })
         }
     }
 
