@@ -1,15 +1,19 @@
 import './Auth.css'
-import TopNav from '../TopNav/TopNav'
-import { useReducer, useState } from 'react'
-import TextField from '@mui/material/TextField';
+import { useReducer, useState, useContext } from 'react'
 import { signUpFields, loginFields } from './authFields';
 import { authReducer } from './authReducer'
+import { useNavigate } from 'react-router-dom'
+import { DataContext } from '../../DataContext';
+import TopNav from '../TopNav/TopNav'
+import TextField from '@mui/material/TextField';
 import axios from 'axios'
 
 function Auth() {
     const [error, setError] = useState(null)
     const [state, dispatch] = useReducer(authReducer, 
-        {signUp: true, firstName: '', lastName: '', password: '', confirmPassword: ''})
+        {signUp: true, firstName: '', lastName: '', email: '', password: '', confirmPassword: ''})
+    const navigate = useNavigate()
+    const { isActive, setIsActive } = useContext(DataContext)
 
     function handleSwitch() {
         dispatch({type: 'setSignUp'})
@@ -29,13 +33,36 @@ function Auth() {
                 email: state.email,
                 password: state.password
             })
-                .then(res => console.log(res))
+                .then(res => {
+                    console.log(res)
+                    dispatch({type: 'setSignUp'})
+                })
+                .catch(err => {
+                    console.log(err.response.data)
+                    setError(err.response.data)
+                })
+        }
+        else {
+            axios.post(`http://localhost:8000/api/users/login`, {
+                email: state.email,
+                password: state.password
+            })
+                .then(res => {
+                    console.log(res.data)
+                    window.localStorage.setItem("Token", res.data)
+                })
+                .then(() => {
+                    navigate('/gallery')
+                })
+                .catch(err => {
+                    setError("Provided email or password is incorrect")
+                })
         }
     }
 
     return (
         <div className="auth-page">
-            <TopNav/>
+            <TopNav isActive={isActive} setIsActive={setIsActive}/>
 
             {state.signUp && <form className="auth-form" type="submit">
                 <h1 className="auth-heading">SIGN UP</h1>
@@ -59,7 +86,7 @@ function Auth() {
                     Sign Up
                 </button>
                 <p className="switch">Already have an account? 
-                    <span className="bold" onClick={handleSwitch}>Login</span>
+                    <span className="bold" onClick={handleSwitch}> Login</span>
                 </p>
             </form>}
 
@@ -85,7 +112,7 @@ function Auth() {
                     Log in
                 </button>
                 <p className="switch">Need an account? 
-                    <span className="bold" onClick={handleSwitch}>Sign up</span>
+                    <span className="bold" onClick={handleSwitch}> Sign up</span>
                 </p>
             </form>}
 
