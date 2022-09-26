@@ -1,12 +1,14 @@
 import './TopNav.css'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { Divide as Hamburger} from 'hamburger-react'
+import { DataContext } from '../../DataContext'
 import Logo from '../Logo/Logo'
 import Toggle from '../Toggle/Toggle'
-import { Divide as Hamburger} from 'hamburger-react'
 import SideNav from '../SideNav/SideNav'
 
-function TopNav({isActive, setIsActive}) {
+function TopNav() {
     const [isOpen, setOpen] = useState(false)
+    const { isActive, setIsActive } = useContext(DataContext)
 
     return (
         <>
@@ -26,7 +28,7 @@ function TopNav({isActive, setIsActive}) {
                     <Toggle/>
                 </div>
             </nav>
-            <SideNav isActive={isActive}/>
+            <SideNav/>
         </>
 
     );

@@ -1,8 +1,9 @@
 import './Auth.css'
-import { useReducer, useState } from 'react'
+import { useReducer, useState, useContext } from 'react'
 import { signUpFields, loginFields } from './authFields';
 import { authReducer } from './authReducer'
 import { useNavigate } from 'react-router-dom'
+import { DataContext } from '../../DataContext';
 import TopNav from '../TopNav/TopNav'
 import TextField from '@mui/material/TextField';
 import axios from 'axios'
@@ -12,6 +13,7 @@ function Auth() {
     const [state, dispatch] = useReducer(authReducer, 
         {signUp: true, firstName: '', lastName: '', email: '', password: '', confirmPassword: ''})
     const navigate = useNavigate()
+    const { isActive, setIsActive } = useContext(DataContext)
 
     function handleSwitch() {
         dispatch({type: 'setSignUp'})
@@ -60,7 +62,7 @@ function Auth() {
 
     return (
         <div className="auth-page">
-            <TopNav/>
+            <TopNav isActive={isActive} setIsActive={setIsActive}/>
 
             {state.signUp && <form className="auth-form" type="submit">
                 <h1 className="auth-heading">SIGN UP</h1>

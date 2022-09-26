@@ -1,30 +1,36 @@
 import './SideNav.css'
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { DataContext } from '../../DataContext';
 
-function SideNav({isActive}) {
+function SideNav() {
+    const { isActive, setIsActive } = useContext(DataContext)
+
+    function handleNavigate() {
+        setIsActive(false)
+    }
     
     return (
         <div className={isActive ? "side-nav active" : "side-nav"}>
             <div className="nav-lists">
-                <ul>
-                    <Link to="/gallery">
-                        <li>Featured</li>
+                <ul className="side-nav-list">
+                    <Link to="/gallery" className="link" onClick={handleNavigate}>
+                        <li className="list-element">Featured</li>
                     </Link>
-                    <Link to="/auth">
-                        <li>Discover</li>
+                    <Link to="/gallery" className="link" onClick={handleNavigate}>
+                        <li className="list-element">Discover</li>
                     </Link>
-                    <Link to="/about">
-                        <li>About us</li>
+                    <Link to="/about" className="link" onClick={handleNavigate}>
+                        <li className="list-element">About us</li>
                     </Link>
                 </ul>
 
-                <ul>
-                <Link to="/">
-                        <li>Sign up</li>
+                <ul className="side-nav-list">
+                <Link to="/auth" className="link" onClick={handleNavigate}>
+                        <li className="list-element">Sign up</li>
                     </Link>
-                    <Link to="/">
-                        <li>Login</li>
+                    <Link to="/auth" className="link" onClick={handleNavigate}>
+                        <li className="list-element">Login</li>
                     </Link>
                 </ul>
             </div>

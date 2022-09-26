@@ -1,14 +1,15 @@
 import './Gallery.css'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { DataContext } from '../../DataContext'
 import TopNav from '../TopNav/TopNav';
 import ProjectCard from '../ProjectCard/ProjectCard';
 
 function Gallery() {
-    const [isActive, setIsActive] = useState(false)
+    const { isActive } = useContext(DataContext)
 
     return (
         <div className="gallery-page">
-            <TopNav isActive={isActive} setIsActive={setIsActive} />
+            <TopNav/>
             <div className={isActive ? "gallery-main blur" : "gallery-main"}>
                 <div className="gallery-heading">
                     <h1 className="gallery-title">FEATURED</h1>
