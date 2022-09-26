@@ -1,0 +1,22 @@
+.side-nav {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    height: 94vh;
+    width: 175px;
+    left: -100%;
+    transition: .8s;
+}
+
+.side-nav.active {
+    left: 0px;
+    z-index: 1;
+}
+
+.nav-lists {
+    height: 94vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: hidden;
+}
