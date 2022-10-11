@@ -2,3 +2,38 @@
     display: flex;
     flex-direction: column;
 }
+
+.auth-heading {
+    text-align: center;
+    margin: 40px 0px 0px 0px;
+}
+
+.text-fields {
+    margin: 0px 20px 7px 20px;
+}
+
+.MuiFormControl-root.MuiTextField-root.outlined-basic {
+    margin: 7px;
+}
+
+.auth-button {
+    margin: 0px 28px;
+    text-align: center;
+    background: #264DE4;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.auth-button:hover {
+    background: #1f42cd;
+    cursor: pointer;
+}
+
+.switch {
+    text-align: center;
+}
+
+.bold {
+    text-decoration: underline;
+}

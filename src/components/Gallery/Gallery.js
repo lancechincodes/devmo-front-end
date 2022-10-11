@@ -10,7 +10,7 @@ function Gallery() {
     return (
         <div className="gallery-page">
             <TopNav/>
-            <div className={isActive ? "gallery-main blur" : "gallery-main"}>
+            <div className="gallery-main">
                 <div className="gallery-heading">
                     <h1 className="gallery-title">FEATURED</h1>
                     <p className="gallery-description">Our editors' top picks.</p>

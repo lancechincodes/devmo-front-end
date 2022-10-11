@@ -22,11 +22,6 @@
     height: 100vh;
 }
 
-
-.gallery-main.blur {
-    filter: blur(.7px);
-}
-
 .gallery-main {
     position: relative;
 }

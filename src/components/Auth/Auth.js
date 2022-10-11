@@ -7,6 +7,7 @@ import { DataContext } from '../../DataContext';
 import TopNav from '../TopNav/TopNav'
 import TextField from '@mui/material/TextField';
 import axios from 'axios'
+import { ButtonGroup } from '@mui/material';
 
 function Auth() {
     const [error, setError] = useState(null)
@@ -79,13 +80,13 @@ function Auth() {
                         />
                     ))}
                 </div>
-                <button
+                <div
                     className="auth-button"
                     onClick={handleSubmit}
                 >
-                    Sign Up
-                </button>
-                <p className="switch">Already have an account? 
+                    Sign up
+                </div>
+                <p className="switch">Already have an account?  
                     <span className="bold" onClick={handleSwitch}> Login</span>
                 </p>
             </form>}
@@ -105,13 +106,13 @@ function Auth() {
                         />
                     ))}
                 </div>
-                <button
+                <div
                     className="auth-button"
                     onClick={handleSubmit}
                 >
                     Log in
-                </button>
-                <p className="switch">Need an account? 
+                </div>
+                <p className="switch">Need an account?  
                     <span className="bold" onClick={handleSwitch}> Sign up</span>
                 </p>
             </form>}

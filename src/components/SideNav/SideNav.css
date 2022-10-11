@@ -4,7 +4,7 @@
     background-color: #264DE4;
     color: white;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    height: 100vh;
+    height: 94vh;
     width: 175px;
     left: -100%;
     transition: .8s;
@@ -20,7 +20,7 @@
 }
 
 .nav-lists {
-    height: 100vh;
+    height: 94vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
