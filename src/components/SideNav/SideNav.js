@@ -1,13 +1,23 @@
 import './SideNav.css'
-import { useEffect, useContext } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { DataContext } from '../../DataContext';
 
 function SideNav() {
-    const { isActive, setIsActive } = useContext(DataContext)
+    const { isActive, setIsActive, signUp, setSignUp } = useContext(DataContext)
 
     function handleNavigate() {
         setIsActive(false)
+    }
+
+    function handleNavigateSignUp() {
+        setIsActive(false)
+        setSignUp(true)
+    }
+
+    function handleNavigateLogin() {
+        setIsActive(false)
+        setSignUp(false)
     }
     
     return (
@@ -26,10 +36,10 @@ function SideNav() {
                 </ul>
 
                 <ul className="side-nav-list">
-                <Link to="/auth" className="link" onClick={handleNavigate}>
+                    <Link to="/auth" className="link" onClick={handleNavigateSignUp}>
                         <li className="list-element">Sign up</li>
                     </Link>
-                    <Link to="/auth" className="link" onClick={handleNavigate}>
+                    <Link to="/auth" className="link" onClick={handleNavigateLogin}>
                         <li className="list-element">Login</li>
                     </Link>
                 </ul>

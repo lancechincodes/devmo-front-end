@@ -1,3 +1,4 @@
+// read action type and perform case that matches it
 export const formReducer = (state, action) => {
     switch(action.type) {
         case 'setName':
@@ -13,6 +14,7 @@ export const formReducer = (state, action) => {
     }
 }
 
+// actions to set properties of the form
 export const ACTION = {
     SET_NAME: 'setName',
     SET_DESCRIPTION: 'setDescription',

@@ -1,12 +1,13 @@
 import './Form.css'
 import { useState, useReducer } from "react";
 import { MultiSelect } from "react-multi-select-component";
-import { formReducer, ACTION } from './formReducer';
+import { formReducer, ACTION } from './formReducer'; // import formReducer file
 import { techOptions } from './techOptions';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function Form() {
+    // use reducer for form's state management
     const [state, dispatch] = useReducer(formReducer, 
         {name: '', description: '', projectUrl: '', image: ''})
     const [selected, setSelected] = useState([]);

@@ -12,17 +12,17 @@ import { ButtonGroup } from '@mui/material';
 function Auth() {
     const [error, setError] = useState(null)
     const [state, dispatch] = useReducer(authReducer, 
-        {signUp: true, firstName: '', lastName: '', email: '', password: '', confirmPassword: ''})
+        {firstName: '', lastName: '', email: '', password: '', confirmPassword: ''})
     const navigate = useNavigate()
-    const { isActive, setIsActive } = useContext(DataContext)
+    const { isActive, setIsActive, signUp, setSignUp } = useContext(DataContext)
 
     function handleSwitch() {
-        dispatch({type: 'setSignUp'})
+        setSignUp(!signUp)
     }
 
     function handleSubmit(e) {
         e.preventDefault()
-        if (state.signUp) {
+        if (signUp) {
             if (state.password !== state.confirmPassword) {
                 setError('Password and confirmation password does not match')
                 return
@@ -49,7 +49,7 @@ function Auth() {
                 password: state.password
             })
                 .then(res => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     window.localStorage.setItem("Token", res.data)
                 })
                 .then(() => {
@@ -65,7 +65,7 @@ function Auth() {
         <div className="auth-page">
             <TopNav isActive={isActive} setIsActive={setIsActive}/>
 
-            {state.signUp && <form className="auth-form" type="submit">
+            {signUp && <form className="auth-form" type="submit">
                 <h1 className="auth-heading">SIGN UP</h1>
                 <div className="text-fields">
                     {signUpFields.map((textField, idx) => (
@@ -91,7 +91,7 @@ function Auth() {
                 </p>
             </form>}
 
-            {!state.signUp && <form className="auth-form" type="submit">
+            {!signUp && <form className="auth-form" type="submit">
                 <h1 className="auth-heading">LOGIN</h1>
                 <div className="text-fields">
                     {loginFields.map((textField, idx) => (

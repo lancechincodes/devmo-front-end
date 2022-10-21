@@ -1,7 +1,5 @@
 export const authReducer = (state, action) => {
     switch(action.type) {
-        case 'setSignUp':
-            return { ...state, signUp: !state.signUp }
         case 'setFirstName':
             return { ...state, firstName: action.payload }
         case 'setLastName':
@@ -18,7 +16,6 @@ export const authReducer = (state, action) => {
 }
 
 export const ACTION = {
-    SET_SIGN_UP: "setSignUp",
     SET_FIRST_NAME: "setFirstName",
     SET_LAST_NAME: "setLastName",
     SET_EMAIL: "setEmail",
