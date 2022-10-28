@@ -5,6 +5,7 @@ import { DataContext } from '../../DataContext';
 
 function SideNav() {
     const { isActive, setIsActive, signUp, setSignUp } = useContext(DataContext)
+    const navigate = useNavigate()
 
     function handleNavigate() {
         setIsActive(false)
@@ -18,6 +19,13 @@ function SideNav() {
     function handleNavigateLogin() {
         setIsActive(false)
         setSignUp(false)
+    }
+
+    function handleLogout() {
+        setIsActive(false)
+        window.localStorage.removeItem('Token')
+        window.localStorage.removeItem('Email')
+        // navigate("/gallery")
     }
     
     return (
@@ -36,12 +44,21 @@ function SideNav() {
                 </ul>
 
                 <ul className="side-nav-list">
-                    <Link to="/auth" className="link" onClick={handleNavigateSignUp}>
-                        <li className="list-element">Sign up</li>
-                    </Link>
-                    <Link to="/auth" className="link" onClick={handleNavigateLogin}>
-                        <li className="list-element">Login</li>
-                    </Link>
+                    {window.localStorage.getItem('Email') ? (
+                        <Link to="/gallery" className="link" onClick={handleLogout}>
+                            <li className="list-element">Logout</li>
+                        </Link>
+                    ) :
+                    (
+                        <>
+                            <Link to="/auth" className="link" onClick={handleNavigateSignUp}>
+                                <li className="list-element">Sign up</li>
+                            </Link>
+                            <Link to="/auth" className="link" onClick={handleNavigateLogin}>
+                                <li className="list-element">Login</li>
+                            </Link>
+                        </>
+                    )}
                 </ul>
             </div>
         </div>

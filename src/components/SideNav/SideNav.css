@@ -8,11 +8,11 @@
     width: 175px;
     left: -100%;
     transition: .8s;
+    z-index: 10;
 }
 
 .side-nav.active {
     left: 0px;
-    z-index: 10;
 }
 
 .side-nav-list {
