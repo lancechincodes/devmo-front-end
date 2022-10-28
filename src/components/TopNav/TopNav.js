@@ -2,6 +2,7 @@ import './TopNav.css'
 import { useState, useContext } from 'react'
 import { Divide as Hamburger} from 'hamburger-react'
 import { DataContext } from '../../DataContext'
+import { Link } from 'react-router-dom'
 import Logo from '../Logo/Logo'
 import Toggle from '../Toggle/Toggle'
 import SideNav from '../SideNav/SideNav'
@@ -26,7 +27,11 @@ function TopNav() {
                     <Logo size="sm"/>
                 </div>
                 <div className="right-nav">
-                    {window.localStorage.getItem('Email') && <img className="post-btn" src={post} alt="Post button"/>}
+                    {window.localStorage.getItem('Email') && 
+                    <Link to="/form">
+                        <img className="post-btn" src={post} alt="Post button"/>
+                    </Link>
+                    }
                     <Toggle/>
                 </div>
             </nav>
