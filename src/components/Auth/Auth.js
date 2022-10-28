@@ -51,6 +51,7 @@ function Auth() {
                 .then(res => {
                     // console.log(res.data)
                     window.localStorage.setItem("Token", res.data)
+                    window.localStorage.setItem("Email", state.email)
                 })
                 .then(() => {
                     navigate('/gallery')

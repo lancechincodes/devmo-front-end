@@ -5,6 +5,7 @@ import { DataContext } from '../../DataContext'
 import Logo from '../Logo/Logo'
 import Toggle from '../Toggle/Toggle'
 import SideNav from '../SideNav/SideNav'
+import post from '../../assets/post.svg'
 
 function TopNav() {
     const [isOpen, setOpen] = useState(false)
@@ -25,6 +26,7 @@ function TopNav() {
                     <Logo size="sm"/>
                 </div>
                 <div className="right-nav">
+                    {window.localStorage.getItem('Email') && <img className="post-btn" src={post} alt="Post button"/>}
                     <Toggle/>
                 </div>
             </nav>
