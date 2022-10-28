@@ -31,7 +31,11 @@
   width: 50px;
 }
 
+.form-link {
+  display: flex;
+}
+
 .post-btn {
   width: 30px;
-  margin: 0 10px;
+  margin: 0px 10px;
 }

@@ -2,9 +2,12 @@ import './Form.css'
 import { useState, useReducer } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { formReducer, ACTION } from './formReducer'; // import formReducer file
-import { techOptions } from './techOptions';
+import { techOptions, customValueRenderer } from './multiSelectProps';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import TopNav from '../TopNav/TopNav';
+import TextField from '@mui/material/TextField';
+import { formFields } from './formFields'
 
 function Form() {
     // use reducer for form's state management
@@ -27,8 +30,6 @@ function Form() {
             technologies.push(select.value)
         }
 
-        console.log(technologies)
-
         formData.append("technologies", JSON.stringify(technologies)) // must stringify arrays in formData
         axios.post(`http://localhost:8000/api/projects`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
             .then(res => console.log(res))
@@ -39,51 +40,48 @@ function Form() {
 
     return (
         <div className="form-page">
+            <TopNav/>
             <form className="share-form" type="submit">
-                <input 
-                    className="fields"
-                    type="text" 
-                    placeholder="Title"
-                    onChange={(e) => dispatch({type: ACTION.SET_NAME, payload: e.target.value })}
-                /><br/>
-                <textarea 
-                    className="fields"
-                    type="text" 
-                    placeholder="Description"
-                    onChange={(e) => dispatch({type: ACTION.SET_DESCRIPTION, payload: e.target.value})}
-                /><br/>
-                <input 
-                    className="fields"
-                    type="url" 
-                    placeholder="Project URL"
-                    onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
-                /><br/>
-                <input 
-                    className="file-field"
-                    type="file"
-                    onChange={(e) => dispatch({type: ACTION.SET_IMAGE, payload: e.target.files[0]})}
-                /><br/>
-                <MultiSelect
-                    hasSelectAll={false}
-                    options={techOptions}
-                    value={selected}
-                    onChange={setSelected}
-                    labelledBy="Select"
-                />
-                <br/>
-                <button 
-                    className="post-btn"
+                <h1 className="form-heading">NEW DEVMO</h1>
+                <div className="post-text-fields">
+                    {formFields.map((field, idx) => (
+                        <TextField
+                            key={idx}
+                            className="outlined-basic"
+                            label={field.label}
+                            variant="outlined"
+                            type={field.type}
+                            required={true}
+                            onChange={(e) => dispatch({ type: field.reducerType, payload: e.target.value })}
+                        />
+                    ))}
+                    <TextField
+                        className="file-name"
+                        type="file"
+                        onChange={(e) => dispatch({type: ACTION.SET_IMAGE, payload: e.target.files[0]})}
+                        label="Project Thumbnail"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                    <MultiSelect
+                        hasSelectAll={false}
+                        options={techOptions}
+                        value={selected}
+                        onChange={setSelected}
+                        labelledBy="Select"
+                        valueRenderer={customValueRenderer}
+                    />
+                </div>
+
+                <div
+                    className="submit-post-btn"
                     type="submit"
                     onClick={handlePost}
                 >
-                    Submit
-                </button>
+                    Share
+                </div>
             </form>
-            <p>{state.title}</p>
-            <p>{state.description}</p>
-            <p>{state.projectUrl}</p>
-            <pre>{JSON.stringify(selected)}</pre>
-
         </div>
     );
 };

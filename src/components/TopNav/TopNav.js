@@ -28,7 +28,7 @@ function TopNav() {
                 </div>
                 <div className="right-nav">
                     {window.localStorage.getItem('Email') && 
-                    <Link to="/form">
+                    <Link className="form-link" to="/form">
                         <img className="post-btn" src={post} alt="Post button"/>
                     </Link>
                     }

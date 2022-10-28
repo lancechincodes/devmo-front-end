@@ -6,3 +6,9 @@ export const techOptions = [
     { label: "Django", value: "django"},
     { label: "Python", value: "python"},
 ];
+
+export const customValueRenderer = (selected, _options) => {
+    return selected.length
+      ? selected.map(({ label }) => label + ", ")
+      : "Select Technology Stack";
+  };
