@@ -12,6 +12,10 @@ function TopNav() {
     const [isOpen, setOpen] = useState(false)
     const { isActive, setIsActive } = useContext(DataContext)
 
+    function handleNavigate() {
+        setIsActive(false)
+    }
+
     return (
         <>
             <nav className="top-nav">
@@ -28,7 +32,7 @@ function TopNav() {
                 </div>
                 <div className="right-nav">
                     {window.localStorage.getItem('Email') && 
-                    <Link className="form-link" to="/form">
+                    <Link className="form-link" to="/form" onClick={handleNavigate}>
                         <img className="post-btn" src={post} alt="Post button"/>
                     </Link>
                     }
@@ -37,7 +41,6 @@ function TopNav() {
             </nav>
             <SideNav/>
         </>
-
     );
 };
 
