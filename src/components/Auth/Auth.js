@@ -36,7 +36,8 @@ function Auth() {
             })
                 .then(res => {
                     console.log(res)
-                    dispatch({type: 'setSignUp'})
+                    setSignUp(!signUp)
+                    console.log(signUp)
                 })
                 .catch(err => {
                     console.log(err.response.data)
