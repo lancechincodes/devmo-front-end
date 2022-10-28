@@ -36,7 +36,8 @@ function Auth() {
             })
                 .then(res => {
                     console.log(res)
-                    dispatch({type: 'setSignUp'})
+                    setSignUp(!signUp)
+                    console.log(signUp)
                 })
                 .catch(err => {
                     console.log(err.response.data)
@@ -51,6 +52,7 @@ function Auth() {
                 .then(res => {
                     // console.log(res.data)
                     window.localStorage.setItem("Token", res.data)
+                    window.localStorage.setItem("Email", state.email)
                 })
                 .then(() => {
                     navigate('/gallery')

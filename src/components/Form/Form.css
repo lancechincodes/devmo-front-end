@@ -1,8 +1,37 @@
-.share-form {
-    margin: 30px;
+.form-page {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.form-heading {
+    text-align: center;
+    margin: 30px 0px 0px 0px;
+    font-size: 40px;
+}
+
+.post-text-fields  {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    margin: 0px 20px 7px 20px;
+}
+
+.MuiFormControl-root.MuiTextField-root.file-name {
+    margin: 10px 7px;
+}
+
+.multi-select {
+    margin: 7px;
+    font-family: sans-serif;
+    border: none;
+}
+
+.submit-post-btn {
+    margin: 0px 28px;
+    text-align: center;
+    background: #264DE4;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
 }
 
 .multi-select span {
