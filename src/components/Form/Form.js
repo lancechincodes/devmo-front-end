@@ -57,7 +57,7 @@ function Form() {
                         variant="outlined"
                         type="text"
                         required={true}
-                        onChange={(e) => dispatch({type: ACTION.SET_NAME, payload: e.target.value})}
+                        onChange={(e) => dispatch({type: ACTION.SET_DESCRIPTION, payload: e.target.value})}
                         multiline
                         rows={3}
                     />
@@ -67,7 +67,7 @@ function Form() {
                         variant="outlined"
                         type="text"
                         required={true}
-                        onChange={(e) => dispatch({type: ACTION.SET_NAME, payload: e.target.value})}
+                        onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
                     />
                     <TextField
                         className="file-name"

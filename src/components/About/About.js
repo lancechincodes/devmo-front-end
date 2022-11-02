@@ -6,7 +6,10 @@ function About() {
         <div className="about-page">
             <TopNav/>
             <div className="about-main">
-                <h1 className="about-title">About Us</h1>
+                <div className="about-heading">
+                    <h1 className="about-title">ABOUT US</h1>
+                    <p className="about-description">Our story.</p>
+                </div>
             </div>            
         </div>
     );
