@@ -35,7 +35,7 @@ function Auth() {
                 password: state.password
             })
                 .then(res => {
-                    console.log(res)
+                    // console.log(res)
                     setSignUp(!signUp)
                     console.log(signUp)
                 })
