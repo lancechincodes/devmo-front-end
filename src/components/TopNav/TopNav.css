@@ -37,5 +37,21 @@
 
 .post-btn {
   width: 30px;
-  margin: 0px 10px;
+  margin: 0px 5px;
+}
+
+.profile-btn {
+  background-color: #264DE4;
+  width: 30px;
+  border-radius: 50%;
+  margin: 0px 10px 0px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.initials-text {
+  margin: 0;
+  font-size: 13px;
+  color: white;
 }

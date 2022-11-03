@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import TopNav from '../TopNav/TopNav';
 import TextField from '@mui/material/TextField';
-import { formFields } from './formFields'
 
 function Form() {
     // use reducer for form's state management
@@ -44,20 +43,36 @@ function Form() {
             <form className="share-form" type="submit">
                 <h1 className="form-heading">NEW DEVMO</h1>
                 <div className="post-text-fields">
-                    {formFields.map((field, idx) => (
-                        <TextField
-                            key={idx}
-                            className="outlined-basic"
-                            label={field.label}
-                            variant="outlined"
-                            type={field.type}
-                            required={true}
-                            onChange={(e) => dispatch({ type: field.reducerType, payload: e.target.value })}
-                        />
-                    ))}
+                    <TextField
+                        className="outlined-basic"
+                        label="Project Name"
+                        variant="outlined"
+                        type="text"
+                        required={true}
+                        onChange={(e) => dispatch({type: ACTION.SET_NAME, payload: e.target.value})}
+                    />
+                     <TextField
+                        className="outlined-basic"
+                        label="Description"
+                        variant="outlined"
+                        type="text"
+                        required={true}
+                        onChange={(e) => dispatch({type: ACTION.SET_DESCRIPTION, payload: e.target.value})}
+                        multiline
+                        rows={3}
+                    />
+                     <TextField
+                        className="outlined-basic"
+                        label="Project URL"
+                        variant="outlined"
+                        type="text"
+                        required={true}
+                        onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
+                    />
                     <TextField
                         className="file-name"
                         type="file"
+                        required={true}
                         onChange={(e) => dispatch({type: ACTION.SET_IMAGE, payload: e.target.files[0]})}
                         label="Project Thumbnail"
                         InputLabelProps={{
@@ -71,6 +86,7 @@ function Form() {
                         onChange={setSelected}
                         labelledBy="Select"
                         valueRenderer={customValueRenderer}
+                        required={true}
                     />
                 </div>
 

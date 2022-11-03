@@ -10,5 +10,5 @@ export const techOptions = [
 export const customValueRenderer = (selected, _options) => {
     return selected.length
       ? selected.map(({ label }) => label + ", ")
-      : "Select Technology Stack";
+      : "Select Tech Stack...";
   };
