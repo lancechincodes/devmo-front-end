@@ -39,8 +39,20 @@
     margin: 5px 0px;
     padding: 10px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .list-element:hover {
     background: #5376ff;
+}
+
+.nav-icon {
+    width: 15px;
+    margin: 0 10px 0 0;
+}
+
+.nav-text {
+    margin: 0;
 }
