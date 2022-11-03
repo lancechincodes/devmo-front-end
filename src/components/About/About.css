@@ -22,3 +22,45 @@
     height: 100vh;
     position: relative;
 }
+
+.creator-image {
+    width: 130px;
+    border-radius: 30px;
+}
+
+.about-content {
+    margin: 0 30px;
+}
+
+.text-emphasis {
+    color: #264DE4;
+    font-weight: 900;
+}
+
+.image-statement-container {
+    margin: 30px 0;
+}
+
+.creator-image-sig-container {
+    display: flex;
+    align-items: center;
+}
+
+.creator-sig-title-container {
+    margin: 0 10px;
+}
+
+.creator-sig {
+    margin: 0;
+    font-size: 30px;
+}
+
+.creator-title {
+    margin: 0;
+    font-size: 15px;
+}
+
+.creator-statement {
+    font-size: 18px;
+}
+

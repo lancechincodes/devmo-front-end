@@ -26,7 +26,6 @@ function TopNav() {
                 const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email')) 
                 setInitials(loggedOnUser.firstName[0].toUpperCase() + loggedOnUser.lastName[0].toUpperCase())
             })
-        
     }, [])
 
     return (
