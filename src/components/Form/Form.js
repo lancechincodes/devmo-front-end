@@ -54,7 +54,10 @@ function Form() {
         <div className="form-page">
             <TopNav/>
             <form className="share-form" type="submit">
-                <h1 className="form-heading">NEW DEVMO</h1>
+                <div className="form-heading">
+                        <h1 className="gallery-title">NEW DEVMO</h1>
+                        <p className="gallery-description">Inspire on.</p>
+                    </div>
                 <div className="post-text-fields">
                     <TextField
                         className="outlined-basic"

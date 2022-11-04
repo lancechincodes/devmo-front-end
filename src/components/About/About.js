@@ -12,7 +12,7 @@ function About() {
                     <p className="about-description">Our story.</p>
                 </div>
                 <div className="about-content">
-                    <h2 className="mission-text">Devmo is <span className="text-emphasis">dedicated to inspiring</span> people through the lens of technology.</h2>
+                    <h2 className="mission-text">Devmo is <span className="text-emphasis">committed to inspiring</span> people through the lens of technology.</h2>
                     <div className="image-statement-container">
                         <div className="creator-image-sig-container">
                             <img className="creator-image" src={creatorImage} alt="Lance Chin"/>
@@ -21,7 +21,7 @@ function About() {
                                 <h4 className="creator-title">Creator of Devmo</h4>
                             </div>
                         </div>
-                        <p className="creator-statement">"Devmo (<span className="text-italics">short for developer demo</span>) is birthed from a story of aspiration, growth, and inspiration. It provides a platform for developers to showcase projects they are proud of, and shine light on how exciting, transformational, and fun coding can be. Always free – Devmo is powered by the people and for the people. Enjoy!"</p>    
+                        <p className="creator-statement">"Devmo (<span className="text-italics">short for developer demo</span>) is birthed from a story of aspiration, growth, and inspiration. It provides a platform for developers to showcase projects they are proud of, and shine light on how exciting, transformational, and fun coding can be. Always free – Devmo is powered by the people and dedicated to the people. Enjoy!"</p>    
                     </div>
 
                 </div>
