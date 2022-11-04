@@ -11,11 +11,15 @@ import post from '../../assets/post.svg'
 
 function TopNav() {
     const [isOpen, setOpen] = useState(false)
-    const { isActive, setIsActive } = useContext(DataContext)
+    const { isActive, setIsActive, setDisplay } = useContext(DataContext)
     const [initials, setInitials] = useState('')
 
     function handleNavigate() {
         setIsActive(false)
+    }
+
+    function handleNavigateProfile() {
+        setDisplay('Profile')
     }
 
     // find user and set initials of profile btn
@@ -48,9 +52,11 @@ function TopNav() {
                         <Link className="form-link" to="/form" onClick={handleNavigate}>
                             <img className="post-btn" src={post} alt="Post button"/>
                         </Link>
-                        <div className="profile-btn">
-                            <p className="initials-text">{initials}</p>
-                        </div>
+                        <Link className="form-link" to="/gallery" onClick={handleNavigateProfile}>
+                            <div className="profile-btn">
+                                <p className="initials-text">{initials}</p>
+                            </div>
+                        </Link>
                     </>
                     }
                     <Toggle/>

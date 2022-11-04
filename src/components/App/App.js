@@ -13,11 +13,12 @@ function App() {
   const location = useLocation()
   const [isActive, setIsActive] = useState(false)
   const [signUp, setSignUp] = useState(true)
+  const [display, setDisplay] = useState('Featured')
 
   return (
     <div className="App">
       <AnimatePresence exitBeforeEnter>
-        <DataContext.Provider value={{isActive, setIsActive, signUp, setSignUp}}>
+        <DataContext.Provider value={{isActive, setIsActive, signUp, setSignUp, display, setDisplay}}>
           <Routes location={location} key={location.key}>
             <Route path="/" element={<Landing/>}/>
             <Route path="/gallery" element={<Gallery/>}/>

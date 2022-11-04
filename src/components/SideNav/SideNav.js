@@ -7,11 +7,21 @@ import { faFire, faTrowel, faCircleInfo, faRightFromBracket, faUserPlus } from '
 import post from '../../assets/post.svg'
 
 function SideNav() {
-    const { isActive, setIsActive, signUp, setSignUp } = useContext(DataContext)
+    const { isActive, setIsActive, setSignUp, setDisplay } = useContext(DataContext)
     const navigate = useNavigate()
 
     function handleNavigate() {
         setIsActive(false)
+    }
+
+    function handleNavigateFeatured() {
+        setIsActive(false)
+        setDisplay('Featured')
+    }
+
+    function handleNavigateDiscover() {
+        setIsActive(false)
+        setDisplay('Discover')
     }
 
     function handleNavigateSignUp() {
@@ -28,20 +38,21 @@ function SideNav() {
         setIsActive(false)
         window.localStorage.removeItem('Token')
         window.localStorage.removeItem('Email')
-        // navigate("/gallery")
+        setDisplay('Featured')
+        navigate("/gallery")
     }
     
     return (
         <div className={isActive ? "side-nav active" : "side-nav"}>
             <div className="nav-lists">
                 <ul className="side-nav-list">
-                    <Link to="/gallery" className="link" onClick={handleNavigate}>
+                    <Link to="/gallery" className="link" onClick={handleNavigateFeatured}>
                         <li className="list-element">
                             <FontAwesomeIcon className="nav-icon" icon={faFire} />
                             <p className="nav-text">Featured</p>
                         </li>
                     </Link>
-                    <Link to="/gallery" className="link" onClick={handleNavigate}>
+                    <Link to="/gallery" className="link" onClick={handleNavigateDiscover}>
                         <li className="list-element">
                             <FontAwesomeIcon className="nav-icon" icon={faTrowel} />
                             <p className="nav-text">Discover</p>
