@@ -18,23 +18,36 @@ function Form() {
     function handlePost(e) {
         e.preventDefault()
 
-        const formData = new FormData()
-        formData.append("name", state.name)
-        formData.append("description", state.description)  
-        formData.append("projectUrl", state.projectUrl)
-        formData.append("image", state.image)
+        // add owner to form data
+        axios.get('http://localhost:8000/api/users')
+            .then(res => {
+                console.log(res)
+                const usersArr = res.data
+                const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email'))
+       
+                const formData = new FormData()
+                formData.append("name", state.name)
+                formData.append("description", state.description)  
+                formData.append("projectUrl", state.projectUrl)
+                formData.append("image", state.image)
+                formData.append("owner", JSON.stringify(loggedOnUser)) // must stringify object in formData
 
-        let technologies = []
-        for (let select of selected) {
-            technologies.push(select.value)
-        }
-
-        formData.append("technologies", JSON.stringify(technologies)) // must stringify arrays in formData
-        axios.post(`http://localhost:8000/api/projects`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
-            .then(res => console.log(res))
-            .then(() => {
-                navigate('/gallery')
-            })
+                console.log(loggedOnUser)
+        
+                let technologies = []
+                for (let select of selected) {
+                    technologies.push(select.value)
+                }
+        
+                formData.append("technologies", JSON.stringify(technologies)) // must stringify arrays in formData
+                axios.post(`http://localhost:8000/api/projects`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
+                    .then(res => console.log(res))
+                    .then(() => {
+                        navigate('/gallery') // navigate to successful submission page
+                    })
+                    .catch(err => console.log(err))
+                })
+            .catch(err => console.log(err))
     }
 
     return (
