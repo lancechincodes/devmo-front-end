@@ -24,12 +24,14 @@ function TopNav() {
 
     // find user and set initials of profile btn
     useEffect(() => {
-        axios.get('http://localhost:8000/api/users')
-            .then(res => {
-                const usersArr = res.data
-                const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email')) 
-                setInitials(loggedOnUser.firstName[0].toUpperCase() + loggedOnUser.lastName[0].toUpperCase())
-            })
+        if (window.localStorage.getItem('Email')) {
+            axios.get('http://localhost:8000/api/users')
+                .then(res => {
+                    const usersArr = res.data
+                    const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email')) 
+                    setInitials(loggedOnUser.firstName[0].toUpperCase() + loggedOnUser.lastName[0].toUpperCase())
+                })
+        }
     }, [])
 
     return (

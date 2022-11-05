@@ -65,6 +65,7 @@ function Form() {
                         variant="outlined"
                         type="text"
                         onChange={(e) => dispatch({type: ACTION.SET_NAME, payload: e.target.value})}
+                        required={true}
                     />
                      <TextField
                         className="outlined-basic"
@@ -74,6 +75,7 @@ function Form() {
                         onChange={(e) => dispatch({type: ACTION.SET_DESCRIPTION, payload: e.target.value})}
                         multiline
                         rows={3}
+                        required={true}
                     />
                      <TextField
                         className="outlined-basic"
@@ -81,6 +83,7 @@ function Form() {
                         variant="outlined"
                         type="text"
                         onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
+                        required={true}
                     />
                     <TextField
                         className="file-name"
@@ -90,6 +93,7 @@ function Form() {
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        required={true}
                     />
                     <MultiSelect
                         hasSelectAll={false}
