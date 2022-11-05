@@ -12,30 +12,32 @@ function Gallery() {
     const [totalTechnologies, setTotalTechnologies] = useState()
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/users')
-            .then(res => {
-                const usersArr = res.data
-                const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email'))
-                setName(loggedOnUser.firstName.toUpperCase() + ' ' + loggedOnUser.lastName.toUpperCase())
-                const loggedOnUserId = loggedOnUser.id
+        if (display === 'Profile') {
+            axios.get('http://localhost:8000/api/users')
+                .then(res => {
+                    const usersArr = res.data
+                    const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email'))
+                    setName(loggedOnUser.firstName.toUpperCase() + ' ' + loggedOnUser.lastName.toUpperCase())
+                    const loggedOnUserId = loggedOnUser.id
 
-                axios.get(`http://localhost:8000/api/projects/${loggedOnUserId}`)
-                    .then(res => {
-                        setProfileProjects(res.data)
+                    axios.get(`http://localhost:8000/api/projects/${loggedOnUserId}`)
+                        .then(res => {
+                            setProfileProjects(res.data)
 
-                        // determine how many number of unique technologies used for all projects
-                        let hash = {}
-                        for (let project of profileProjects) {
-                            for (let technology of project.technologies) {
-                                !hash[technology] ? hash[technology] = 1 : hash[technology]++
+                            // determine how many number of unique technologies used for all projects
+                            let hash = {}
+                            for (let project of profileProjects) {
+                                for (let technology of project.technologies) {
+                                    !hash[technology] ? hash[technology] = 1 : hash[technology]++
+                                }
                             }
-                        }
-                        setTotalTechnologies(Object.values(hash).length)
-                    })
-                    .catch(err => console.log(err))
-            })
-            .catch(err => console.log(err))
-    },[profileProjects, totalTechnologies]) // re-mount if either of these states update
+                            setTotalTechnologies(Object.values(hash).length)
+                        })
+                        .catch(err => console.log(err))
+                })
+                .catch(err => console.log(err))
+        }
+    },[totalTechnologies]) // re-mount if state updates
 
     return (
         <div className="gallery-page">
