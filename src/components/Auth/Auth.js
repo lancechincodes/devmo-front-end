@@ -16,6 +16,10 @@ function Auth() {
     const { isActive, setIsActive, signUp, setSignUp } = useContext(DataContext)
 
     function handleSwitch() {
+        // clear state after switching between login and sign up
+        signUpFields.forEach(field => {
+            dispatch({type: field.reducerType, payload: ''})
+        })
         setSignUp(!signUp)
     }
 
@@ -36,10 +40,13 @@ function Auth() {
                 .then(res => {
                     // console.log(res)
                     setSignUp(!signUp)
-                    console.log(signUp)
+                    // also clear state after signing up and before redirect to login
+                    signUpFields.forEach(field => {
+                        dispatch({type: field.reducerType, payload: ''})
+                    })
                 })
                 .catch(err => {
-                    console.log(err.response.data)
+                    // console.log(err.response.data)
                     setError(err.response.data)
                 })
         }
