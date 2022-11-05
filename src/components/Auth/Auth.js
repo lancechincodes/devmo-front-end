@@ -7,7 +7,6 @@ import { DataContext } from '../../DataContext';
 import TopNav from '../TopNav/TopNav'
 import TextField from '@mui/material/TextField';
 import axios from 'axios'
-import { ButtonGroup } from '@mui/material';
 
 function Auth() {
     const [error, setError] = useState(null)
@@ -53,6 +52,7 @@ function Auth() {
                     // console.log(res.data)
                     window.localStorage.setItem("Token", res.data)
                     window.localStorage.setItem("Email", state.email)
+                    window.localStorage.setItem("Display", 'Featured')
                 })
                 .then(() => {
                     navigate('/gallery')

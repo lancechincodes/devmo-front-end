@@ -6,13 +6,13 @@ import ProjectCard from '../ProjectCard/ProjectCard';
 import axios from 'axios'
 
 function Gallery() {
-    const { isActive, display } = useContext(DataContext)
+    const { isActive } = useContext(DataContext)
     const [name, setName] = useState('')
     const [profileProjects, setProfileProjects] = useState([])
     const [totalTechnologies, setTotalTechnologies] = useState()
 
     useEffect(() => {
-        if (display === 'Profile') {
+        if (window.localStorage.getItem('Display') === 'Profile') {
             axios.get('http://localhost:8000/api/users')
                 .then(res => {
                     const usersArr = res.data
@@ -44,21 +44,21 @@ function Gallery() {
             <TopNav/>
             <div className="gallery-main">
 
-                {display === 'Featured' && 
+                {window.localStorage.getItem('Display') === 'Featured' && 
                     <div className="gallery-heading">
                         <h1 className="gallery-title">FEATURED</h1>
                         <p className="gallery-description">Our editors' top picks.</p>
                     </div>
                 }
 
-                {display === 'Discover' && 
+                {window.localStorage.getItem('Display') === 'Discover' && 
                     <div className="gallery-heading">
                         <h1 className="gallery-title">DISCOVER</h1>
                         <p className="gallery-description">Our newest showcase.</p>
                     </div>
                 }
 
-                {display === 'Profile' && 
+                {window.localStorage.getItem('Display') === 'Profile' && 
                     <div className="gallery-heading">
                         <h1 className="gallery-title">{name}</h1>
                         <p className="gallery-description">{profileProjects.length} Projects. {totalTechnologies} Technologies.</p>

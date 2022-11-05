@@ -7,7 +7,7 @@ import { faFire, faTrowel, faCircleInfo, faRightFromBracket, faUserPlus } from '
 import post from '../../assets/post.svg'
 
 function SideNav() {
-    const { isActive, setIsActive, setSignUp, setDisplay } = useContext(DataContext)
+    const { isActive, setIsActive, setSignUp } = useContext(DataContext)
     const navigate = useNavigate()
 
     function handleNavigate() {
@@ -16,12 +16,12 @@ function SideNav() {
 
     function handleNavigateFeatured() {
         setIsActive(false)
-        setDisplay('Featured')
+        window.localStorage.setItem('Display', 'Featured')
     }
 
     function handleNavigateDiscover() {
         setIsActive(false)
-        setDisplay('Discover')
+        window.localStorage.setItem('Display', 'Discover')
     }
 
     function handleNavigateSignUp() {
@@ -38,7 +38,7 @@ function SideNav() {
         setIsActive(false)
         window.localStorage.removeItem('Token')
         window.localStorage.removeItem('Email')
-        setDisplay('Featured')
+        window.localStorage.setItem('Display', 'Featured')
         navigate("/gallery")
     }
     

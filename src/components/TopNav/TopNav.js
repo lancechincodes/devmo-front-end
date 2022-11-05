@@ -11,7 +11,7 @@ import post from '../../assets/post.svg'
 
 function TopNav() {
     const [isOpen, setOpen] = useState(false)
-    const { isActive, setIsActive, setDisplay } = useContext(DataContext)
+    const { isActive, setIsActive } = useContext(DataContext)
     const [initials, setInitials] = useState('')
 
     function handleNavigate() {
@@ -19,7 +19,7 @@ function TopNav() {
     }
 
     function handleNavigateProfile() {
-        setDisplay('Profile')
+        window.localStorage.setItem('Display', 'Profile')
     }
 
     // find user and set initials of profile btn
