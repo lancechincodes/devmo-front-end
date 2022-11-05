@@ -5,6 +5,8 @@ export const techOptions = [
     { label: "Node.js", value: "node.js"},
     { label: "Django", value: "django"},
     { label: "Python", value: "python"},
+    { label: "C++", value: "c++"},
+    { label: "Java", value: "java"},
 ];
 
 export const customValueRenderer = (selected, _options) => {

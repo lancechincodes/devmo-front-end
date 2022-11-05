@@ -64,7 +64,6 @@ function Form() {
                         label="Project Name"
                         variant="outlined"
                         type="text"
-                        required={true}
                         onChange={(e) => dispatch({type: ACTION.SET_NAME, payload: e.target.value})}
                     />
                      <TextField
@@ -72,7 +71,6 @@ function Form() {
                         label="Description"
                         variant="outlined"
                         type="text"
-                        required={true}
                         onChange={(e) => dispatch({type: ACTION.SET_DESCRIPTION, payload: e.target.value})}
                         multiline
                         rows={3}
@@ -82,13 +80,11 @@ function Form() {
                         label="Project URL"
                         variant="outlined"
                         type="text"
-                        required={true}
                         onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
                     />
                     <TextField
                         className="file-name"
                         type="file"
-                        required={true}
                         onChange={(e) => dispatch({type: ACTION.SET_IMAGE, payload: e.target.files[0]})}
                         label="Project Thumbnail"
                         InputLabelProps={{
@@ -102,7 +98,6 @@ function Form() {
                         onChange={setSelected}
                         labelledBy="Select"
                         valueRenderer={customValueRenderer}
-                        required={true}
                     />
                 </div>
 
