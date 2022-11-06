@@ -43,7 +43,6 @@ function Gallery() {
         <div className="gallery-page">
             <TopNav/>
             <div className="gallery-main">
-
                 {window.localStorage.getItem('Display') === 'Featured' && 
                     <div className="gallery-heading">
                         <h1 className="gallery-title">FEATURED</h1>
@@ -61,7 +60,7 @@ function Gallery() {
                 {window.localStorage.getItem('Display') === 'Profile' && 
                     <div className="gallery-heading">
                         <h1 className="gallery-title">{name}</h1>
-                        <p className="gallery-description">{profileProjects.length} Projects. {totalTechnologies} Technologies.</p>
+                        <p className="gallery-description">{profileProjects.length} Projects. {totalTechnologies} Technologies. # Likes.</p>
                     </div>
                 }
                 <ProjectCard/>

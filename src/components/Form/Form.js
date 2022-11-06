@@ -1,18 +1,17 @@
 import './Form.css'
 import { useState, useReducer } from "react";
-import { MultiSelect } from "react-multi-select-component";
 import { formReducer, ACTION } from './formReducer'; // import formReducer file
-import { techOptions, customValueRenderer } from './multiSelectProps';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import TopNav from '../TopNav/TopNav';
 import TextField from '@mui/material/TextField';
+import MultipleSelectCheckmarks from './MultipleSelectCheckmarks';
 
 function Form() {
     // use reducer for form's state management
     const [state, dispatch] = useReducer(formReducer, 
         {name: '', description: '', projectUrl: '', image: ''})
-    const [selected, setSelected] = useState([]);
+    const [selectedTech, setSelectedTech] = useState([]);
     const navigate = useNavigate()
 
     function handlePost(e) {
@@ -30,16 +29,9 @@ function Form() {
                 formData.append("description", state.description)  
                 formData.append("projectUrl", state.projectUrl)
                 formData.append("image", state.image)
-                formData.append("owner", JSON.stringify(loggedOnUser)) // must stringify object in formData
+                formData.append("owner", JSON.stringify(loggedOnUser)) // must stringify object in formData                
+                formData.append("technologies", JSON.stringify(selectedTech)) // must stringify arrays in formData
 
-                console.log(loggedOnUser)
-        
-                let technologies = []
-                for (let select of selected) {
-                    technologies.push(select.value)
-                }
-        
-                formData.append("technologies", JSON.stringify(technologies)) // must stringify arrays in formData
                 axios.post(`http://localhost:8000/api/projects`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
                     .then(res => console.log(res))
                     .then(() => {
@@ -95,13 +87,9 @@ function Form() {
                         }}
                         required={true}
                     />
-                    <MultiSelect
-                        hasSelectAll={false}
-                        options={techOptions}
-                        value={selected}
-                        onChange={setSelected}
-                        labelledBy="Select"
-                        valueRenderer={customValueRenderer}
+                    <MultipleSelectCheckmarks 
+                        selectedTech={selectedTech} 
+                        setSelectedTech={setSelectedTech}
                     />
                 </div>
 
