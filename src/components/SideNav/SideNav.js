@@ -3,7 +3,7 @@ import { useState, useContext } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { DataContext } from '../../DataContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFire, faTrowel, faCircleInfo, faRightFromBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faFire, faTrowel, faCircleInfo, faRightFromBracket, faUserPlus, faHeart } from '@fortawesome/free-solid-svg-icons'
 import post from '../../assets/post.svg'
 
 function SideNav() {
@@ -22,6 +22,10 @@ function SideNav() {
     function handleNavigateDiscover() {
         setIsActive(false)
         window.localStorage.setItem('Display', 'Discover')
+    }
+    function handleNavigateFavorites() {
+        setIsActive(false)
+        window.localStorage.setItem('Display', 'Favorites')
     }
 
     function handleNavigateSignUp() {
@@ -58,6 +62,14 @@ function SideNav() {
                             <p className="nav-text">Discover</p>
                         </li>
                     </Link>
+                    {window.localStorage.getItem('Email') &&
+                        <Link to="/gallery" className="link" onClick={handleNavigateFavorites}>
+                            <li className="list-element">
+                                <FontAwesomeIcon className="nav-icon" icon={faHeart} />
+                                <p className="nav-text">Favorites</p>
+                            </li>
+                        </Link>
+                    }
                     <Link to="/about" className="link" onClick={handleNavigate}>
                         <li className="list-element">
                             <FontAwesomeIcon className="nav-icon" icon={faCircleInfo} />
