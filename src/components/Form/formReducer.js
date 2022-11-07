@@ -9,6 +9,8 @@ export const formReducer = (state, action) => {
             return { ...state, projectUrl: action.payload}
         case 'setImage':
             return { ...state, image: action.payload}
+        case 'setGithubRepo':
+            return { ...state, githubRepo: action.payload}
         default:
             throw new Error()
     }
@@ -20,4 +22,5 @@ export const ACTION = {
     SET_DESCRIPTION: 'setDescription',
     SET_PROJECT_URL: 'setProjectUrl',
     SET_IMAGE: 'setImage',
+    SET_GITHUB_REPO: 'setGithubRepo'
 }

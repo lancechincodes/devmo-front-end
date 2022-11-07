@@ -10,7 +10,7 @@ import MultipleSelectCheckmarks from './MultipleSelectCheckmarks';
 function Form() {
     // use reducer for form's state management
     const [state, dispatch] = useReducer(formReducer, 
-        {name: '', description: '', projectUrl: '', image: ''})
+        {name: '', description: '', projectUrl: '', image: '', githubRepo: ''})
     const [selectedTech, setSelectedTech] = useState([]);
     const navigate = useNavigate()
 
@@ -31,6 +31,7 @@ function Form() {
                 formData.append("image", state.image)
                 formData.append("owner", JSON.stringify(loggedOnUser)) // must stringify object in formData                
                 formData.append("technologies", JSON.stringify(selectedTech)) // must stringify arrays in formData
+                formData.append("githubRepo", state.githubRepo) // must stringify arrays in formData
 
                 axios.post(`http://localhost:8000/api/projects`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
                     .then(res => console.log(res))
@@ -59,7 +60,7 @@ function Form() {
                         onChange={(e) => dispatch({type: ACTION.SET_NAME, payload: e.target.value})}
                         required={true}
                     />
-                     <TextField
+                    <TextField
                         className="outlined-basic"
                         label="Description"
                         variant="outlined"
@@ -69,13 +70,20 @@ function Form() {
                         rows={3}
                         required={true}
                     />
-                     <TextField
+                    <TextField
                         className="outlined-basic"
                         label="Project URL"
                         variant="outlined"
                         type="text"
                         onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
                         required={true}
+                    />
+                    <TextField
+                        className="outlined-basic"
+                        label="GitHub Repo"
+                        variant="outlined"
+                        type="text"
+                        onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
                     />
                     <TextField
                         className="file-name"
