@@ -1,6 +1,8 @@
 import './About.css'
 import TopNav from '../TopNav/TopNav';
 import creatorImage from '../../assets/creator-image.jpg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faComments } from '@fortawesome/free-solid-svg-icons'
 
 function About() {
     return (
@@ -21,11 +23,14 @@ function About() {
                                 <h4 className="creator-title">Creator of Devmo</h4>
                             </div>
                         </div>
-                        <p className="creator-statement">"Devmo (<span className="text-italics">short for developer demo</span>) is birthed from a story of aspiration, growth, and inspiration. It provides a platform for developers to showcase projects they are proud of, and shine light on how exciting, transformational, and fun coding can be. Always free – Devmo is powered by the people and dedicated to the next generation of programmers. Enjoy!"</p>    
+                        <p className="creator-statement">"Devmo (<span className="text-italics">short for developer demo</span>) originates from a story of aspiration, growth, and inspiration. It provides a platform for developers to showcase projects they are proud of, and shine light on how exciting, transformational, and fun coding can be. Always free – Devmo is powered by people like you and dedicated to the next generation of programmers. Enjoy!"</p>    
                     </div>
-
                 </div>
-            </div>            
+                <div className="about-inquiries">
+                    <FontAwesomeIcon className="about-inquiries-icon" icon={faComments}/>
+                    <p className="about-inquiries-text">For questions or feedback, contact us at devmo@gmail.com!</p>
+                </div>         
+            </div>   
         </div>
     );
 };

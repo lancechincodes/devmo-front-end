@@ -83,7 +83,7 @@ function Form() {
                         label="GitHub Repo"
                         variant="outlined"
                         type="text"
-                        onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
+                        onChange={(e) => dispatch({type: ACTION.SET_GITHUB_REPO, payload: e.target.value})}
                     />
                     <TextField
                         className="file-name"

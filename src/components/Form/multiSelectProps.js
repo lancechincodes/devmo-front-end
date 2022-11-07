@@ -7,4 +7,7 @@ export const techOptions = [
     "Python",
     "C++",
     "Java",
+    "HTML",
+    "CSS",
+    "MongoDB"
 ];

@@ -6,7 +6,7 @@
 
 .about-heading {
     text-align: center;
-    margin: 30px 0;
+    margin: 30px 0 20px 0;
 }
 
 .about-title {
@@ -38,7 +38,7 @@
 }
 
 .image-statement-container {
-    margin: 30px 0;
+    margin: 20px 0;
 }
 
 .creator-image-sig-container {
@@ -66,4 +66,16 @@
 
 .text-italics {
     font-style: italic;
+}
+
+.about-inquiries {
+    margin: 0 30px;
+    display: flex;
+    align-items: center;
+}
+
+.about-inquiries-icon {
+    width: 35px;
+    height: 100%;
+    margin-right: 20px;
 }

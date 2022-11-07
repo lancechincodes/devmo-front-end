@@ -1,6 +1,6 @@
 .gallery-page {
     height: 100vh;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     overflow-x: hidden;
 }
 

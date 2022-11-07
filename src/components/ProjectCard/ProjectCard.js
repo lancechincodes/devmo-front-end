@@ -17,7 +17,11 @@ function ProjectCard({project}) {
                     <h1 className="card-lg-text">
                         {project.name.toUpperCase()}
                     </h1>
-                    <FontAwesomeIcon className="card-github-icon" icon={faGithub} />
+                    {project.githubRepo && 
+                        <a href={project.githubRepo} target="_blank" rel="noopener noreferrer">
+                            <FontAwesomeIcon className="card-github-icon" icon={faGithub} />        
+                        </a>    
+                    }
                 </div>
 
                 <div className="card-section-container">

@@ -1,6 +1,5 @@
 .project-card {
     margin: 30px;
-    height: 510px;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
 }
@@ -49,6 +48,7 @@
 
 .card-tech-chips {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .card-bottom {
