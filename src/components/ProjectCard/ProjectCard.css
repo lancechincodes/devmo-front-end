@@ -1,0 +1,16 @@
+.project-card {
+    margin: 30px;
+    height: 60vh;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
+}
+
+.card-thumbnail {
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.card-bottom {
+    display: flex;
+}

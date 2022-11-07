@@ -10,6 +10,9 @@ function Gallery() {
     const [name, setName] = useState('')
     const [profileProjects, setProfileProjects] = useState([])
     const [totalTechnologies, setTotalTechnologies] = useState()
+    const [featuredProjectsArr, setFeaturedProjectsArr] = useState([])
+    const [discoverProjectsArr, setDiscoverProjectsArr] = useState([])
+    const [profileProjectsArr, setProfileProjectsArr] = useState([])
 
     useEffect(() => {
         if (window.localStorage.getItem('Display') === 'Profile') {
@@ -39,6 +42,15 @@ function Gallery() {
         }
     },[totalTechnologies]) // re-mount if state updates
 
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/projects')
+            .then(res => {
+                console.log(res.data)
+                setDiscoverProjectsArr(res.data)
+            })
+            .catch(err => console.log(err))
+    }, [])
+
     return (
         <div className="gallery-page">
             <TopNav/>
@@ -51,10 +63,15 @@ function Gallery() {
                 }
 
                 {window.localStorage.getItem('Display') === 'Discover' && 
-                    <div className="gallery-heading">
-                        <h1 className="gallery-title">DISCOVER</h1>
-                        <p className="gallery-description">Our newest showcase.</p>
-                    </div>
+                    <>
+                        <div className="gallery-heading">
+                            <h1 className="gallery-title">DISCOVER</h1>
+                            <p className="gallery-description">Our newest showcase.</p>
+                        </div>
+                        {discoverProjectsArr.map((project, idx) => (
+                            <ProjectCard key={idx} project={project}/>
+                        ))}
+                    </>
                 }
 
                 {window.localStorage.getItem('Display') === 'Profile' && 
@@ -63,7 +80,6 @@ function Gallery() {
                         <p className="gallery-description">{profileProjects.length} Projects. {totalTechnologies} Technologies. # Likes.</p>
                     </div>
                 }
-                <ProjectCard/>
             </div>
         </div>
     );
