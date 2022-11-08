@@ -4,6 +4,10 @@ import { DataContext } from '../../DataContext'
 import TopNav from '../TopNav/TopNav';
 import ProjectCard from '../ProjectCard/ProjectCard';
 import axios from 'axios'
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-cards";
+import { EffectCards } from "swiper";
 
 function Gallery() {
     const { isActive } = useContext(DataContext)
@@ -46,7 +50,7 @@ function Gallery() {
         axios.get('http://localhost:8000/api/projects')
             .then(res => {
                 console.log(res.data)
-                setDiscoverProjectsArr(res.data)
+                setDiscoverProjectsArr(res.data.reverse())
             })
             .catch(err => console.log(err))
     }, [])
@@ -68,18 +72,27 @@ function Gallery() {
                             <h1 className="gallery-title">DISCOVER</h1>
                             <p className="gallery-description">Our newest showcase.</p>
                         </div>
-                        {discoverProjectsArr.map((project, idx) => (
-                            <ProjectCard key={idx} project={project}/>
-                        ))}
+                        <Swiper
+                            effect={"cards"}
+                            grabCursor={true}
+                            modules={[EffectCards]}
+                            className="mySwiper"
+                        >
+                            {discoverProjectsArr.map((project, idx) => (
+                                <SwiperSlide className="swiper-slide" key={idx}>
+                                    <ProjectCard key={idx} project={project}/>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
                     </>
                 }
-
                 {window.localStorage.getItem('Display') === 'Profile' && 
                     <div className="gallery-heading">
                         <h1 className="gallery-title">{name}</h1>
                         <p className="gallery-description">{profileProjects.length} Projects. {totalTechnologies} Technologies. # Likes.</p>
                     </div>
                 }
+                <div></div>
             </div>
         </div>
     );

@@ -9,5 +9,6 @@ export const techOptions = [
     "Java",
     "HTML",
     "CSS",
-    "MongoDB"
+    "MongoDB",
+    "PostgreSQL"
 ];

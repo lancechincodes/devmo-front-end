@@ -1,7 +1,8 @@
 .project-card {
-    margin: 30px;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
+    background-color: white;
+    margin: 35px;
 }
 
 .card-thumbnail {
@@ -20,12 +21,12 @@
 }
 
 .card-md-text {
-    font-size: 16px;
+    font-size: 14px;
     margin: 0px;
 }
 
 .card-sm-text {
-    font-size: 12px;
+    font-size: 11px;
     margin: 0px;
 }
 
@@ -67,5 +68,9 @@
 
 .card-number {
     margin: 0 18.5px;
+}
+
+a {
+    text-decoration: none;
 }
 

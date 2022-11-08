@@ -1,6 +1,6 @@
 .gallery-page {
     height: 100vh;
-    /* overflow-y: hidden; */
+    overflow-y: hidden;
     overflow-x: hidden;
 }
 
@@ -22,4 +22,8 @@
     height: 100vh;
     position: relative;
 
+}
+
+.swiper-slide-shadow {
+    display: none;
 }
