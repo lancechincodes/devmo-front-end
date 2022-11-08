@@ -24,6 +24,6 @@
 
 }
 
-.swiper-slide-shadow {
-    display: none;
+.swiper {
+    height: 72vh;
 }

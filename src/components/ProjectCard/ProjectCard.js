@@ -6,6 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 function ProjectCard({project}) {
+    const [likes, setLikes] = useState([])
+
+    function handleLike() {
+        
+    }
 
     return (
         <div className="project-card">
@@ -59,7 +64,7 @@ function ProjectCard({project}) {
                         <p className="card-sm-text">DEMO</p>
                     </div>
                 </a>
-                <TwitterLikeButton/>
+                <TwitterLikeButton onClick={handleLike}/>
             </div>
         </div>
     );
