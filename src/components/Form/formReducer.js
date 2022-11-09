@@ -11,6 +11,10 @@ export const formReducer = (state, action) => {
             return { ...state, image: action.payload}
         case 'setGithubRepo':
             return { ...state, githubRepo: action.payload}
+        case 'setNameCharactersRemaining':
+            return { ...state, nameCharactersRemaining: 15 - action.payload.length}
+        case 'setDescriptionCharactersRemaining':
+            return { ...state, descriptionCharactersRemaining: 100 - action.payload.length}
         default:
             throw new Error()
     }
@@ -22,5 +26,7 @@ export const ACTION = {
     SET_DESCRIPTION: 'setDescription',
     SET_PROJECT_URL: 'setProjectUrl',
     SET_IMAGE: 'setImage',
-    SET_GITHUB_REPO: 'setGithubRepo'
+    SET_GITHUB_REPO: 'setGithubRepo',
+    SET_NAME_CHARACTERS_REMAINING: 'setNameCharactersRemaining',
+    SET_DESCRIPTION_CHARACTERS_REMAINING: 'setDescriptionCharactersRemaining'
 }

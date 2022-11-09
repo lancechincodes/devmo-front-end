@@ -80,7 +80,7 @@ function Auth() {
                     {signUpFields.map((textField, idx) => (
                         <TextField
                             key={idx} 
-                            className="outlined-basic" 
+                            className="auth-form outlined-basic" 
                             label={textField.label}
                             variant="outlined" 
                             required={true}
@@ -106,7 +106,7 @@ function Auth() {
                     {loginFields.map((textField, idx) => (
                         <TextField
                             key={idx} 
-                            className="outlined-basic" 
+                            className="auth-form outlined-basic" 
                             label={textField.label}
                             variant="outlined" 
                             required={true}

@@ -23,6 +23,14 @@
     margin: 7px 20px;
 }
 
+.devmo-form.MuiFormControl-root.MuiTextField-root.outlined-basic {
+    margin: 10px 10px 0 10px;
+}
+
+.MuiFormControl-root.MuiTextField-root.outlined-basic {
+    margin: 10px;
+}
+
 .MuiFormControl-root.MuiTextField-root.file-name {
     margin: 12px 10px 10px 10px;
 }
@@ -53,4 +61,8 @@
 
 .MuiFormControl-root.css-ptt77l-MuiFormControl-root {
     margin: 10px;
+}
+
+.MuiFormHelperText-root.component-helper-text.css-1d1r5q-MuiFormHelperText-root {
+    margin: 2px 15px;
 }

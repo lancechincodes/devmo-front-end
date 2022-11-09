@@ -5,12 +5,13 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import TopNav from '../TopNav/TopNav';
 import TextField from '@mui/material/TextField';
+import FormHelperText from '@mui/material/FormHelperText';
 import MultipleSelectCheckmarks from './MultipleSelectCheckmarks';
 
 function Form() {
     // use reducer for form's state management
     const [state, dispatch] = useReducer(formReducer, 
-        {name: '', description: '', projectUrl: '', image: '', githubRepo: ''})
+        {name: '', description: '', projectUrl: '', image: '', githubRepo: '', nameCharactersRemaining: 15, descriptionCharactersRemaining: 100})
     const [selectedTech, setSelectedTech] = useState([]);
     const navigate = useNavigate()
 
@@ -53,23 +54,37 @@ function Form() {
                     </div>
                 <div className="post-text-fields">
                     <TextField
-                        className="outlined-basic"
+                        className="devmo-form outlined-basic"
                         label="Project Name"
                         variant="outlined"
                         type="text"
-                        onChange={(e) => dispatch({type: ACTION.SET_NAME, payload: e.target.value})}
+                        onChange={(e) => {
+                            dispatch({type: ACTION.SET_NAME, payload: e.target.value})
+                            dispatch({type: ACTION.SET_NAME_CHARACTERS_REMAINING, payload: e.target.value})    
+                        }}
                         required={true}
+                        inputProps={{ maxLength: 15 }}
                     />
+                    <FormHelperText className="component-helper-text">
+                        {state.nameCharactersRemaining} characters remaining
+                    </FormHelperText>
                     <TextField
-                        className="outlined-basic"
+                        className="devmo-form outlined-basic"
                         label="Description"
                         variant="outlined"
                         type="text"
-                        onChange={(e) => dispatch({type: ACTION.SET_DESCRIPTION, payload: e.target.value})}
+                        onChange={(e) => {
+                            dispatch({type: ACTION.SET_DESCRIPTION, payload: e.target.value})
+                            dispatch({type: ACTION.SET_DESCRIPTION_CHARACTERS_REMAINING, payload: e.target.value})    
+                        }}
                         multiline
                         rows={3}
                         required={true}
+                        inputProps={{ maxLength: 100 }}
                     />
+                    <FormHelperText className="component-helper-text">
+                        {state.descriptionCharactersRemaining} characters remaining
+                    </FormHelperText>
                     <TextField
                         className="outlined-basic"
                         label="Project URL"
