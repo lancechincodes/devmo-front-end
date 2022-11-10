@@ -2,7 +2,9 @@
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
     background-color: white;
-    margin: 35px;
+    margin: 35px 0px;
+    height: 500px;
+    width: 320px;
 }
 
 .card-thumbnail {
@@ -13,6 +15,7 @@
 
 .card-middle {
     margin: 10px 30px;
+    height: 46%;
 }
 
 .card-lg-text {
@@ -30,8 +33,12 @@
     margin: 0px;
 }
 
+.card-top {
+    height: 35%;
+}
+
 .card-top-section-container {
-    margin: 15px 0px;
+    margin: 20px 0px 15px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -56,6 +63,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    height: 10%;
 }
 
 .demo-btn {
