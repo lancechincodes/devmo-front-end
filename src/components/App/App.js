@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      <AnimatePresence exitBeforeEnter>
+      <AnimatePresence mode='wait'>
         <DataContext.Provider value={{isActive, setIsActive, signUp, setSignUp}}>
           <Routes location={location} key={location.key}>
             <Route path="/" element={<Landing/>}/>

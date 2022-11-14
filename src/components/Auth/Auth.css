@@ -16,7 +16,7 @@
     font-size: 40px;
 }
 
-.MuiFormControl-root.MuiTextField-root.outlined-basic {
+.auth-form.MuiFormControl-root.MuiTextField-root.outlined-basic {
     margin: 10px;
 }
 

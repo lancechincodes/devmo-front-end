@@ -23,3 +23,12 @@
     position: relative;
 
 }
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+}
+
+.swiper {
+    height: 72vh;
+}

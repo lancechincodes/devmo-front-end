@@ -7,7 +7,6 @@ import { DataContext } from '../../DataContext';
 import TopNav from '../TopNav/TopNav'
 import TextField from '@mui/material/TextField';
 import axios from 'axios'
-import { ButtonGroup } from '@mui/material';
 
 function Auth() {
     const [error, setError] = useState(null)
@@ -17,6 +16,10 @@ function Auth() {
     const { isActive, setIsActive, signUp, setSignUp } = useContext(DataContext)
 
     function handleSwitch() {
+        // clear state after switching between login and sign up
+        signUpFields.forEach(field => {
+            dispatch({type: field.reducerType, payload: ''})
+        })
         setSignUp(!signUp)
     }
 
@@ -37,10 +40,13 @@ function Auth() {
                 .then(res => {
                     // console.log(res)
                     setSignUp(!signUp)
-                    console.log(signUp)
+                    // also clear state after signing up and before redirect to login
+                    signUpFields.forEach(field => {
+                        dispatch({type: field.reducerType, payload: ''})
+                    })
                 })
                 .catch(err => {
-                    console.log(err.response.data)
+                    // console.log(err.response.data)
                     setError(err.response.data)
                 })
         }
@@ -53,6 +59,7 @@ function Auth() {
                     // console.log(res.data)
                     window.localStorage.setItem("Token", res.data)
                     window.localStorage.setItem("Email", state.email)
+                    window.localStorage.setItem("Display", 'Featured')
                 })
                 .then(() => {
                     navigate('/gallery')
@@ -73,7 +80,7 @@ function Auth() {
                     {signUpFields.map((textField, idx) => (
                         <TextField
                             key={idx} 
-                            className="outlined-basic" 
+                            className="auth-form outlined-basic" 
                             label={textField.label}
                             variant="outlined" 
                             required={true}
@@ -99,7 +106,7 @@ function Auth() {
                     {loginFields.map((textField, idx) => (
                         <TextField
                             key={idx} 
-                            className="outlined-basic" 
+                            className="auth-form outlined-basic" 
                             label={textField.label}
                             variant="outlined" 
                             required={true}

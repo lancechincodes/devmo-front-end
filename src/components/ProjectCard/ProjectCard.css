@@ -1,0 +1,137 @@
+.project-card {
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
+    background-color: white;
+    margin: 35px 0px;
+    height: 500px;
+    width: 320px;
+}
+
+.card-thumbnail {
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.card-middle {
+    margin: 10px 30px;
+    height: 46%;
+}
+
+.card-lg-text {
+    font-size: 24px;
+    margin: 0;
+}
+
+.card-md-text {
+    font-size: 14px;
+    margin: 0px;
+}
+
+.card-sm-text {
+    font-size: 11px;
+    margin: 0px;
+}
+
+.card-top {
+    height: 35%;
+}
+
+.card-top-section-container {
+    margin: 20px 0px 15px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-github-icon {
+    width: 20px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.card-section-container {
+    margin: 15px 0px;
+}
+
+.card-tech-chips {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 10%;
+}
+
+.demo-btn {
+    background-color: #264DE4;
+    padding: 10px 30px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card-number {
+    margin: 0 18.5px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.trash-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.confirm-btn {
+    height: 225px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-question {
+    height: 50px;
+    width: 100%;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #264DE4;
+}
+
+.confirm-delete-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.card-delete-question-text {
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
+
+.confirm-btn:hover {
+    background-color: #d6defe;
+    cursor: pointer;
+}
+
+.no-btn {
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.yes-btn {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}

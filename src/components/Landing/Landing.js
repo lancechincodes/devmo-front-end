@@ -11,6 +11,7 @@ function Landing() {
     const navigate = useNavigate()
 
     useEffect(() => {
+        window.localStorage.setItem("Display", 'Featured')
         setTimeout(() => {
             setStartAnimation(false)
         }, 3000)

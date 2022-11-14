@@ -1,92 +1,118 @@
 import './Form.css'
 import { useState, useReducer } from "react";
-import { MultiSelect } from "react-multi-select-component";
 import { formReducer, ACTION } from './formReducer'; // import formReducer file
-import { techOptions, customValueRenderer } from './multiSelectProps';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import TopNav from '../TopNav/TopNav';
 import TextField from '@mui/material/TextField';
+import FormHelperText from '@mui/material/FormHelperText';
+import MultipleSelectCheckmarks from './MultipleSelectCheckmarks';
 
 function Form() {
     // use reducer for form's state management
     const [state, dispatch] = useReducer(formReducer, 
-        {name: '', description: '', projectUrl: '', image: ''})
-    const [selected, setSelected] = useState([]);
+        {name: '', description: '', projectUrl: '', image: '', githubRepo: '', nameCharactersRemaining: 15, descriptionCharactersRemaining: 100})
+    const [selectedTech, setSelectedTech] = useState([]);
     const navigate = useNavigate()
 
     function handlePost(e) {
         e.preventDefault()
 
-        const formData = new FormData()
-        formData.append("name", state.name)
-        formData.append("description", state.description)  
-        formData.append("projectUrl", state.projectUrl)
-        formData.append("image", state.image)
+        // add owner to form data
+        axios.get('http://localhost:8000/api/users')
+            .then(res => {
+                console.log(res)
+                const usersArr = res.data
+                const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email'))
+       
+                const formData = new FormData()
+                formData.append("name", state.name)
+                formData.append("description", state.description)  
+                formData.append("projectUrl", state.projectUrl)
+                formData.append("image", state.image)
+                formData.append("owner", JSON.stringify(loggedOnUser)) // must stringify object in formData                
+                formData.append("technologies", JSON.stringify(selectedTech)) // must stringify arrays in formData
+                formData.append("githubRepo", state.githubRepo) // must stringify arrays in formData
 
-        let technologies = []
-        for (let select of selected) {
-            technologies.push(select.value)
-        }
-
-        formData.append("technologies", JSON.stringify(technologies)) // must stringify arrays in formData
-        axios.post(`http://localhost:8000/api/projects`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
-            .then(res => console.log(res))
-            .then(() => {
-                navigate('/gallery')
-            })
+                axios.post(`http://localhost:8000/api/projects`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
+                    .then(res => console.log(res))
+                    .then(() => {
+                        navigate('/gallery') // navigate to successful submission page
+                    })
+                    .catch(err => console.log(err))
+                })
+            .catch(err => console.log(err))
     }
 
     return (
         <div className="form-page">
             <TopNav/>
             <form className="share-form" type="submit">
-                <h1 className="form-heading">NEW DEVMO</h1>
+                <div className="form-heading">
+                        <h1 className="gallery-title">NEW DEVMO</h1>
+                        <p className="gallery-description">Inspire on.</p>
+                    </div>
                 <div className="post-text-fields">
                     <TextField
-                        className="outlined-basic"
+                        className="devmo-form outlined-basic"
                         label="Project Name"
                         variant="outlined"
                         type="text"
+                        onChange={(e) => {
+                            dispatch({type: ACTION.SET_NAME, payload: e.target.value})
+                            dispatch({type: ACTION.SET_NAME_CHARACTERS_REMAINING, payload: e.target.value})    
+                        }}
                         required={true}
-                        onChange={(e) => dispatch({type: ACTION.SET_NAME, payload: e.target.value})}
+                        inputProps={{ maxLength: 15 }}
                     />
-                     <TextField
-                        className="outlined-basic"
+                    <FormHelperText className="component-helper-text">
+                        {state.nameCharactersRemaining} characters remaining
+                    </FormHelperText>
+                    <TextField
+                        className="devmo-form outlined-basic"
                         label="Description"
                         variant="outlined"
                         type="text"
-                        required={true}
-                        onChange={(e) => dispatch({type: ACTION.SET_DESCRIPTION, payload: e.target.value})}
+                        onChange={(e) => {
+                            dispatch({type: ACTION.SET_DESCRIPTION, payload: e.target.value})
+                            dispatch({type: ACTION.SET_DESCRIPTION_CHARACTERS_REMAINING, payload: e.target.value})    
+                        }}
                         multiline
                         rows={3}
+                        required={true}
+                        inputProps={{ maxLength: 100 }}
                     />
-                     <TextField
+                    <FormHelperText className="component-helper-text">
+                        {state.descriptionCharactersRemaining} characters remaining
+                    </FormHelperText>
+                    <TextField
                         className="outlined-basic"
                         label="Project URL"
                         variant="outlined"
                         type="text"
-                        required={true}
                         onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
+                        required={true}
+                    />
+                    <TextField
+                        className="outlined-basic"
+                        label="GitHub Repo"
+                        variant="outlined"
+                        type="text"
+                        onChange={(e) => dispatch({type: ACTION.SET_GITHUB_REPO, payload: e.target.value})}
                     />
                     <TextField
                         className="file-name"
                         type="file"
-                        required={true}
                         onChange={(e) => dispatch({type: ACTION.SET_IMAGE, payload: e.target.files[0]})}
                         label="Project Thumbnail"
                         InputLabelProps={{
                             shrink: true,
                         }}
-                    />
-                    <MultiSelect
-                        hasSelectAll={false}
-                        options={techOptions}
-                        value={selected}
-                        onChange={setSelected}
-                        labelledBy="Select"
-                        valueRenderer={customValueRenderer}
                         required={true}
+                    />
+                    <MultipleSelectCheckmarks 
+                        selectedTech={selectedTech} 
+                        setSelectedTech={setSelectedTech}
                     />
                 </div>
 
