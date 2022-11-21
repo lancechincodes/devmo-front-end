@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Mousewheel, Pagination } from "swiper";
+import TwitterLikeButton from 'twitter-like-button'
 
 function Gallery() {
     const { isActive } = useContext(DataContext)

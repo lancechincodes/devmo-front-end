@@ -21,6 +21,7 @@
     "react": "^18.2.0",
     "react-animated-heart": "^0.0.7",
     "react-dom": "^18.2.0",
+    "react-heart": "^1.0.6",
     "react-multi-select-component": "^4.3.3",
     "react-parallax-tilt": "^1.7.68",
     "react-router-dom": "^6.3.0",
