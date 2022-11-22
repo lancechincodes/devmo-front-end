@@ -6,34 +6,48 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithubAlt } from '@fortawesome/free-brands-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-function ProjectCard({project, heartButton}) {
-    const [confirmDeleteCard, setConfirmDeleteCard] = useState(false)
-    const [isActive, setIsActive] = useState(false) // this isActive/setIsActive is for the heart like button
+function ProjectCard({project}) {
+    const [isActive, setIsActive] = useState() // this isActive/setIsActive is for the heart like button
+    const [updatedLikes, setUpdatedLikes] = useState(project.likes)
+
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/users')
+            .then(res => {
+                const usersArr = res.data
+                const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email')) 
+                axios.get(`http://localhost:8000/api/users/${loggedOnUser._id}`)
+                    .then(res => {
+                        let likedBefore
+                        if (res.data.likedProjects.includes(project._id)) {
+                            likedBefore = true
+                        }
+                        else {
+                            likedBefore = false
+                        }
+                        setIsActive(likedBefore)
+                    })
+                })                
+    }, [])
 
     function handleLike() {
-        setIsActive(!isActive)
         axios.get('http://localhost:8000/api/users')
             .then(res => {
                 const usersArr = res.data
                 const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email')) 
                 axios.patch(`http://localhost:8000/api/projects/likeProject/${project._id}/${loggedOnUser._id}`)
                     .then(res => {
-                        console.log(res)
+                        // console.log(res)
+                        setUpdatedLikes(res.data.likes)
+                    })
+                    .then(() => {
+                        setIsActive(!isActive)
                     })
             })
     }
 
-    function handleDelete() {
-        setConfirmDeleteCard(true)
-    }
-
-    function handleConfirmDelete() {
-
-    }
-
-    function handleCancelDelete() {
-        setConfirmDeleteCard(false)
-    }
+    useEffect(() => {
+        console.log(updatedLikes)
+    }, [updatedLikes])
 
     return (
         <div className="project-card">
@@ -97,13 +111,16 @@ function ProjectCard({project, heartButton}) {
                         <p className="card-sm-text">DEMO</p>
                     </div>
                 </a>
-                <Heart 
-                    className="heart-icon" 
-                    isActive={isActive} 
-                    onClick={handleLike}
-                    inactiveColor={'black'}
-                    activeColor={'red'}
-                />
+                <div className="likes-container">
+                    <p>{updatedLikes}</p>
+                    <Heart 
+                        className="heart-icon" 
+                        isActive={isActive} 
+                        onClick={handleLike}
+                        inactiveColor={'black'}
+                        activeColor={'red'}
+                    />
+                </div>
             </div>
         </div>
     );

@@ -84,6 +84,10 @@ a {
 }
 
 .heart-icon {
-    width: 30px;
-    margin: 0 15px;
+    width: 25px;
+    margin: 0 15px 0 10px;
+}
+
+.likes-container {
+    display: flex;
 }

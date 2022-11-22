@@ -7,7 +7,7 @@ import axios from 'axios'
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Mousewheel, Pagination } from "swiper";
+import { Pagination } from "swiper";
 import TwitterLikeButton from 'twitter-like-button'
 
 function Gallery() {
@@ -45,12 +45,13 @@ function Gallery() {
                 })
                 .catch(err => console.log(err))
         }
+
     },[totalTechnologies]) // re-mount if state updates
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/projects')
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 const allProjects = res.data
                 setDiscoverProjectsArr(allProjects.reverse())
 
@@ -81,14 +82,14 @@ function Gallery() {
                             direction={"horizontal"}
                             slidesPerView={1}
                             spaceBetween={30}
-                            mousewheel={true}
+                            grabCursor={true}
                             pagination={{
                                 clickable: true,
                                 dynamicBullets: true
                             }}
-                            modules={[Mousewheel, Pagination]}
+                            modules={[Pagination]}
                             className="mySwiper"
-                        >
+                        >   
                             {discoverProjectsArr.map((project, idx) => (
                                 <SwiperSlide className="swiper-slide" key={idx}>
                                     <ProjectCard key={idx} project={project}/>
@@ -107,12 +108,11 @@ function Gallery() {
                             direction={"horizontal"}
                             slidesPerView={1}
                             spaceBetween={30}
-                            mousewheel={true}
                             pagination={{
                                 clickable: true,
                                 dynamicBullets: true
                             }}
-                            modules={[Mousewheel, Pagination]}
+                            modules={[ Pagination]}
                         >
                             {profileProjectsArr.map((project, idx) => (
                                 <SwiperSlide className="swiper-slide" key={idx}>
