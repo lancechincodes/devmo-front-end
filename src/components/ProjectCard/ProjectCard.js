@@ -7,7 +7,7 @@ import { faGithubAlt } from '@fortawesome/free-brands-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 function ProjectCard({project}) {
-    const [isActive, setIsActive] = useState() // this isActive/setIsActive is for the heart like button
+    const [isActive, setIsActive] = useState(null) // this isActive/setIsActive is for the heart like button
     const [updatedLikes, setUpdatedLikes] = useState(project.likes)
 
     useEffect(() => {
@@ -44,11 +44,7 @@ function ProjectCard({project}) {
                     })
             })
     }
-
-    useEffect(() => {
-        console.log(updatedLikes)
-    }, [updatedLikes])
-
+    
     return (
         <div className="project-card">
             <div className="card-top">

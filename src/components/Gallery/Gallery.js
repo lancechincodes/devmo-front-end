@@ -8,17 +8,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
-import TwitterLikeButton from 'twitter-like-button'
 
 function Gallery() {
     const { isActive } = useContext(DataContext)
     const [name, setName] = useState('')
     const [profileProjects, setProfileProjects] = useState([])
     const [totalTechnologies, setTotalTechnologies] = useState()
+    const [totalLikes, setTotalLikes] = useState()
     const [featuredProjectsArr, setFeaturedProjectsArr] = useState([])
     const [discoverProjectsArr, setDiscoverProjectsArr] = useState([])
     const [profileProjectsArr, setProfileProjectsArr] = useState([])
+    const [favoritesProjectsArr, setFavoritesProjectsArr] = useState([])
 
+    // Set name, total technologies, and total likes of logged on user
     useEffect(() => {
         if (window.localStorage.getItem('Display') === 'Profile') {
             axios.get('http://localhost:8000/api/users')
@@ -45,9 +47,9 @@ function Gallery() {
                 })
                 .catch(err => console.log(err))
         }
-
     },[totalTechnologies]) // re-mount if state updates
 
+    // Set discover and profile projects
     useEffect(() => {
         axios.get('http://localhost:8000/api/projects')
             .then(res => {
@@ -58,19 +60,63 @@ function Gallery() {
 
                 const profileProjects = allProjects.filter(project => project.owner.email === window.localStorage.getItem('Email'))
                 setProfileProjectsArr(profileProjects)
+                
+                // set total likes for logged on user
+                let likes = 0
+                for (let project of profileProjects) {
+                    likes += project.likes
+                }
+                setTotalLikes(likes)
+
             })
             .catch(err => console.log(err))
     }, [])
 
-    useEffect(() => {
+    // Set featured projects
+    // .sort was altering res.data in place so I opted to separate the discoverProjects and featuredProjects logic into 2 useEffects
+    useEffect(() => { 
         axios.get('http://localhost:8000/api/projects')
-        .then(res => {
-            // console.log(res.data)
-            const allProjects2 = res.data
-            const featuredProjects = allProjects2.sort((a,b) => (a.likes < b.likes) ? 1 : -1)
-            setFeaturedProjectsArr(featuredProjects)
-        })
-        .catch(err => console.log(err))
+            .then(res => {
+                // console.log(res.data)
+                const allProjects2 = res.data
+                const featuredProjects = allProjects2.sort((a,b) => (a.likes < b.likes) ? 1 : -1)
+                setFeaturedProjectsArr(featuredProjects)
+            })
+            .catch(err => console.log(err))
+    }, [])
+
+    // Set favorites projects
+    // filter only liked projects by the logged on user
+    useEffect(() => {
+        // 1) get all project ids liked by the user
+        axios.get('http://localhost:8000/api/users')
+            .then(res => {
+                const usersArr = res.data
+                const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email'))
+                const loggedOnUserId = loggedOnUser.id
+                axios.get(`http://localhost:8000/api/users/${loggedOnUserId}`)
+                    .then(res => {
+                        // console.log(res.data)
+                        const likedProjectIds = res.data.likedProjects
+
+                        // 2) get all projects and find liked ones
+                        axios.get('http://localhost:8000/api/projects')
+                            .then(res => {
+                                // console.log(res.data)
+                                const allProjects3 = res.data
+                                const likedProjects = []
+                                for (let projectId of likedProjectIds) {
+                                    let targetProject = allProjects3.find(project => project._id === projectId)
+                                    likedProjects.push(targetProject)
+                                }
+                                setFavoritesProjectsArr(likedProjects)
+                            })
+                            .catch(err => console.log(err))
+
+                    })
+                    .catch(err => console.log(err))
+                })
+            .catch(err => console.log(err))
     }, [])
 
     return (
@@ -131,16 +177,18 @@ function Gallery() {
                         </Swiper>
                     </>
                 }
+
                 {window.localStorage.getItem('Display') === 'Profile' && 
                     <>
                         <div className="gallery-heading">
                             <h1 className="gallery-title">{name}</h1>
-                            <p className="gallery-description">{profileProjects.length} Projects. {totalTechnologies} Technologies. # Likes.</p>
+                            <p className="gallery-description">{profileProjects.length} Projects. &nbsp;&nbsp; {totalTechnologies} Technologies. &nbsp;&nbsp; {totalLikes} Likes.</p>
                         </div>
                         <Swiper
                             direction={"horizontal"}
                             slidesPerView={1}
                             spaceBetween={30}
+                            grabCursor={true}
                             pagination={{
                                 clickable: true,
                                 dynamicBullets: true
@@ -148,6 +196,32 @@ function Gallery() {
                             modules={[ Pagination]}
                         >
                             {profileProjectsArr.map((project, idx) => (
+                                <SwiperSlide className="swiper-slide" key={idx}>
+                                    <ProjectCard key={idx} project={project}/>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                    </>
+                }
+
+                {window.localStorage.getItem('Display') === 'Favorites' && 
+                    <>
+                        <div className="gallery-heading">
+                            <h1 className="gallery-title">FAVORITES</h1>
+                            <p className="gallery-description">Your inspiration collection.</p>
+                        </div>
+                        <Swiper
+                            direction={"horizontal"}
+                            slidesPerView={1}
+                            spaceBetween={30}
+                            grabCursor={true}
+                            pagination={{
+                                clickable: true,
+                                dynamicBullets: true
+                            }}
+                            modules={[ Pagination]}
+                        >
+                            {favoritesProjectsArr.map((project, idx) => (
                                 <SwiperSlide className="swiper-slide" key={idx}>
                                     <ProjectCard key={idx} project={project}/>
                                 </SwiperSlide>
