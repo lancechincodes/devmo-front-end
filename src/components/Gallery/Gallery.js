@@ -53,7 +53,8 @@ function Gallery() {
             .then(res => {
                 // console.log(res.data)
                 const allProjects = res.data
-                setDiscoverProjectsArr(allProjects.reverse())
+                const discoverProjects = allProjects.reverse()
+                setDiscoverProjectsArr(discoverProjects)
 
                 const profileProjects = allProjects.filter(project => project.owner.email === window.localStorage.getItem('Email'))
                 setProfileProjectsArr(profileProjects)
@@ -61,15 +62,47 @@ function Gallery() {
             .catch(err => console.log(err))
     }, [])
 
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/projects')
+        .then(res => {
+            // console.log(res.data)
+            const allProjects2 = res.data
+            const featuredProjects = allProjects2.sort((a,b) => (a.likes < b.likes) ? 1 : -1)
+            setFeaturedProjectsArr(featuredProjects)
+        })
+        .catch(err => console.log(err))
+    }, [])
+
     return (
         <div className="gallery-page">
             <TopNav/>
             <div className="gallery-main">
                 {window.localStorage.getItem('Display') === 'Featured' && 
-                    <div className="gallery-heading">
-                        <h1 className="gallery-title">FEATURED</h1>
-                        <p className="gallery-description">Our top-rated picks.</p>
-                    </div>
+                    <>
+                        <div className="gallery-heading">
+                            <h1 className="gallery-title">FEATURED</h1>
+                            <p className="gallery-description">Our top-rated picks.</p>
+
+                        </div>
+                        <Swiper
+                            direction={"horizontal"}
+                            slidesPerView={1}
+                            spaceBetween={30}
+                            grabCursor={true}
+                            pagination={{
+                                clickable: true,
+                                dynamicBullets: true
+                            }}
+                            modules={[Pagination]}
+                            className="mySwiper"
+                        >   
+                            {featuredProjectsArr.map((project, idx) => (
+                                <SwiperSlide className="swiper-slide" key={idx}>
+                                    <ProjectCard key={idx} project={project}/>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                    </>
                 }
 
                 {window.localStorage.getItem('Display') === 'Discover' && 
@@ -122,7 +155,6 @@ function Gallery() {
                         </Swiper>
                     </>
                 }
-                <div></div>
             </div>
         </div>
     );
