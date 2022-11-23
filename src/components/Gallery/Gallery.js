@@ -20,7 +20,7 @@ function Gallery() {
     const [profileProjectsArr, setProfileProjectsArr] = useState([])
     const [favoritesProjectsArr, setFavoritesProjectsArr] = useState([])
 
-    // Set name, total technologies, and total likes of logged on user
+    // Set name and total technologies of logged on user
     useEffect(() => {
         if (window.localStorage.getItem('Display') === 'Profile') {
             axios.get('http://localhost:8000/api/users')
@@ -51,72 +51,82 @@ function Gallery() {
 
     // Set discover and profile projects
     useEffect(() => {
-        axios.get('http://localhost:8000/api/projects')
-            .then(res => {
-                // console.log(res.data)
-                const allProjects = res.data
-                const discoverProjects = allProjects.reverse()
-                setDiscoverProjectsArr(discoverProjects)
+        if (window.localStorage.getItem('Display') === 'Discover' || window.localStorage.getItem('Display') === 'Profile')
+            axios.get('http://localhost:8000/api/projects')
+                .then(res => {
+                    // console.log(res.data)
+                    const allProjects = res.data
+                    if (allProjects.length > 0) {
+                        const discoverProjects = allProjects.reverse()
+                        setDiscoverProjectsArr(discoverProjects)
 
-                const profileProjects = allProjects.filter(project => project.owner.email === window.localStorage.getItem('Email'))
-                setProfileProjectsArr(profileProjects)
-                
-                // set total likes for logged on user
-                let likes = 0
-                for (let project of profileProjects) {
-                    likes += project.likes
-                }
-                setTotalLikes(likes)
-
-            })
-            .catch(err => console.log(err))
+                        const profileProjects = allProjects.filter(project => project.owner.email === window.localStorage.getItem('Email'))
+                        setProfileProjectsArr(profileProjects)
+                        
+                        // set total likes for logged on user
+                        let likes = 0
+                        for (let project of profileProjects) {
+                            likes += project.likes
+                        }
+                        setTotalLikes(likes)
+                    }
+                })
+                .catch(err => console.log(err))
     }, [])
 
     // Set featured projects
     // .sort was altering res.data in place so I opted to separate the discoverProjects and featuredProjects logic into 2 useEffects
     useEffect(() => { 
-        axios.get('http://localhost:8000/api/projects')
-            .then(res => {
-                // console.log(res.data)
-                const allProjects2 = res.data
-                const featuredProjects = allProjects2.sort((a,b) => (a.likes < b.likes) ? 1 : -1)
-                setFeaturedProjectsArr(featuredProjects)
-            })
-            .catch(err => console.log(err))
+        if (window.localStorage.getItem('Display') === 'Featured') {
+            axios.get('http://localhost:8000/api/projects')
+                .then(res => {
+                    // console.log(res.data)
+                    const allProjects2 = res.data
+                    if (allProjects2.length > 0) {
+                        const featuredProjects = allProjects2.sort((a,b) => (a.likes < b.likes) ? 1 : -1)
+                        setFeaturedProjectsArr(featuredProjects)
+                    }
+                })
+                .catch(err => console.log(err))
+        }
     }, [])
 
-    // Set favorites projects
+    // Set favorite projects
     // filter only liked projects by the logged on user
     useEffect(() => {
-        // 1) get all project ids liked by the user
-        axios.get('http://localhost:8000/api/users')
-            .then(res => {
-                const usersArr = res.data
-                const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email'))
-                const loggedOnUserId = loggedOnUser.id
-                axios.get(`http://localhost:8000/api/users/${loggedOnUserId}`)
-                    .then(res => {
-                        // console.log(res.data)
-                        const likedProjectIds = res.data.likedProjects
+        if (window.localStorage.getItem('Display') === 'Favorites') {
+            // 1) get all project ids liked by the user
+            axios.get('http://localhost:8000/api/users')
+                .then(res => {
+                    const usersArr = res.data
+                    const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email'))
+                    const loggedOnUserId = loggedOnUser.id
+                    axios.get(`http://localhost:8000/api/users/${loggedOnUserId}`)
+                        .then(res => {
+                            // console.log(res.data)
+                            const likedProjectIds = res.data.likedProjects
+                            
+                            if (likedProjectIds.length > 0) {
+                                // 2) get all projects and find liked ones
+                                axios.get('http://localhost:8000/api/projects')
+                                    .then(res => {
+                                        // console.log(res.data)
+                                        const allProjects3 = res.data
+                                        const likedProjects = []
+                                        for (let projectId of likedProjectIds) {
+                                            let targetProject = allProjects3.find(project => project._id === projectId)
+                                            likedProjects.push(targetProject)
+                                        }
+                                        setFavoritesProjectsArr(likedProjects)
+                                    })
+                                    .catch(err => console.log(err))
+                            }
 
-                        // 2) get all projects and find liked ones
-                        axios.get('http://localhost:8000/api/projects')
-                            .then(res => {
-                                // console.log(res.data)
-                                const allProjects3 = res.data
-                                const likedProjects = []
-                                for (let projectId of likedProjectIds) {
-                                    let targetProject = allProjects3.find(project => project._id === projectId)
-                                    likedProjects.push(targetProject)
-                                }
-                                setFavoritesProjectsArr(likedProjects)
-                            })
-                            .catch(err => console.log(err))
-
+                        })
+                        .catch(err => console.log(err))
                     })
-                    .catch(err => console.log(err))
-                })
-            .catch(err => console.log(err))
+                .catch(err => console.log(err))
+        }
     }, [])
 
     return (
@@ -142,7 +152,7 @@ function Gallery() {
                             modules={[Pagination]}
                             className="mySwiper"
                         >   
-                            {featuredProjectsArr.map((project, idx) => (
+                            {featuredProjectsArr !== [] && featuredProjectsArr.map((project, idx) => (
                                 <SwiperSlide className="swiper-slide" key={idx}>
                                     <ProjectCard key={idx} project={project}/>
                                 </SwiperSlide>
@@ -169,7 +179,7 @@ function Gallery() {
                             modules={[Pagination]}
                             className="mySwiper"
                         >   
-                            {discoverProjectsArr.map((project, idx) => (
+                            {discoverProjectsArr !== [] && discoverProjectsArr.map((project, idx) => (
                                 <SwiperSlide className="swiper-slide" key={idx}>
                                     <ProjectCard key={idx} project={project}/>
                                 </SwiperSlide>
@@ -182,7 +192,12 @@ function Gallery() {
                     <>
                         <div className="gallery-heading">
                             <h1 className="gallery-title">{name}</h1>
-                            <p className="gallery-description">{profileProjects.length} Projects. &nbsp;&nbsp; {totalTechnologies} Technologies. &nbsp;&nbsp; {totalLikes} Likes.</p>
+                            {profileProjects.length === 0 ? (
+                                <p className="gallery-description">No projects yet.</p>
+
+                            ) : (
+                                <p className="gallery-description">{profileProjects.length} Projects. &nbsp;&nbsp; {totalTechnologies} Technologies. &nbsp;&nbsp; {totalLikes} Likes.</p>
+                            )}
                         </div>
                         <Swiper
                             direction={"horizontal"}
@@ -193,9 +208,9 @@ function Gallery() {
                                 clickable: true,
                                 dynamicBullets: true
                             }}
-                            modules={[ Pagination]}
+                            modules={[Pagination]}
                         >
-                            {profileProjectsArr.map((project, idx) => (
+                            {profileProjectsArr !== [] && profileProjectsArr.map((project, idx) => (
                                 <SwiperSlide className="swiper-slide" key={idx}>
                                     <ProjectCard key={idx} project={project}/>
                                 </SwiperSlide>
@@ -219,9 +234,9 @@ function Gallery() {
                                 clickable: true,
                                 dynamicBullets: true
                             }}
-                            modules={[ Pagination]}
+                            modules={[Pagination]}
                         >
-                            {favoritesProjectsArr.map((project, idx) => (
+                            {favoritesProjectsArr !== [] && favoritesProjectsArr.map((project, idx) => (
                                 <SwiperSlide className="swiper-slide" key={idx}>
                                     <ProjectCard key={idx} project={project}/>
                                 </SwiperSlide>

@@ -43,6 +43,20 @@ function ProjectCard({project}) {
                         setIsActive(!isActive)
                     })
             })
+
+        axios.get('http://localhost:8000/api/projects')
+            .then(res => {
+                const allProjects = res.data
+                const rankedProjects = allProjects.sort((a,b) => (a.likes < b.likes) ? 1 : -1)
+                axios.patch('http://localhost:8000/api/projects/popularity', {
+                    'rankedProjects': rankedProjects
+                }) 
+                    .then(res => {
+
+                    })
+                    .catch(err => console.log(err))
+            })
+            .catch(err => console.log(err))
     }
     
     return (
@@ -101,7 +115,7 @@ function ProjectCard({project}) {
             </div>
             <hr/>
             <div className="card-bottom">
-                <h1 className="card-lg-text card-number">#1</h1>
+                <h1 className="card-lg-text card-number">#{project.popularity}</h1>
                 <a href={project.projectUrl} target="_blank" rel="noopener noreferrer">
                     <div className="demo-btn">
                         <p className="card-sm-text">DEMO</p>
