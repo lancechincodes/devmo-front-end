@@ -29,6 +29,23 @@ function ProjectCard({project}) {
                 })                
     }, [])
 
+    useEffect(() => {
+         // Set new popularity rank when like occurs
+         axios.get('http://localhost:8000/api/projects')
+         .then(res => {
+             const allProjects = res.data
+             const rankedProjects = allProjects.sort((a,b) => (a.likes < b.likes) ? 1 : -1)
+             axios.patch('http://localhost:8000/api/projects/popularity', {
+                 'rankedProjects': rankedProjects
+             }) 
+                 .then(res => {
+                    //  console.log(res)
+                 })
+                 .catch(err => console.log(err))
+         })
+         .catch(err => console.log(err))
+    }, [isActive])
+
     function handleLike() {
         axios.get('http://localhost:8000/api/users')
             .then(res => {
@@ -42,19 +59,6 @@ function ProjectCard({project}) {
                     .then(() => {
                         setIsActive(!isActive)
                     })
-            })
-
-        axios.get('http://localhost:8000/api/projects')
-            .then(res => {
-                const allProjects = res.data
-                const rankedProjects = allProjects.sort((a,b) => (a.likes < b.likes) ? 1 : -1)
-                axios.patch('http://localhost:8000/api/projects/popularity', {
-                    'rankedProjects': rankedProjects
-                }) 
-                    .then(res => {
-
-                    })
-                    .catch(err => console.log(err))
             })
             .catch(err => console.log(err))
     }
