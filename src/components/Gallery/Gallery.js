@@ -112,11 +112,12 @@ function Gallery() {
                                     .then(res => {
                                         // console.log(res.data)
                                         const allProjects3 = res.data
-                                        const likedProjects = []
+                                        let likedProjects = []
                                         for (let projectId of likedProjectIds) {
                                             let targetProject = allProjects3.find(project => project._id === projectId)
                                             likedProjects.push(targetProject)
                                         }
+                                        likedProjects = likedProjects.reverse()
                                         setFavoritesProjectsArr(likedProjects)
                                     })
                                     .catch(err => console.log(err))

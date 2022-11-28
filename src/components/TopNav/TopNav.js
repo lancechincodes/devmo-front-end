@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Logo from '../Logo/Logo'
 import Toggle from '../Toggle/Toggle'
+
 import SideNav from '../SideNav/SideNav'
 import post from '../../assets/post.svg'
 
