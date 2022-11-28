@@ -21,7 +21,7 @@ function Form() {
         // add owner to form data
         axios.get('http://localhost:8000/api/users')
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 const usersArr = res.data
                 const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email'))
        
@@ -34,13 +34,17 @@ function Form() {
                 formData.append("technologies", JSON.stringify(selectedTech)) // must stringify arrays in formData
                 formData.append("githubRepo", state.githubRepo) // must stringify arrays in formData
 
-                axios.post(`http://localhost:8000/api/projects`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
-                    .then(res => console.log(res))
-                    .then(() => {
-                        navigate('/gallery') // navigate to successful submission page
+                axios.get('http://localhost:8000/api/projects')
+                    .then(res => {
+                        formData.append("popularity", res.data.length + 1) // res.data.length + 1 = nth project uploaded
+                        axios.post(`http://localhost:8000/api/projects`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
+                            .then(() => {
+                                navigate('/gallery') // navigate to successful submission page
+                            })
+                            .catch(err => console.log(err))
+                            })
                     })
                     .catch(err => console.log(err))
-                })
             .catch(err => console.log(err))
     }
 
