@@ -9,6 +9,7 @@
 
 #dark .project-card {
     box-shadow: rgba(97, 97, 97, 0.944) 0px 5px 15px;
+    background-color: rgb(40, 40, 40);
 }
 
 .card-thumbnail {
@@ -27,14 +28,26 @@
     margin: 0;
 }
 
+#dark .card-lg-text {
+    color: white;
+}
+
 .card-md-text {
     font-size: 14px;
     margin: 0px;
 }
 
+#dark .card-md-text {
+    color: white;
+}
+
 .card-sm-text {
     font-size: 11px;
     margin: 0px;
+}
+
+#dark .card-sm-text {
+    color: white;
 }
 
 .card-top {
@@ -52,6 +65,10 @@
     width: 20px;
     height: 100%;
     cursor: pointer;
+}
+
+#dark .card-github-icon {
+    color: white;
 }
 
 .card-section-container {

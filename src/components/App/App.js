@@ -14,18 +14,13 @@ function App() {
   const [isActive, setIsActive] = useState(false)
   const [signUp, setSignUp] = useState(true)
   const [theme, setTheme] = useState('light')
-  const [isDarkMode, setDarkMode] = useState(false)
+  // const [isDarkMode, setDarkMode] = useState(false)
 
-  const toggleDarkMode = () => {
-    setTheme(curr => curr === 'light' ? 'dark' : 'light')
-    setDarkMode(!isDarkMode)
-    localStorage.setItem('Mode', theme)
-  }
 
   return (
     <AnimatePresence mode='wait'>
-      <DataContext.Provider value={{isActive, setIsActive, signUp, setSignUp, isDarkMode, toggleDarkMode}}>
-      <div className="App" id={window.localStorage.getItem('Mode') ? window.localStorage.getItem('Mode') : theme}>
+      <DataContext.Provider value={{isActive, setIsActive, signUp, setSignUp, theme, setTheme}}>
+      <div className="App" id={window.localStorage.getItem('Theme') ? window.localStorage.getItem('Theme') : 'light'}>
         <Routes location={location} key={location.key}>
           <Route path="/" element={<Landing/>}/>
           <Route path="/gallery" element={<Gallery/>}/>

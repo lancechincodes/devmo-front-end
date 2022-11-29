@@ -66,7 +66,11 @@ function ProjectCard({project}) {
     return (
         <div className="project-card">
             <div className="card-top">
-                <img className="card-thumbnail" src={project.imageUrl} alt={`${project.name} Thumbnail`}/>
+                <img 
+                    className="card-thumbnail" 
+                    src={project.imageUrl} 
+                    alt={`${project.name} Thumbnail`}
+                />
             </div>
             <div className="card-middle">
                 {}
@@ -131,7 +135,7 @@ function ProjectCard({project}) {
                         className="heart-icon" 
                         isActive={isActive} 
                         onClick={handleLike}
-                        inactiveColor={'black'}
+                        inactiveColor={window.localStorage.getItem('Theme') === 'dark' ? 'white' : 'black'}
                         activeColor={'red'}
                     />
                 </div>

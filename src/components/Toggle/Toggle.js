@@ -4,12 +4,17 @@ import { DataContext } from '../../DataContext'
 import './Toggle.css'
 
 function Toggle() {
-  const { isDarkMode, toggleDarkMode } = useContext(DataContext)
+  const { theme, setTheme } = useContext(DataContext)
+
+  const toggleDarkMode = () => {
+    setTheme(curr => curr === 'light' ? 'dark' : 'light')
+    window.localStorage.setItem('Theme', theme)
+  }
 
   return (
     <DarkModeSwitch
       style={{ marginBottom: '0' }}
-      checked={!isDarkMode}
+      checked={window.localStorage.getItem('Theme') ? (window.localStorage.getItem('Theme') === 'light' ? true : false) : true}
       onChange={toggleDarkMode}
       size={30}
       moonColor={'#264DE4'}
