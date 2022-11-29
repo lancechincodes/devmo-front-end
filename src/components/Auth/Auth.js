@@ -125,12 +125,6 @@ function Auth() {
                     <span className="bold" onClick={handleSwitch}> Sign up</span>
                 </p>
             </form>}
-
-            <p>{state.firstName}</p>
-            <p>{state.lastName}</p>
-            <p>{state.email}</p>
-            <p>{state.password}</p>
-            <p>{state.confirmPassword}</p>
         </div>
 
     );

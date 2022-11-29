@@ -23,8 +23,16 @@
     margin: 7px 20px;
 }
 
+#dark .post-text-fields label {
+    color: white;
+}
+
 .devmo-form.MuiFormControl-root.MuiTextField-root.outlined-basic {
     margin: 10px 10px 0 10px;
+}
+
+#dark .MuiOutlinedInput-notchedOutline {
+    border-color: white;
 }
 
 .MuiFormControl-root.MuiTextField-root.outlined-basic {
@@ -33,6 +41,10 @@
 
 .MuiFormControl-root.MuiTextField-root.file-name {
     margin: 12px 10px 10px 10px;
+}
+
+#dark .MuiInputBase-input {
+    color: white;
 }
 
 .multi-select {
@@ -65,4 +77,8 @@
 
 .MuiFormHelperText-root.component-helper-text.css-1d1r5q-MuiFormHelperText-root {
     margin: 2px 15px;
+}
+
+#dark .MuiFormHelperText-root.component-helper-text.css-1d1r5q-MuiFormHelperText-root {
+    color: white;
 }

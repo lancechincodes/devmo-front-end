@@ -1,13 +1,10 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
+import { DataContext } from '../../DataContext'
 import './Toggle.css'
 
 function Toggle() {
-  const [isDarkMode, setDarkMode] = useState(false)
-
-  const toggleDarkMode = (checked) => {
-    setDarkMode(checked);
-  };
+  const { isDarkMode, toggleDarkMode } = useContext(DataContext)
 
   return (
     <DarkModeSwitch
