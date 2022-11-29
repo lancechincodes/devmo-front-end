@@ -13,21 +13,28 @@ function App() {
   const location = useLocation()
   const [isActive, setIsActive] = useState(false)
   const [signUp, setSignUp] = useState(true)
+  const [theme, setTheme] = useState('light')
+  const [isDarkMode, setDarkMode] = useState(false)
+
+  const toggleDarkMode = () => {
+    setTheme(curr => curr === 'light' ? 'dark' : 'light')
+    setDarkMode(!isDarkMode)
+  }
 
   return (
-    <div className="App">
-      <AnimatePresence mode='wait'>
-        <DataContext.Provider value={{isActive, setIsActive, signUp, setSignUp}}>
-          <Routes location={location} key={location.key}>
-            <Route path="/" element={<Landing/>}/>
-            <Route path="/gallery" element={<Gallery/>}/>
-            <Route path="/auth" element={<Auth/>}/>
-            <Route path="/about" element={<About/>}/>
-            <Route path="/form" element={<Form/>}/>
-          </Routes>
-        </DataContext.Provider>
-      </AnimatePresence>
-    </div>
+    <AnimatePresence mode='wait'>
+      <DataContext.Provider value={{isActive, setIsActive, signUp, setSignUp, isDarkMode, toggleDarkMode}}>
+      <div className="App" id={theme}>
+        <Routes location={location} key={location.key}>
+          <Route path="/" element={<Landing/>}/>
+          <Route path="/gallery" element={<Gallery/>}/>
+          <Route path="/auth" element={<Auth/>}/>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/form" element={<Form/>}/>
+        </Routes>
+      </div>
+      </DataContext.Provider>
+    </AnimatePresence>
   );
 }
 

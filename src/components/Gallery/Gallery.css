@@ -14,9 +14,18 @@
     font-size: 40px;
 }
 
+#dark .gallery-title {
+    color: white;
+}
+
 .gallery-description {
     margin: 0;
 }
+
+#dark .gallery-description {
+    color: white;
+}
+
 
 .gallery-main {
     height: 100vh;
@@ -31,4 +40,12 @@
 
 .swiper {
     height: 72vh;
+}
+
+#light .swiper-pagination-bullet {
+    background-color: black;
+}
+
+#dark .swiper-pagination-bullet {
+    background-color: white;
 }

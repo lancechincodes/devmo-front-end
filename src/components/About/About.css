@@ -9,6 +9,10 @@
     margin: 30px 0 20px 0;
 }
 
+#dark .about-heading {
+    color: white;
+}
+
 .about-title {
     margin: 0;
     font-size: 40px;
@@ -30,6 +34,10 @@
 
 .about-content {
     margin: 0 30px;
+}
+
+#dark .about-content {
+    color: white;
 }
 
 .text-emphasis {
@@ -78,4 +86,12 @@
     width: 35px;
     height: 100%;
     margin-right: 20px;
+}
+
+#dark .about-inquiries-icon {
+    color: white;
+}
+
+#dark .about-inquiries-text {
+    color: white;
 }

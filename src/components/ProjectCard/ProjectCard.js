@@ -126,7 +126,7 @@ function ProjectCard({project}) {
                     </div>
                 </a>
                 <div className="likes-container">
-                    <p>{updatedLikes}</p>
+                    <p className="card-md-text">{updatedLikes}</p>
                     <Heart 
                         className="heart-icon" 
                         isActive={isActive} 

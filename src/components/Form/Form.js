@@ -108,7 +108,7 @@ function Form() {
                         className="file-name"
                         type="file"
                         onChange={(e) => dispatch({type: ACTION.SET_IMAGE, payload: e.target.files[0]})}
-                        label="Project Thumbnail"
+                        label="Project Thumbnail (Landscape)"
                         InputLabelProps={{
                             shrink: true,
                         }}

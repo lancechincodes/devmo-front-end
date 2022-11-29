@@ -16,6 +16,14 @@
     font-size: 40px;
 }
 
+#dark .auth-heading {
+    color: white;
+}
+
+#dark .text-fields label {
+    color: white;
+}
+
 .auth-form.MuiFormControl-root.MuiTextField-root.outlined-basic {
     margin: 10px;
 }
@@ -36,6 +44,10 @@
 
 .switch {
     text-align: center;
+}
+
+#dark .switch {
+    color: white;
 }
 
 .bold {

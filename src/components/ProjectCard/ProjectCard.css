@@ -1,10 +1,14 @@
 .project-card {
     border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
+    box-shadow: rgba(4, 0, 86, 0.35) 0px 5px 15px;
     background-color: white;
     margin: 35px 0px;
     height: 500px;
     width: 320px;
+}
+
+#dark .project-card {
+    box-shadow: rgba(97, 97, 97, 0.944) 0px 5px 15px;
 }
 
 .card-thumbnail {
@@ -90,4 +94,5 @@ a {
 
 .likes-container {
     display: flex;
+    align-items: center;
 }
