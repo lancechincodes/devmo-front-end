@@ -2,7 +2,7 @@ import './App.css';
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { DataContext } from '../../DataContext'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Landing from '../Landing/Landing'
 import Gallery from '../Gallery/Gallery'
 import Auth from '../Auth/Auth'
@@ -19,12 +19,13 @@ function App() {
   const toggleDarkMode = () => {
     setTheme(curr => curr === 'light' ? 'dark' : 'light')
     setDarkMode(!isDarkMode)
+    localStorage.setItem('Mode', theme)
   }
 
   return (
     <AnimatePresence mode='wait'>
       <DataContext.Provider value={{isActive, setIsActive, signUp, setSignUp, isDarkMode, toggleDarkMode}}>
-      <div className="App" id={theme}>
+      <div className="App" id={window.localStorage.getItem('Mode') ? window.localStorage.getItem('Mode') : theme}>
         <Routes location={location} key={location.key}>
           <Route path="/" element={<Landing/>}/>
           <Route path="/gallery" element={<Gallery/>}/>

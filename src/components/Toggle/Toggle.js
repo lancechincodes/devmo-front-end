@@ -9,7 +9,7 @@ function Toggle() {
   return (
     <DarkModeSwitch
       style={{ marginBottom: '0' }}
-      checked={isDarkMode}
+      checked={!isDarkMode}
       onChange={toggleDarkMode}
       size={30}
       moonColor={'#264DE4'}
