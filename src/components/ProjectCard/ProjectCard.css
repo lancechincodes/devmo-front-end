@@ -21,6 +21,19 @@
 .card-middle {
     margin: 10px 30px;
     height: 46%;
+    position: relative;
+}
+
+.show-hide-icon-div {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#dark .show-hide-icon {
+    color: white;
 }
 
 .card-lg-text {
@@ -80,6 +93,17 @@
     flex-wrap: wrap;
 }
 
+.card-user-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.card-user-btn {
+    display: flex;
+    align-items: center;
+}
+
 .card-bottom {
     display: flex;
     align-items: center;
@@ -112,4 +136,26 @@ a {
 .likes-container {
     display: flex;
     align-items: center;
+}
+
+.card-user-btn {
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+
+#light .card-user-btn {
+    border: .5px solid black;
+}
+
+#dark .card-user-btn {
+    border: .5px solid white;
+}
+
+.update-delete-icon {
+    width: 12px;
+    margin: 0 5px 0 0;
+}
+
+#dark .update-delete-icon {
+    color: white;
 }

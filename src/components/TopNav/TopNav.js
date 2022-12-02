@@ -15,7 +15,8 @@ function TopNav() {
     const { isActive, setIsActive } = useContext(DataContext)
     const [initials, setInitials] = useState('')
 
-    function handleNavigate() {
+    function handleNavigatePost() {
+        window.localStorage.setItem('Form', 'Post')
         setIsActive(false)
     }
 
@@ -52,7 +53,7 @@ function TopNav() {
                 <div className="right-nav">
                     {window.localStorage.getItem('Email') && 
                     <>
-                        <Link className="form-link" to="/form" onClick={handleNavigate}>
+                        <Link className="form-link" to="/form" onClick={handleNavigatePost}>
                             <img className="post-btn" src={post} alt="Post button"/>
                         </Link>
                         <Link className="form-link" to="/gallery" onClick={handleNavigateProfile}>

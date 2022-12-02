@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react';
 import Heart from "react-heart"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithubAlt } from '@fortawesome/free-brands-svg-icons'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faTrash, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
 function ProjectCard({project}) {
     const [isActive, setIsActive] = useState(null) // this isActive/setIsActive is for the heart like button
     const [updatedLikes, setUpdatedLikes] = useState(project.likes)
+    const [showUpdateDelete, setShowUpdateDelete] = useState(false)
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/users')
@@ -62,6 +64,22 @@ function ProjectCard({project}) {
             })
             .catch(err => console.log(err))
     }
+
+    function handleShowUpdateDelete() {
+        setShowUpdateDelete(!showUpdateDelete)
+    }
+
+    function handleNavigateUpdate() {
+        window.localStorage.setItem("Form", "Update")
+    }
+
+    function handleDelete() {
+
+    }
+
+    function handleUpdate() {
+        
+    }
     
     return (
         <div className="project-card">
@@ -84,13 +102,6 @@ function ProjectCard({project}) {
                                 <FontAwesomeIcon className="card-github-icon" icon={faGithubAlt} />        
                             </a>    
                         }
-                        {/* {project.owner.email === window.localStorage.getItem('Email') && 
-                            <FontAwesomeIcon 
-                                className="trash-icon" 
-                                icon={faTrash} 
-                                onClick={handleDelete}
-                            />
-                        } */}
                     </div>
                 </div>
 
@@ -120,26 +131,62 @@ function ProjectCard({project}) {
                         ))}
                     </div>
                 </div>
+
+   
+                {project.owner.email === window.localStorage.getItem('Email') &&
+                    <div className="show-hide-icon-div">
+                      <FontAwesomeIcon
+                          className="show-hide-icon"
+                          icon={!showUpdateDelete ? faCaretDown : faCaretUp}
+                          onClick={handleShowUpdateDelete}
+                      />
+                    </div>  
+                }
+
             </div>
             <hr/>
-            <div className="card-bottom">
-                <h1 className="card-lg-text card-number">#{project.popularity}</h1>
-                <a href={project.projectUrl} target="_blank" rel="noopener noreferrer">
-                    <div className="demo-btn">
-                        <p className="card-sm-text">DEMO</p>
+            {!showUpdateDelete &&
+                <div className="card-bottom">
+                    <h1 className="card-lg-text card-number">#{project.popularity}</h1>
+                    <a href={project.projectUrl} target="_blank" rel="noopener noreferrer">
+                        <div className="demo-btn">
+                            <p className="card-sm-text">DEMO</p>
+                        </div>
+                    </a>
+                    <div className="likes-container">
+                        <p className="card-md-text">{updatedLikes}</p>
+                        <Heart 
+                            className="heart-icon" 
+                            isActive={isActive} 
+                            onClick={handleLike}
+                            inactiveColor={window.localStorage.getItem('Theme') === 'dark' ? 'white' : 'black'}
+                            activeColor={'red'}
+                        />
                     </div>
-                </a>
-                <div className="likes-container">
-                    <p className="card-md-text">{updatedLikes}</p>
-                    <Heart 
-                        className="heart-icon" 
-                        isActive={isActive} 
-                        onClick={handleLike}
-                        inactiveColor={window.localStorage.getItem('Theme') === 'dark' ? 'white' : 'black'}
-                        activeColor={'red'}
-                    />
                 </div>
-            </div>
+            }
+            {showUpdateDelete && 
+                <div className="card-bottom">
+                    <div className="card-user-container">
+                        <Link to='/form' onClick={handleNavigateUpdate} state={{ project: project}}>
+                            <div className="card-user-btn">
+                                <FontAwesomeIcon 
+                                    className="update-delete-icon" 
+                                    icon={faPen} 
+                                />
+                                <p className="card-sm-text">EDIT</p>
+                            </div>
+                        </Link>
+                        <div className="card-user-btn">
+                            <FontAwesomeIcon 
+                                className="update-delete-icon" 
+                                icon={faTrash} 
+                            />
+                            <p className="card-sm-text">DELETE</p>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     );
 };
