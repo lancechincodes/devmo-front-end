@@ -4,13 +4,15 @@ import { useState, useEffect } from 'react';
 import Heart from "react-heart"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithubAlt } from '@fortawesome/free-brands-svg-icons'
-import { faPen, faTrash, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
+import { faPen, faTrash, faCaretUp, faCaretDown, faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { Link, useNavigate } from 'react-router-dom'
 
 function ProjectCard({project}) {
     const [isActive, setIsActive] = useState(null) // this isActive/setIsActive is for the heart like button
     const [updatedLikes, setUpdatedLikes] = useState(project.likes)
     const [showUpdateDelete, setShowUpdateDelete] = useState(false)
+    const [confirmDelete, setConfirmDelete] = useState(false)
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/users')
@@ -73,12 +75,15 @@ function ProjectCard({project}) {
         window.localStorage.setItem("Form", "Update")
     }
 
-    function handleDelete() {
-
+    function handleToggleDeleteProject() {
+        setConfirmDelete(!confirmDelete)
     }
 
-    function handleUpdate() {
-        
+    function handleDeleteProject() {
+        axios.delete(`http://localhost:8000/api/projects/${project._id}`)
+            .then(() => {
+                navigate('/gallery')
+            })
     }
     
     return (
@@ -165,7 +170,7 @@ function ProjectCard({project}) {
                     </div>
                 </div>
             }
-            {showUpdateDelete && 
+            {showUpdateDelete && !confirmDelete &&
                 <div className="card-bottom">
                     <div className="card-user-container">
                         <Link to='/form' onClick={handleNavigateUpdate} state={{ project: project}}>
@@ -177,13 +182,26 @@ function ProjectCard({project}) {
                                 <p className="card-sm-text">EDIT</p>
                             </div>
                         </Link>
-                        <div className="card-user-btn">
+                        <div className="card-user-btn" onClick={handleToggleDeleteProject}>
                             <FontAwesomeIcon 
                                 className="update-delete-icon" 
                                 icon={faTrash} 
                             />
                             <p className="card-sm-text">DELETE</p>
                         </div>
+                    </div>
+                </div>
+            }
+            {showUpdateDelete && confirmDelete && 
+                <div className="card-bottom">
+                    <p className="card-md-text">CONFIRM DELETE?</p>
+                    <div className="card-user-btn" onClick={handleDeleteProject}>
+                        <FontAwesomeIcon className="update-delete-icon" icon={faCheck} />        
+                        <p className="card-sm-text">YES</p>
+                    </div>
+                    <div className="card-user-btn" onClick={handleToggleDeleteProject}>
+                        <FontAwesomeIcon className="update-delete-icon" icon={faXmark} />        
+                        <p className="card-sm-text">NO</p>
                     </div>
                 </div>
             }
