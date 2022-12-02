@@ -65,3 +65,7 @@ div > form > div.text-fields > div.MuiFormControl-root.auth-form.outlined-basic.
 .bold {
     text-decoration: underline;
 }
+
+#dark > div > form > div.text-fields > div.MuiFormControl-root.auth-form.outlined-basic.css-r47a1p-MuiFormControl-root > div > div > button > svg {
+    color: white;
+}

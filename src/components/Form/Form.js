@@ -25,8 +25,6 @@ function Form() {
             dispatch({type: ACTION.SET_DESCRIPTION, payload: project.description})
             dispatch({type: ACTION.SET_PROJECT_URL, payload: project.projectUrl})
             dispatch({type: ACTION.SET_GITHUB_REPO, payload: project.githubRepo})        
-            dispatch({type: ACTION.SET_IMAGE, payload: project.image})
-            console.log("hello" + project.image)
             setSelectedTech(project.technologies)   
         } 
     }, [])

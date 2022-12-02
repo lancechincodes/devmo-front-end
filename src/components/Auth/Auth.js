@@ -192,6 +192,7 @@ function Auth() {
             {!signUp && <form className="auth-form" type="submit">
                 <div className="auth-heading">
                     <h1 className="auth-title">LOGIN</h1>
+                    <p className="auth-description">Welcome back to Devmo.</p>
                 </div>
                 <div className="text-fields">
                     <TextField
