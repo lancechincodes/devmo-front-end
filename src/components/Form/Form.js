@@ -23,14 +23,25 @@ function Form() {
     const [projectUrlError, setProjectUrlError] = useState(false)
     const [imageError, setImageError] = useState(false)
     const [techError, setTechError] = useState(false)
-    
+    const [invalidProjectUrl, setInvalidProjectUrl] = useState(false)
+    const [invalidGithubUrl, setInvalidGithubUrl] = useState(false)
+
+    const isValidUrl = urlString=> {
+        var urlPattern = new RegExp('^(https?:\\/\\/)?'+ // validate protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // validate domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))'+ // validate OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // validate port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?'+ // validate query string
+        '(\\#[-a-z\\d_]*)?$','i'); // validate fragment locator
+        return !!urlPattern.test(urlString);
+    }
+
     useEffect(() => {
         if (window.localStorage.getItem('Form') === 'Update') {
             dispatch({type: ACTION.SET_NAME, payload: project.name})
             dispatch({type: ACTION.SET_DESCRIPTION, payload: project.description})
             dispatch({type: ACTION.SET_PROJECT_URL, payload: project.projectUrl})
             dispatch({type: ACTION.SET_GITHUB_REPO, payload: project.githubRepo})        
-            dispatch({type: ACTION.SET_IMAGE, payload: project.image})        
             setSelectedTech(project.technologies)   
         } 
     }, [])
@@ -52,7 +63,7 @@ function Form() {
                 formData.append("image", state.image)
                 formData.append("owner", JSON.stringify(loggedOnUser)) // must stringify object in formData
                 if (selectedTech.length !== 0) formData.append("technologies", JSON.stringify(selectedTech)) // must stringify arrays in formData
-                formData.append("githubRepo", state.githubRepo) // must stringify arrays in formData
+                formData.append("githubRepo", state.githubRepo)
 
                 axios.get('http://localhost:8000/api/projects')
                     .then(res => {
@@ -63,16 +74,39 @@ function Form() {
                             })
                             .catch(err => {
                                 console.log(err)
+
                                 if (state.name === '') setNameError(true)
                                 else setNameError(false)
 
                                 if (state.description === '') setDescriptionError(true)
                                 else setDescriptionError(false)
 
-                                if (state.projectUrl === '') setProjectUrlError(true)
-                                else setProjectUrlError(false)
+                                // error will show if project url is empty OR its an invalid url
+                                if (state.projectUrl === '' || isValidUrl(state.projectUrl) === false) {
+                                    setProjectUrlError(true)
+                                }
+                                else {
+                                    setProjectUrlError(false)
+                                }
+
+                                // helper text for project url will only show if it is an invalid url
+                                if (state.projectUrl === '') {
+                                    setInvalidProjectUrl(false)
+                                }
+                                else if (isValidUrl(state.projectUrl) === false) {
+                                    setInvalidProjectUrl(true)
+                                }
+
+                                // helper text for github repo will only show if github repo url is not blank AND it is an invalid url
+                                if (state.githubRepo !== '' && isValidUrl(state.githubRepo) === false) {
+                                    setInvalidGithubUrl(true)
+                                }
+                                else {
+                                    setInvalidGithubUrl(false)
+                                }
 
                                 if (state.image === '') setImageError(true)
+                                else setImageError(false)
 
                                 if (selectedTech.length === 0) setTechError(true)
                                 else setTechError(false)
@@ -102,24 +136,44 @@ function Form() {
         formData.append("likes", project.likes)
 
         axios.patch(`http://localhost:8000/api/projects/${project._id}`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
-            .then(res => {
-                console.log(res)
-            })
             .then(() => {
                 navigate(-1)
             })
             .catch(err => {
                 console.log(err)
+
                 if (state.name === '') setNameError(true)
                 else setNameError(false)
 
                 if (state.description === '') setDescriptionError(true)
                 else setDescriptionError(false)
 
-                if (state.projectUrl === '') setProjectUrlError(true)
-                else setProjectUrlError(false)
+                // error will show if project url is empty OR its an invalid url
+                if (state.projectUrl === '' || isValidUrl(state.projectUrl) === false) {
+                    setProjectUrlError(true)
+                }
+                else {
+                    setProjectUrlError(false)
+                }
+
+                // helper text for project url will only show if it is an invalid url
+                if (state.projectUrl === '') {
+                    setInvalidProjectUrl(false)
+                }
+                else if (isValidUrl(state.projectUrl) === false) {
+                    setInvalidProjectUrl(true)
+                }
+
+                // helper text for github repo will only show if github repo url is not blank AND it is an invalid url
+                if (state.githubRepo && isValidUrl(state.githubRepo) === false) {
+                    setInvalidGithubUrl(true)
+                }
+                else {
+                    setInvalidGithubUrl(false)
+                }
 
                 if (state.image === '') setImageError(true)
+                else setImageError(false)
 
                 if (selectedTech.length === 0) setTechError(true)
                 else setTechError(false)
@@ -256,27 +310,53 @@ function Form() {
                     }
 
                     {projectUrlError &&
-                        <TextField
-                            error
-                            id="outlined-error"
-                            className="outlined-basic"
-                            label="Project URL"
-                            variant="outlined"
-                            type="text"
-                            onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
-                            required={true}
-                            defaultValue={window.localStorage.getItem("Form") === "Update" ? project.projectUrl : state.projectUrl}
-                        />
+                        <>
+                            <TextField
+                                error
+                                id="outlined-error"
+                                className="outlined-basic"
+                                label="Project URL"
+                                variant="outlined"
+                                type="text"
+                                onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
+                                required={true}
+                                defaultValue={window.localStorage.getItem("Form") === "Update" ? project.projectUrl : state.projectUrl}
+                            />
+                            {invalidProjectUrl && 
+                                <FormHelperText className="component-helper-text">
+                                    Invalid URL
+                                </FormHelperText>
+                            }
+                        </>   
                     }
                     
-                    <TextField
-                        className="outlined-basic"
-                        label="GitHub Repo"
-                        variant="outlined"
-                        type="text"
-                        onChange={(e) => dispatch({type: ACTION.SET_GITHUB_REPO, payload: e.target.value})}
-                        defaultValue={window.localStorage.getItem("Form") === "Update" ? project.githubRepo : state.githubRepo}
-                    />
+                    {!invalidGithubUrl &&
+                        <TextField
+                            className="outlined-basic"
+                            label="GitHub Repo"
+                            variant="outlined"
+                            type="text"
+                            onChange={(e) => dispatch({type: ACTION.SET_GITHUB_REPO, payload: e.target.value})}
+                            defaultValue={window.localStorage.getItem("Form") === "Update" ? project.githubRepo : state.githubRepo}
+                        />
+                    }
+
+                    {invalidGithubUrl && 
+                    <>
+                        <TextField
+                            error
+                            className="outlined-basic"
+                            label="GitHub Repo"
+                            variant="outlined"
+                            type="text"
+                            onChange={(e) => dispatch({type: ACTION.SET_GITHUB_REPO, payload: e.target.value})}
+                            defaultValue= {state.githubRepo}
+                        />
+                         <FormHelperText className="component-helper-text">
+                            Invalid URL
+                        </FormHelperText>
+                    </>
+                    }
 
                     {!imageError &&
                         <TextField
@@ -333,13 +413,25 @@ function Form() {
                         </div>
                     </div>
                 ) : (
-                    <div
-                        className="submit-post-btn"
+                    <div className="update-btn-div">
+                        <div
+                        className="update-post-btn"
+                        type="submit"
+                        onClick={handleCancel}
+                        id="cancel-btn"
+                        >
+                        Cancel
+                        </div>
+                        <div
+                        className="update-post-btn"
                         type="submit"
                         onClick={handlePost}
-                    >
+                        id="share-btn"
+                        >
                         Share
                     </div>
+                    </div>
+                  
                 )}
             </form>
         </div>

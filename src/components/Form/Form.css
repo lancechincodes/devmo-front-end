@@ -70,15 +70,6 @@
     z-index: 5;
 }
 
-.submit-post-btn {
-    margin: 0px 28px;
-    text-align: center;
-    background: #264DE4;
-    color: white;
-    padding: 15px;
-    border-radius: 5px;
-}
-
 .multi-select span {
     display: block;
 }
@@ -122,6 +113,10 @@
 }
 
 #save-btn {
+    background: #264DE4;
+}
+
+#share-btn {
     background: #264DE4;
 }
 
