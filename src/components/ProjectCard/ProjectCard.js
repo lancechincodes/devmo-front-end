@@ -194,7 +194,7 @@ function ProjectCard({project}) {
             }
             {showUpdateDelete && confirmDelete && 
                 <div className="card-bottom">
-                    <p className="card-md-text">CONFIRM DELETE?</p>
+                    <p className="card-md-text">DELETE PROJECT?</p>
                     <div className="card-user-btn" onClick={handleDeleteProject}>
                         <FontAwesomeIcon className="update-delete-icon" icon={faCheck} />        
                         <p className="card-sm-text">YES</p>

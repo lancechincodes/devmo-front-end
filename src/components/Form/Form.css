@@ -27,6 +27,22 @@
     color: rgba(255, 247, 247, 0.919);
 }
 
+#dark .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+    border-color: #d32f2f;
+}
+
+#dark .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root.Mui-error { 
+    color: #d32f2f;
+}
+
+#dark .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-error {
+    color: #d32f2f;
+}
+
+#dark .css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+    border-color: #d32f2f;
+}
+
 .devmo-form.MuiFormControl-root.MuiTextField-root.outlined-basic {
     margin: 10px 10px 10px 10px;
 }
@@ -107,4 +123,8 @@
 
 #save-btn {
     background: #264DE4;
+}
+
+label .Mui-error {
+    color: green;
 }

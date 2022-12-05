@@ -18,6 +18,11 @@ function Form() {
     const { project } = window.localStorage.getItem('Form') === 'Update' ? location.state : {"name": "", "description": "", "projectUrl": "", "githubRepo": ""}
     const [showNameCharactersRemaining, setShowNameCharactersRemaining] = useState(false)
     const [showDescriptionCharactersRemaining, setShowDescriptionCharactersRemaining] = useState(false)
+    const [nameError, setNameError] = useState(false)
+    const [descriptionError, setDescriptionError] = useState(false)
+    const [projectUrlError, setProjectUrlError] = useState(false)
+    const [imageError, setImageError] = useState(false)
+    const [techError, setTechError] = useState(false)
     
     useEffect(() => {
         if (window.localStorage.getItem('Form') === 'Update') {
@@ -25,6 +30,7 @@ function Form() {
             dispatch({type: ACTION.SET_DESCRIPTION, payload: project.description})
             dispatch({type: ACTION.SET_PROJECT_URL, payload: project.projectUrl})
             dispatch({type: ACTION.SET_GITHUB_REPO, payload: project.githubRepo})        
+            dispatch({type: ACTION.SET_IMAGE, payload: project.image})        
             setSelectedTech(project.technologies)   
         } 
     }, [])
@@ -44,8 +50,8 @@ function Form() {
                 formData.append("description", state.description)  
                 formData.append("projectUrl", state.projectUrl)
                 formData.append("image", state.image)
-                formData.append("owner", JSON.stringify(loggedOnUser)) // must stringify object in formData                
-                formData.append("technologies", JSON.stringify(selectedTech)) // must stringify arrays in formData
+                formData.append("owner", JSON.stringify(loggedOnUser)) // must stringify object in formData
+                if (selectedTech.length !== 0) formData.append("technologies", JSON.stringify(selectedTech)) // must stringify arrays in formData
                 formData.append("githubRepo", state.githubRepo) // must stringify arrays in formData
 
                 axios.get('http://localhost:8000/api/projects')
@@ -55,8 +61,23 @@ function Form() {
                             .then(() => {
                                 navigate('/gallery') // navigate to successful submission page
                             })
-                            .catch(err => console.log(err))
+                            .catch(err => {
+                                console.log(err)
+                                if (state.name === '') setNameError(true)
+                                else setNameError(false)
+
+                                if (state.description === '') setDescriptionError(true)
+                                else setDescriptionError(false)
+
+                                if (state.projectUrl === '') setProjectUrlError(true)
+                                else setProjectUrlError(false)
+
+                                if (state.image === '') setImageError(true)
+
+                                if (selectedTech.length === 0) setTechError(true)
+                                else setTechError(false)
                             })
+                        })
                     })
                     .catch(err => console.log(err))
             .catch(err => console.log(err))
@@ -75,9 +96,10 @@ function Form() {
         formData.append("projectUrl", state.projectUrl)
         formData.append("image", state.image)
         formData.append("owner", JSON.stringify(project.owner)) // must stringify object in formData                
-        formData.append("technologies", JSON.stringify(selectedTech)) // must stringify arrays in formData
+        if (selectedTech.length !== 0) formData.append("technologies", JSON.stringify(selectedTech)) // must stringify arrays in formData
         formData.append("githubRepo", state.githubRepo) // must stringify arrays in formData
         formData.append("popularity", project.popularity)
+        formData.append("likes", project.likes)
 
         axios.patch(`http://localhost:8000/api/projects/${project._id}`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
             .then(res => {
@@ -86,7 +108,22 @@ function Form() {
             .then(() => {
                 navigate(-1)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                if (state.name === '') setNameError(true)
+                else setNameError(false)
+
+                if (state.description === '') setDescriptionError(true)
+                else setDescriptionError(false)
+
+                if (state.projectUrl === '') setProjectUrlError(true)
+                else setProjectUrlError(false)
+
+                if (state.image === '') setImageError(true)
+
+                if (selectedTech.length === 0) setTechError(true)
+                else setTechError(false)
+            })
     }
 
     return (
@@ -106,20 +143,41 @@ function Form() {
                     </div>
                 }
                 <div className="post-text-fields">
-                    <TextField
-                        className="devmo-form outlined-basic"
-                        label="Project Name"
-                        variant="outlined"
-                        type="text"
-                        onChange={(e) => {
-                            setShowNameCharactersRemaining(true)
-                            dispatch({type: ACTION.SET_NAME, payload: e.target.value})
-                            dispatch({type: ACTION.SET_NAME_CHARACTERS_REMAINING, payload: e.target.value})    
-                        }}
-                        required={true}
-                        inputProps={{ maxLength: 15 }}
-                        defaultValue={window.localStorage.getItem("Form") === "Update" ? project.name : ""}
-                    />
+                    {!nameError && 
+                        <TextField
+                            className="devmo-form outlined-basic"
+                            label="Project Name"
+                            variant="outlined"
+                            type="text"
+                            onChange={(e) => {
+                                setShowNameCharactersRemaining(true)
+                                dispatch({type: ACTION.SET_NAME, payload: e.target.value})
+                                dispatch({type: ACTION.SET_NAME_CHARACTERS_REMAINING, payload: e.target.value})    
+                            }}
+                            required={true}
+                            inputProps={{ maxLength: 15 }}
+                            defaultValue={window.localStorage.getItem("Form") === "Update" ? project.name : state.name}
+                        />
+                    }
+
+                    {nameError && 
+                        <TextField
+                            error
+                            className="devmo-form outlined-basic"
+                            id="outlined-error"
+                            label="Project Name"
+                            variant="outlined"
+                            type="text"
+                            onChange={(e) => {
+                                setShowNameCharactersRemaining(true)
+                                dispatch({type: ACTION.SET_NAME, payload: e.target.value})
+                                dispatch({type: ACTION.SET_NAME_CHARACTERS_REMAINING, payload: e.target.value})    
+                            }}
+                            required={true}
+                            inputProps={{ maxLength: 15 }}
+                            defaultValue={window.localStorage.getItem("Form") === "Update" ? project.name : state.name}
+                        />
+                    }
              
                     {window.localStorage.getItem("Form") === "Update" && showNameCharactersRemaining && (
                         <FormHelperText className="component-helper-text">
@@ -133,22 +191,45 @@ function Form() {
                         </FormHelperText>
                     }
            
-                    <TextField
-                        className="devmo-form outlined-basic"
-                        label="Description"
-                        variant="outlined"
-                        type="text"
-                        onChange={(e) => {
-                            setShowDescriptionCharactersRemaining(true)
-                            dispatch({type: ACTION.SET_DESCRIPTION, payload: e.target.value})
-                            dispatch({type: ACTION.SET_DESCRIPTION_CHARACTERS_REMAINING, payload: e.target.value})    
-                        }}
-                        multiline
-                        rows={3}
-                        required={true}
-                        inputProps={{ maxLength: 100 }}
-                        defaultValue={window.localStorage.getItem("Form") === "Update" ? project.description : ""}
-                    />
+                    {!descriptionError &&
+                        <TextField
+                            className="devmo-form outlined-basic"
+                            label="Description"
+                            variant="outlined"
+                            type="text"
+                            onChange={(e) => {
+                                setShowDescriptionCharactersRemaining(true)
+                                dispatch({type: ACTION.SET_DESCRIPTION, payload: e.target.value})
+                                dispatch({type: ACTION.SET_DESCRIPTION_CHARACTERS_REMAINING, payload: e.target.value})    
+                            }}
+                            multiline
+                            rows={3}
+                            required={true}
+                            inputProps={{ maxLength: 100 }}
+                            defaultValue={window.localStorage.getItem("Form") === "Update" ? project.description : state.description}
+                        />
+                    }
+
+                    {descriptionError &&
+                        <TextField
+                            error
+                            id="outlined-error"
+                            className="devmo-form outlined-basic"
+                            label="Description"
+                            variant="outlined"
+                            type="text"
+                            onChange={(e) => {
+                                setShowDescriptionCharactersRemaining(true)
+                                dispatch({type: ACTION.SET_DESCRIPTION, payload: e.target.value})
+                                dispatch({type: ACTION.SET_DESCRIPTION_CHARACTERS_REMAINING, payload: e.target.value})    
+                            }}
+                            multiline
+                            rows={3}
+                            required={true}
+                            inputProps={{ maxLength: 100 }}
+                            defaultValue={window.localStorage.getItem("Form") === "Update" ? project.description : state.description}
+                        />
+                    }
 
                     {window.localStorage.getItem("Form") === "Update" && showDescriptionCharactersRemaining && (
                         <FormHelperText className="component-helper-text">
@@ -162,37 +243,73 @@ function Form() {
                         </FormHelperText>
                     }
 
+                    {!projectUrlError &&
+                        <TextField
+                            className="outlined-basic"
+                            label="Project URL"
+                            variant="outlined"
+                            type="text"
+                            onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
+                            required={true}
+                            defaultValue={window.localStorage.getItem("Form") === "Update" ? project.projectUrl : state.projectUrl}
+                        />
+                    }
 
-                    <TextField
-                        className="outlined-basic"
-                        label="Project URL"
-                        variant="outlined"
-                        type="text"
-                        onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
-                        required={true}
-                        defaultValue={window.localStorage.getItem("Form") === "Update" ? project.projectUrl : ""}
-                    />
+                    {projectUrlError &&
+                        <TextField
+                            error
+                            id="outlined-error"
+                            className="outlined-basic"
+                            label="Project URL"
+                            variant="outlined"
+                            type="text"
+                            onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
+                            required={true}
+                            defaultValue={window.localStorage.getItem("Form") === "Update" ? project.projectUrl : state.projectUrl}
+                        />
+                    }
+                    
                     <TextField
                         className="outlined-basic"
                         label="GitHub Repo"
                         variant="outlined"
                         type="text"
                         onChange={(e) => dispatch({type: ACTION.SET_GITHUB_REPO, payload: e.target.value})}
-                        defaultValue={window.localStorage.getItem("Form") === "Update" ? project.githubRepo : ""}
+                        defaultValue={window.localStorage.getItem("Form") === "Update" ? project.githubRepo : state.githubRepo}
                     />
-                    <TextField
-                        className="file-name"
-                        type="file"
-                        onChange={(e) => dispatch({type: ACTION.SET_IMAGE, payload: e.target.files[0]})}
-                        label="Project Thumbnail (Landscape)"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        required={true}
-                    />
+
+                    {!imageError &&
+                        <TextField
+                            className="file-name"
+                            type="file"
+                            onChange={(e) => dispatch({type: ACTION.SET_IMAGE, payload: e.target.files[0]})}
+                            label="Project Thumbnail (Landscape)"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            required={true}
+                        />
+                    }
+
+                    {imageError &&
+                        <TextField
+                            error
+                            id="outlined-error"
+                            className="file-name"
+                            type="file"
+                            onChange={(e) => dispatch({type: ACTION.SET_IMAGE, payload: e.target.files[0]})}
+                            label="Project Thumbnail (Landscape)"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            required={true}
+                        />
+                    }
+        
                     <MultipleSelectCheckmarks 
                         selectedTech={selectedTech} 
                         setSelectedTech={setSelectedTech}
+                        techError={techError}
                     />
                 </div>
                 

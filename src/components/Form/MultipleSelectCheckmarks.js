@@ -19,7 +19,7 @@ const MenuProps = {
   },
 };
 
-export default function MultipleSelectCheckmarks({selectedTech, setSelectedTech}) {
+export default function MultipleSelectCheckmarks({selectedTech, setSelectedTech, techError}) {
 
   const handleChange = (event) => {
     const {
@@ -32,25 +32,59 @@ export default function MultipleSelectCheckmarks({selectedTech, setSelectedTech}
   };
 
   return (
-    <FormControl required sx={{ m: 1, width: 330 }}>
-      <InputLabel id="demo-multiple-checkbox-label">Tech Stack</InputLabel>
-      <Select
-        labelId="demo-multiple-checkbox-label"
-        id="demo-multiple-checkbox"
-        multiple
-        value={selectedTech}
-        onChange={handleChange}
-        input={<OutlinedInput label="Tech Stack" />}
-        renderValue={(selectedTech) => selectedTech.join(', ')}
-        MenuProps={MenuProps}
-      >
-        {techOptions.map((tech, idx) => (
-          <MenuItem key={idx} value={tech}>
-            <Checkbox checked={selectedTech.indexOf(tech) > -1} />
-            <ListItemText primary={tech} />
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+    <>
+    {!techError && 
+      <FormControl required sx={{ m: 1, width: 330 }}>
+        <InputLabel id="demo-multiple-checkbox-label">Tech Stack</InputLabel>
+        <Select
+          labelId="demo-multiple-checkbox-label"
+          id="demo-multiple-checkbox"
+          multiple
+          value={selectedTech}
+          onChange={handleChange}
+          input={<OutlinedInput label="Tech Stack" />}
+          renderValue={(selectedTech) => selectedTech.join(', ')}
+          MenuProps={MenuProps}
+        >
+          {techOptions.map((tech, idx) => (
+            <MenuItem key={idx} value={tech}>
+              <Checkbox checked={selectedTech.indexOf(tech) > -1} />
+              <ListItemText primary={tech} />
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    }
+
+    {techError && 
+      <FormControl required sx={{ m: 1, width: 330 }} error>
+        <InputLabel id="demo-multiple-checkbox-label">Tech Stack</InputLabel>
+        <Select
+          labelId="demo-multiple-checkbox-label"
+          id="demo-multiple-checkbox"
+          multiple
+          value={selectedTech}
+          onChange={handleChange}
+          input={<OutlinedInput label="Tech Stack" />}
+          renderValue={(selectedTech) => selectedTech.join(', ')}
+          MenuProps={MenuProps}
+        >
+          {techOptions.map((tech, idx) => (
+            <MenuItem key={idx} value={tech}>
+              <Checkbox checked={selectedTech.indexOf(tech) > -1} />
+              <ListItemText primary={tech} />
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    }
+
+
+    
+    
+    </>
+    
+
+    
   );
 }
