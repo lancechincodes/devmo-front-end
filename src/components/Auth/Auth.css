@@ -12,8 +12,16 @@
 
 .auth-heading {
     text-align: center;
-    margin: 30px 0px 0px 0px;
+    margin: 30px 0px;
+}
+
+.auth-title {
+    margin: 0;
     font-size: 40px;
+}
+
+.auth-description {
+    margin: 0;
 }
 
 #dark .auth-heading {
@@ -26,6 +34,10 @@
 
 .auth-form.MuiFormControl-root.MuiTextField-root.outlined-basic {
     margin: 10px;
+}
+
+div > form > div.text-fields > div.MuiFormControl-root.auth-form.outlined-basic.css-r47a1p-MuiFormControl-root {
+    width: auto;
 }
 
 .auth-button {
@@ -52,4 +64,8 @@
 
 .bold {
     text-decoration: underline;
+}
+
+#dark > div > form > div.text-fields > div.MuiFormControl-root.auth-form.outlined-basic.css-r47a1p-MuiFormControl-root > div > div > button > svg {
+    color: white;
 }

@@ -8,12 +8,23 @@ import TopNav from '../TopNav/TopNav'
 import TextField from '@mui/material/TextField';
 import axios from 'axios'
 
+// For the show password icon
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import IconButton from '@mui/material/IconButton';
+
 function Auth() {
     const [error, setError] = useState(null)
     const [state, dispatch] = useReducer(authReducer, 
         {firstName: '', lastName: '', email: '', password: '', confirmPassword: ''})
     const navigate = useNavigate()
     const { isActive, setIsActive, signUp, setSignUp } = useContext(DataContext)
+    const [showPassword, setShowPassword] = useState(false)
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
     function handleSwitch() {
         // clear state after switching between login and sign up
@@ -70,24 +81,102 @@ function Auth() {
         }
     }
 
+    const handleClickShowPassword = (e) => {
+        e.preventDefault();
+        setShowPassword(!showPassword);
+    };
+
+    const handleClickShowConfirmPassword = (e) => {
+        e.preventDefault();
+        setShowConfirmPassword(!showConfirmPassword);
+    };
+    
     return (
         <div className="auth-page">
             <TopNav isActive={isActive} setIsActive={setIsActive}/>
 
             {signUp && <form className="auth-form" type="submit">
-                <h1 className="auth-heading">SIGN UP</h1>
+                <div className="auth-heading">
+                    <h1 className="auth-title">SIGN UP</h1>
+                    <p className="auth-description">Favorite, save, and share projects.</p>
+                </div>
                 <div className="text-fields">
-                    {signUpFields.map((textField, idx) => (
-                        <TextField
-                            key={idx} 
-                            className="auth-form outlined-basic" 
-                            label={textField.label}
-                            variant="outlined" 
+                    <TextField 
+                        className="auth-form outlined-basic" 
+                        label={signUpFields[0].label}
+                        variant="outlined" 
+                        required={true}
+                        type={signUpFields[0].type}
+                        onChange={(e) => dispatch({ type: signUpFields[0].reducerType, payload: e.target.value})}
+                    />
+                    <TextField 
+                        className="auth-form outlined-basic" 
+                        label={signUpFields[1].label}
+                        variant="outlined" 
+                        required={true}
+                        type={signUpFields[1].type}
+                        onChange={(e) => dispatch({ type: signUpFields[1].reducerType, payload: e.target.value})}
+                    />
+                    <TextField 
+                        className="auth-form outlined-basic" 
+                        label={signUpFields[2].label}
+                        variant="outlined" 
+                        required={true}
+                        type={signUpFields[2].type}
+                        onChange={(e) => dispatch({ type: signUpFields[2].reducerType, payload: e.target.value})}
+                    />
+                    <FormControl 
+                        sx={{ m: 1, width: '25ch' }} 
+                        variant="outlined" 
+                        className="auth-form outlined-basic"                                 
+                        required={true}
+                    >
+                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-password"
+                            type={showPassword ? 'text' : 'password'}
+                            value={state.password}
+                            onChange={(e) => dispatch({ type: signUpFields[3].reducerType, payload: e.target.value})}
+                            endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                >
+                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                            }
+                            label={"Password"}
                             required={true}
-                            type={textField.type}
-                            onChange={(e) => dispatch({ type: textField.reducerType, payload: e.target.value})}
                         />
-                    ))}
+                    </FormControl>
+                    <FormControl 
+                        sx={{ m: 1, width: '25ch' }} 
+                        variant="outlined" 
+                        className="auth-form outlined-basic"                                 
+                        required={true}
+                    >
+                        <InputLabel htmlFor="outlined-adornment-password">Confirm password</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-password"
+                            type={showConfirmPassword ? 'text' : 'password'}
+                            value={state.confirmPassword}
+                            onChange={(e) => dispatch({ type: signUpFields[4].reducerType, payload: e.target.value})}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowConfirmPassword}
+                                    >
+                                    {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                            label={"Confirm password"}
+                            required={true}
+                        />
+                    </FormControl>
                 </div>
                 <div
                     className="auth-button"
@@ -101,19 +190,45 @@ function Auth() {
             </form>}
 
             {!signUp && <form className="auth-form" type="submit">
-                <h1 className="auth-heading">LOGIN</h1>
+                <div className="auth-heading">
+                    <h1 className="auth-title">LOGIN</h1>
+                    <p className="auth-description">Welcome back to Devmo.</p>
+                </div>
                 <div className="text-fields">
-                    {loginFields.map((textField, idx) => (
-                        <TextField
-                            key={idx} 
-                            className="auth-form outlined-basic" 
-                            label={textField.label}
-                            variant="outlined" 
+                    <TextField
+                        className="auth-form outlined-basic" 
+                        label="Email"
+                        variant="outlined" 
+                        required={true}
+                        type="email"
+                        onChange={(e) => dispatch({ type: loginFields[0].reducerType, payload: e.target.value})}
+                    />
+                    <FormControl 
+                        sx={{ m: 1, width: '25ch' }} 
+                        variant="outlined" 
+                        className="auth-form outlined-basic"                                 
+                        required={true}
+                    >
+                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-password"
+                            type={showPassword ? 'text' : 'password'}
+                            value={state.password}
+                            onChange={(e) => dispatch({ type: loginFields[1].reducerType, payload: e.target.value})}
+                            endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                >
+                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                            }
+                            label={"Password"}
                             required={true}
-                            type={textField.type}
-                            onChange={(e) => dispatch({ type: textField.reducerType, payload: e.target.value})}
                         />
-                    ))}
+                    </FormControl>
                 </div>
                 <div
                     className="auth-button"

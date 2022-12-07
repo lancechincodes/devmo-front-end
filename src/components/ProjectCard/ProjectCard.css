@@ -9,6 +9,7 @@
 
 #dark .project-card {
     box-shadow: rgba(97, 97, 97, 0.944) 0px 5px 15px;
+    background-color: rgb(40, 40, 40);
 }
 
 .card-thumbnail {
@@ -20,6 +21,19 @@
 .card-middle {
     margin: 10px 30px;
     height: 46%;
+    position: relative;
+}
+
+.show-hide-icon-div {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#dark .show-hide-icon {
+    color: white;
 }
 
 .card-lg-text {
@@ -27,14 +41,26 @@
     margin: 0;
 }
 
+#dark .card-lg-text {
+    color: white;
+}
+
 .card-md-text {
     font-size: 14px;
     margin: 0px;
 }
 
+#dark .card-md-text {
+    color: white;
+}
+
 .card-sm-text {
     font-size: 11px;
     margin: 0px;
+}
+
+#dark .card-sm-text {
+    color: white;
 }
 
 .card-top {
@@ -54,6 +80,10 @@
     cursor: pointer;
 }
 
+#dark .card-github-icon {
+    color: white;
+}
+
 .card-section-container {
     margin: 15px 0px;
 }
@@ -61,6 +91,17 @@
 .card-tech-chips {
     display: flex;
     flex-wrap: wrap;
+}
+
+.card-user-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.card-user-btn {
+    display: flex;
+    align-items: center;
 }
 
 .card-bottom {
@@ -95,4 +136,26 @@ a {
 .likes-container {
     display: flex;
     align-items: center;
+}
+
+.card-user-btn {
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+
+#light .card-user-btn {
+    border: .5px solid black;
+}
+
+#dark .card-user-btn {
+    border: .5px solid white;
+}
+
+.update-delete-icon {
+    width: 12px;
+    margin: 0 5px 0 0;
+}
+
+#dark .update-delete-icon {
+    color: white;
 }

@@ -12,6 +12,7 @@ function Landing() {
 
     useEffect(() => {
         window.localStorage.setItem("Display", 'Featured')
+        window.localStorage.setItem("Form", "Post")
         setTimeout(() => {
             setStartAnimation(false)
         }, 3000)

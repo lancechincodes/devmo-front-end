@@ -103,7 +103,6 @@ function Gallery() {
                     const loggedOnUserId = loggedOnUser.id
                     axios.get(`http://localhost:8000/api/users/${loggedOnUserId}`)
                         .then(res => {
-                            // console.log(res.data)
                             const likedProjectIds = res.data.likedProjects
                             
                             if (likedProjectIds.length > 0) {
@@ -115,7 +114,7 @@ function Gallery() {
                                         let likedProjects = []
                                         for (let projectId of likedProjectIds) {
                                             let targetProject = allProjects3.find(project => project._id === projectId)
-                                            likedProjects.push(targetProject)
+                                            if (targetProject) likedProjects.push(targetProject)
                                         }
                                         likedProjects = likedProjects.reverse()
                                         setFavoritesProjectsArr(likedProjects)

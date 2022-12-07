@@ -4,7 +4,7 @@ export const loginFields = [
     {
         label: "Email",
         type: "email",
-        reducerType: ACTION.SET_EMAIL
+        reducerType: ACTION.SET_EMAIL,
     },
     {
         label: "Password",

@@ -24,11 +24,27 @@
 }
 
 #dark .post-text-fields label {
-    color: white;
+    color: rgba(255, 247, 247, 0.919);
+}
+
+#dark .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+    border-color: #d32f2f;
+}
+
+#dark .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root.Mui-error { 
+    color: #d32f2f;
+}
+
+#dark .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-error {
+    color: #d32f2f;
+}
+
+#dark .css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+    border-color: #d32f2f;
 }
 
 .devmo-form.MuiFormControl-root.MuiTextField-root.outlined-basic {
-    margin: 10px 10px 0 10px;
+    margin: 10px 10px 10px 10px;
 }
 
 #dark .MuiOutlinedInput-notchedOutline {
@@ -54,15 +70,6 @@
     z-index: 5;
 }
 
-.submit-post-btn {
-    margin: 0px 28px;
-    text-align: center;
-    background: #264DE4;
-    color: white;
-    padding: 15px;
-    border-radius: 5px;
-}
-
 .multi-select span {
     display: block;
 }
@@ -72,13 +79,47 @@
 }
 
 .MuiFormControl-root.css-ptt77l-MuiFormControl-root {
+    width: auto;
     margin: 10px;
 }
 
 .MuiFormHelperText-root.component-helper-text.css-1d1r5q-MuiFormHelperText-root {
-    margin: 2px 15px;
+    margin: 0px 15px 6px 15px;
 }
 
 #dark .MuiFormHelperText-root.component-helper-text.css-1d1r5q-MuiFormHelperText-root {
     color: white;
+}
+
+#dark > div > form > div.post-text-fields > div.MuiFormControl-root.css-ptt77l-MuiFormControl-root > div > svg {
+    color: white;
+}
+
+.update-btn-div {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 30px;
+}
+
+.update-post-btn {
+    color: white;
+    padding: 15px 55px;
+    border-radius: 5px;
+}
+
+#cancel-btn {
+    background: rgb(235, 234, 234);
+    color: black;
+}
+
+#save-btn {
+    background: #264DE4;
+}
+
+#share-btn {
+    background: #264DE4;
+}
+
+label .Mui-error {
+    color: green;
 }
