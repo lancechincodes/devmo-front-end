@@ -35,7 +35,7 @@ function Form() {
     const [invalidGithubUrl, setInvalidGithubUrl] = useState(false)
 
     // Regex for checking validity of url
-    const isValidUrl = urlString=> {
+    function isValidUrl(urlString) {
         var urlPattern = new RegExp('^(https?:\\/\\/)?'+ // validate protocol
         '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // validate domain name
         '((\\d{1,3}\\.){3}\\d{1,3}))'+ // validate OR ip (v4) address
@@ -93,28 +93,16 @@ function Form() {
                                 else setDescriptionError(false)
 
                                 // error will show if project url is empty OR its an invalid url
-                                if (state.projectUrl === '' || isValidUrl(state.projectUrl) === false) {
-                                    setProjectUrlError(true)
-                                }
-                                else {
-                                    setProjectUrlError(false)
-                                }
+                                if (state.projectUrl === '' || isValidUrl(state.projectUrl) === false) setProjectUrlError(true)
+                                else setProjectUrlError(false)
 
                                 // helper text for project url will only show if it is an invalid url
-                                if (state.projectUrl === '') {
-                                    setInvalidProjectUrl(false)
-                                }
-                                else if (isValidUrl(state.projectUrl) === false) {
-                                    setInvalidProjectUrl(true)
-                                }
-
+                                if (state.projectUrl === '') setInvalidProjectUrl(false) // reset helper text if cleared
+                                else if (isValidUrl(state.projectUrl) === false) setInvalidProjectUrl(true)
+                                
                                 // helper text for github repo will only show if github repo url is not blank AND it is an invalid url
-                                if (state.githubRepo !== '' && isValidUrl(state.githubRepo) === false) {
-                                    setInvalidGithubUrl(true)
-                                }
-                                else {
-                                    setInvalidGithubUrl(false)
-                                }
+                                if (state.githubRepo !== '' && isValidUrl(state.githubRepo) === false) setInvalidGithubUrl(true)
+                                else setInvalidGithubUrl(false)
 
                                 if (state.image === '') setImageError(true)
                                 else setImageError(false)
