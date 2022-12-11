@@ -49,6 +49,11 @@ function Auth() {
             dispatch({type: field.reducerType, payload: ''})
         })
         setSignUp(!signUp)
+        setFirstNameError(false)
+        setLastNameError(false)
+        setEmailError(false)
+        setPasswordError(false)
+        setConfirmPasswordError(false)
     }
 
     // Post requests to sign up and login as well as validation
@@ -122,10 +127,6 @@ function Auth() {
         e.preventDefault();
         setShowConfirmPassword(!showConfirmPassword);
     };
-
-    useEffect(() => {
-        console.log(state.firstName)
-    })
     
     return (
         <div className="auth-page">
@@ -145,7 +146,7 @@ function Auth() {
                             required={true}
                             type={signUpFields[0].type}
                             onChange={(e) => dispatch({ type: signUpFields[0].reducerType, payload: e.target.value})}
-                            defaultText={state.firstName}
+                            defaultValue={state.firstName}
                         />  
                     }
                     {firstNameError && 
@@ -157,7 +158,7 @@ function Auth() {
                             required={true}
                             type={signUpFields[0].type}
                             onChange={(e) => dispatch({ type: signUpFields[0].reducerType, payload: e.target.value})}
-                            defaultText={state.firstName}
+                            defaultValue={state.firstName}
                         />  
                     }
 
@@ -169,6 +170,7 @@ function Auth() {
                             required={true}
                             type={signUpFields[1].type}
                             onChange={(e) => dispatch({ type: signUpFields[1].reducerType, payload: e.target.value})}
+                            defaultValue={state.lastName}
                         />
                     }
                     {lastNameError && 
@@ -180,6 +182,7 @@ function Auth() {
                             required={true}
                             type={signUpFields[1].type}
                             onChange={(e) => dispatch({ type: signUpFields[1].reducerType, payload: e.target.value})}
+                            defaultValue={state.lastName}
                         />
                     }
 
@@ -191,6 +194,7 @@ function Auth() {
                             required={true}
                             type={signUpFields[2].type}
                             onChange={(e) => dispatch({ type: signUpFields[2].reducerType, payload: e.target.value})}
+                            defaultValue={state.email}
                         />
                     }
                     {emailError &&
@@ -202,6 +206,7 @@ function Auth() {
                             required={true}
                             type={signUpFields[2].type}
                             onChange={(e) => dispatch({ type: signUpFields[2].reducerType, payload: e.target.value})}
+                            defaultValue={state.email}
                         />
                     }
 
@@ -211,6 +216,7 @@ function Auth() {
                             variant="outlined" 
                             className="auth-form outlined-basic"                                 
                             required={true}
+                            defaultValue={state.password}
                         >
                             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                             <OutlinedInput
@@ -240,6 +246,7 @@ function Auth() {
                             variant="outlined" 
                             className="auth-form outlined-basic"                                 
                             required={true}
+                            defaultValue={state.password}
                         >
                             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                             <OutlinedInput
@@ -269,6 +276,7 @@ function Auth() {
                             variant="outlined" 
                             className="auth-form outlined-basic"                                 
                             required={true}
+                            defaultValue={state.confirmPassword}
                         >
                             <InputLabel htmlFor="outlined-adornment-password">Confirm password</InputLabel>
                             <OutlinedInput
@@ -298,6 +306,7 @@ function Auth() {
                             variant="outlined" 
                             className="auth-form outlined-basic"                                 
                             required={true}
+                            defaultValue={state.confirmPassword}
                         >
                             <InputLabel htmlFor="outlined-adornment-password">Confirm password</InputLabel>
                             <OutlinedInput
@@ -311,7 +320,7 @@ function Auth() {
                                             aria-label="toggle password visibility"
                                             onClick={handleClickShowConfirmPassword}
                                         >
-                                        {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
+                                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
                                         </IconButton>
                                     </InputAdornment>
                                 }
