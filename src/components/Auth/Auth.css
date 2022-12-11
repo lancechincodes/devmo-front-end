@@ -69,3 +69,7 @@ div > form > div.text-fields > div.MuiFormControl-root.auth-form.outlined-basic.
 #dark > div > form > div.text-fields > div.MuiFormControl-root.auth-form.outlined-basic.css-r47a1p-MuiFormControl-root > div > div > button > svg {
     color: white;
 }
+
+#dark .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+    border-color: #d32f2f;
+}

@@ -9,15 +9,23 @@ import FormHelperText from '@mui/material/FormHelperText';
 import MultipleSelectCheckmarks from './MultipleSelectCheckmarks';
 
 function Form() {
-    // use reducer for form's state management
+    // Use reducer for form's state management
     const [state, dispatch] = useReducer(formReducer, 
         {name: '', description: '', projectUrl: '', image: '', githubRepo: '', nameCharactersRemaining: 15, descriptionCharactersRemaining: 100})
     const [selectedTech, setSelectedTech] = useState([]);
+
+    // Router
     const navigate = useNavigate()
     const location = useLocation()
+
+    // Destructuring project to edit properties
     const { project } = window.localStorage.getItem('Form') === 'Update' ? location.state : {"name": "", "description": "", "projectUrl": "", "githubRepo": ""}
+    
+    // Helper text for characters remaining state
     const [showNameCharactersRemaining, setShowNameCharactersRemaining] = useState(false)
     const [showDescriptionCharactersRemaining, setShowDescriptionCharactersRemaining] = useState(false)
+
+    // Validation state
     const [nameError, setNameError] = useState(false)
     const [descriptionError, setDescriptionError] = useState(false)
     const [projectUrlError, setProjectUrlError] = useState(false)
@@ -26,6 +34,7 @@ function Form() {
     const [invalidProjectUrl, setInvalidProjectUrl] = useState(false)
     const [invalidGithubUrl, setInvalidGithubUrl] = useState(false)
 
+    // Regex for checking validity of url
     const isValidUrl = urlString=> {
         var urlPattern = new RegExp('^(https?:\\/\\/)?'+ // validate protocol
         '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // validate domain name
@@ -36,6 +45,7 @@ function Form() {
         return !!urlPattern.test(urlString);
     }
 
+    // Upon mount on update pages, set state to project to edit properties
     useEffect(() => {
         if (window.localStorage.getItem('Form') === 'Update') {
             dispatch({type: ACTION.SET_NAME, payload: project.name})
@@ -46,6 +56,7 @@ function Form() {
         } 
     }, [])
 
+    // Post request or validation
     function handlePost(e) {
         e.preventDefault()
 
@@ -117,10 +128,12 @@ function Form() {
             .catch(err => console.log(err))
     }
 
+    // Back button
     function handleCancel() {
         navigate(-1)
     }
 
+    // Patch request or validation
     function handleUpdate(e) {
         e.preventDefault()
 
@@ -218,7 +231,6 @@ function Form() {
                         <TextField
                             error
                             className="devmo-form outlined-basic"
-                            id="outlined-error"
                             label="Project Name"
                             variant="outlined"
                             type="text"
@@ -229,7 +241,7 @@ function Form() {
                             }}
                             required={true}
                             inputProps={{ maxLength: 15 }}
-                            defaultValue={window.localStorage.getItem("Form") === "Update" ? project.name : state.name}
+                            defaultValue={state.name}
                         />
                     }
              
@@ -267,7 +279,6 @@ function Form() {
                     {descriptionError &&
                         <TextField
                             error
-                            id="outlined-error"
                             className="devmo-form outlined-basic"
                             label="Description"
                             variant="outlined"
@@ -281,7 +292,7 @@ function Form() {
                             rows={3}
                             required={true}
                             inputProps={{ maxLength: 100 }}
-                            defaultValue={window.localStorage.getItem("Form") === "Update" ? project.description : state.description}
+                            defaultValue={state.description}
                         />
                     }
 
@@ -293,7 +304,7 @@ function Form() {
 
                     {window.localStorage.getItem("Form") === "Post" && 
                         <FormHelperText className="component-helper-text">
-                                {state.descriptionCharactersRemaining} characters remaining
+                            {state.descriptionCharactersRemaining} characters remaining
                         </FormHelperText>
                     }
 
@@ -313,14 +324,13 @@ function Form() {
                         <>
                             <TextField
                                 error
-                                id="outlined-error"
                                 className="outlined-basic"
                                 label="Project URL"
                                 variant="outlined"
                                 type="text"
                                 onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
                                 required={true}
-                                defaultValue={window.localStorage.getItem("Form") === "Update" ? project.projectUrl : state.projectUrl}
+                                defaultValue={state.projectUrl}
                             />
                             {invalidProjectUrl && 
                                 <FormHelperText className="component-helper-text">
@@ -374,7 +384,6 @@ function Form() {
                     {imageError &&
                         <TextField
                             error
-                            id="outlined-error"
                             className="file-name"
                             type="file"
                             onChange={(e) => dispatch({type: ACTION.SET_IMAGE, payload: e.target.files[0]})}

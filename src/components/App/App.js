@@ -13,14 +13,14 @@ function App() {
   const location = useLocation()
   const [isActive, setIsActive] = useState(false)
   const [signUp, setSignUp] = useState(true)
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState('dark')
   // const [isDarkMode, setDarkMode] = useState(false)
 
 
   return (
     <AnimatePresence mode='wait'>
       <DataContext.Provider value={{isActive, setIsActive, signUp, setSignUp, theme, setTheme}}>
-      <div className="App" id={window.localStorage.getItem('Theme') ? window.localStorage.getItem('Theme') : 'light'}>
+      <div className="App" id={window.localStorage.getItem('Theme') ? window.localStorage.getItem('Theme') : 'dark'}>
         <Routes location={location} key={location.key}>
           <Route path="/" element={<Landing/>}/>
           <Route path="/gallery" element={<Gallery/>}/>
