@@ -19,9 +19,6 @@ import IconButton from '@mui/material/IconButton';
 import { FormHelperText } from '@mui/material';
 
 function Auth() {
-    // Error message upon unsuccessful auth
-    const [error, setError] = useState(null)
-
     // Auth form state management
     const [state, dispatch] = useReducer(authReducer, 
         {firstName: '', lastName: '', email: '', password: '', confirmPassword: ''})
@@ -47,15 +44,28 @@ function Auth() {
     const [invalidEmail, setInvalidEmail] = useState(false)
     const [invalidPassword, setInvalidPassword] = useState(false)
     const [invalidConfirmPassword, setInvalidConfirmPassword] = useState(false)
-
+    const [emailInUseError, setEmailInUseError] = useState(false)
+    const [loginError, setLoginError] = useState(false)
+    
     // Regex for checking validity of email
     function isValidEmail(email) {
         let filter = /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/;
         return String(email).search (filter) !== -1;
     }
 
+    // Regex for checking validity of password
+    function isValidPassword(password) {
+        let filter = /^(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // min 8 characters, at least one uppercase letter, and one special character
+        return String(password).search (filter) !== -1
+    }
+
+
+    // Welcome message state
+    const [welcomeMessage, setWelcomeMessage] = useState('Welcome back to Devmo.')
+
     // Switch between login and signup pages
     function handleSwitch() {
+        setWelcomeMessage('Welcome back to Devmo.')
         // clear state after switching between login and sign up
         signUpFields.forEach(field => {
             dispatch({type: field.reducerType, payload: ''})
@@ -76,8 +86,35 @@ function Auth() {
         e.preventDefault()
         if (signUp) {
             if (state.password !== state.confirmPassword) {
-                setError('Password and confirmation password does not match')
-                return
+                setInvalidConfirmPassword(true)
+                if (state.firstName === '') setFirstNameError(true)
+                else setFirstNameError(false)
+
+                if (state.lastName === '') setLastNameError(true)
+                else setLastNameError(false)
+
+                // error will show if email is empty OR its an invalid email
+                if (state.email === '' || isValidEmail(state.email) === false) setEmailError(true)
+                else setEmailError(false)
+
+                // helper text for email will show only if it is an invalid email
+                if (state.email === '') setInvalidEmail(false) // reset helper text if cleared
+                else if (isValidEmail(state.email) === false) setInvalidEmail(true)
+
+                if (state.password === '' || isValidPassword(state.password) === false) setPasswordError(true)
+                else setPasswordError(false)
+
+                // helper text for password will show only if it is an invalid password
+                if (state.password === '') setInvalidPassword(false)
+                else if (isValidPassword(state.password) === false) setInvalidPassword(true)
+
+                if (state.confirmPassword === '' || isValidPassword(state.confirmPassword) === false) setConfirmPasswordError(true)
+                else setConfirmPasswordError(false)
+
+                return // do not make post request if passwords do not match
+            }
+            else {
+                setInvalidConfirmPassword(false)
             }
 
             axios.post('http://localhost:8000/api/users/signup', {
@@ -87,6 +124,7 @@ function Auth() {
                 password: state.password
             })
                 .then(res => {
+                    setWelcomeMessage('Welcome to Devmo.')
                     setSignUp(!signUp)
                     // clear state after signing up and before redirect to login
                     signUpFields.forEach(field => {
@@ -94,8 +132,8 @@ function Auth() {
                     })
                 })
                 .catch(err => {
-                    console.log(err)
-                    setError(err.response.data)
+                    // console.log(err.response.data)
+        
                     if (state.firstName === '') setFirstNameError(true)
                     else setFirstNameError(false)
 
@@ -103,19 +141,25 @@ function Auth() {
                     else setLastNameError(false)
 
                     // error will show if email is empty OR its an invalid email
-                    if (state.email === '' || isValidEmail(state.email) === false) setEmailError(true)
+                    if (state.email === '' || isValidEmail(state.email) === false || err.response.data === 'Email is already in use') setEmailError(true)
                     else setEmailError(false)
 
-                    // helper text for email will show only if it is an invalid email
+                    // first helper text for email will show only if email is already in use
+                    if (err.response.data === 'Email is already in use') setEmailInUseError(true)
+                    else setEmailInUseError(false)
+
+                    // second helper text for email will show only if it is an invalid email
                     if (state.email === '') setInvalidEmail(false) // reset helper text if cleared
                     else if (isValidEmail(state.email) === false) setInvalidEmail(true)
 
-                    
-
-                    if (state.password === '') setPasswordError(true)
+                    if (state.password === '' || isValidPassword(state.password) === false) setPasswordError(true)
                     else setPasswordError(false)
 
-                    if (state.confirmPassword === '') setConfirmPasswordError(true)
+                    // helper text for password will show only if it is an invalid password
+                    if (state.password === '') setInvalidPassword(false)
+                    else if (isValidPassword(state.password) === false) setInvalidPassword(true)
+
+                    if (state.confirmPassword === '' || isValidPassword(state.confirmPassword) === false) setConfirmPasswordError(true)
                     else setConfirmPasswordError(false)
                 })
         }
@@ -133,25 +177,23 @@ function Auth() {
                     navigate('/gallery')
                 })
                 .catch(err => {
-                    setError("Provided email or password is incorrect")
+                    // setError("Provided email or password is incorrect")
                 })
         }
     }
 
     // Toggle password visibility function
-    const handleClickShowPassword = (e) => {
+    function handleClickShowPassword(e) {
         e.preventDefault();
         setShowPassword(!showPassword);
     };
 
     // Toggle confirm password visibility function
-    const handleClickShowConfirmPassword = (e) => {
+    function handleClickShowConfirmPassword(e) {
         e.preventDefault();
         setShowConfirmPassword(!showConfirmPassword);
     };
     
-    useEffect(() => console.log(invalidEmail),[])
-
     return (
         <div className="auth-page">
             <TopNav isActive={isActive} setIsActive={setIsActive}/>
@@ -238,6 +280,12 @@ function Auth() {
                                     Invalid email
                                 </FormHelperText>
                             }
+                            {emailInUseError && 
+                                <FormHelperText className="component-helper-text">
+                                    Email is already in use
+                                </FormHelperText>
+
+                            }
                         </>
                        
                     }
@@ -272,34 +320,41 @@ function Auth() {
                         </FormControl>
                     }
                     {passwordError &&
-                        <FormControl 
-                            error
-                            sx={{ m: 1, width: '25ch' }} 
-                            variant="outlined" 
-                            className="auth-form outlined-basic"                                 
-                            required={true}
-                            defaultValue={state.password}
-                        >
-                            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                            <OutlinedInput
-                                className="outlined-adornment-password"
-                                type={showPassword ? 'text' : 'password'}
-                                value={state.password}
-                                onChange={(e) => dispatch({ type: signUpFields[3].reducerType, payload: e.target.value})}
-                                endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                    >
-                                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                                }
-                                label={"Password"}
+                        <>
+                            <FormControl 
+                                error
+                                sx={{ m: 1, width: '25ch' }} 
+                                variant="outlined" 
+                                className="auth-form outlined-basic"                                 
                                 required={true}
-                            />
-                        </FormControl>
+                                defaultValue={state.password}
+                            >
+                                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                <OutlinedInput
+                                    className="outlined-adornment-password"
+                                    type={showPassword ? 'text' : 'password'}
+                                    value={state.password}
+                                    onChange={(e) => dispatch({ type: signUpFields[3].reducerType, payload: e.target.value})}
+                                    endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                        >
+                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                    }
+                                    label={"Password"}
+                                    required={true}
+                                />
+                            </FormControl>
+                            {invalidPassword && 
+                                <FormHelperText className="component-helper-text">
+                                    Password must contain at least 8 characters, 1 uppercase character, and 1 special character
+                                </FormHelperText>
+                            }
+                        </>
                     }
 
                     {!confirmPasswordError &&
@@ -332,6 +387,7 @@ function Auth() {
                         </FormControl>
                     }
                     {confirmPasswordError &&
+                    <>
                         <FormControl 
                             error
                             sx={{ m: 1, width: '25ch' }} 
@@ -360,6 +416,12 @@ function Auth() {
                                 required={true}
                             />
                         </FormControl>
+                        {invalidConfirmPassword && 
+                                <FormHelperText className="component-helper-text">
+                                    Password and confirmation password do not match
+                                </FormHelperText>
+                        }
+                    </>
                     }
                 </div>
                 <div
@@ -376,7 +438,7 @@ function Auth() {
             {!signUp && <form className="auth-form" type="submit">
                 <div className="auth-heading">
                     <h1 className="auth-title">LOGIN</h1>
-                    <p className="auth-description">Welcome back to Devmo.</p>
+                    <p className="auth-description">{welcomeMessage}</p>
                 </div>
                 <div className="text-fields">
                     <TextField
