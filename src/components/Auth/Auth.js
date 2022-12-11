@@ -27,7 +27,7 @@ function Auth() {
     const navigate = useNavigate()
 
     // Context
-    const { isActive, setIsActive, signUp, setSignUp } = useContext(DataContext)
+    const { isActive, setIsActive } = useContext(DataContext)
 
     // Password visibility state
     const [showPassword, setShowPassword] = useState(false)
@@ -70,7 +70,7 @@ function Auth() {
         signUpFields.forEach(field => {
             dispatch({type: field.reducerType, payload: ''})
         })
-        setSignUp(!signUp)
+        window.localStorage.getItem('Auth') === 'Sign Up' ? window.localStorage.setItem('Auth', 'Login') : window.localStorage.setItem('Auth', 'Sign Up')
         setFirstNameError(false)
         setLastNameError(false)
         setEmailError(false)
@@ -84,7 +84,7 @@ function Auth() {
     // Post requests to sign up and login as well as validation
     function handleSubmit(e) {
         e.preventDefault()
-        if (signUp) {
+        if (window.localStorage.getItem('Auth') === 'Sign Up') {
             if (state.password !== state.confirmPassword) {
                 setInvalidConfirmPassword(true)
                 if (state.firstName === '') setFirstNameError(true)
@@ -125,7 +125,7 @@ function Auth() {
             })
                 .then(res => {
                     setWelcomeMessage('Welcome to Devmo.')
-                    setSignUp(!signUp)
+                    window.localStorage.setItem('Auth', 'Login')
                     // clear state after signing up and before redirect to login
                     signUpFields.forEach(field => {
                         dispatch({type: field.reducerType, payload: ''})
@@ -198,7 +198,7 @@ function Auth() {
         <div className="auth-page">
             <TopNav isActive={isActive} setIsActive={setIsActive}/>
 
-            {signUp && <form className="auth-form" type="submit">
+            {window.localStorage.getItem('Auth') === 'Sign Up' && <form className="auth-form" type="submit">
                 <div className="auth-heading">
                     <h1 className="auth-title">SIGN UP</h1>
                     <p className="auth-description">Favorite, save, and share projects.</p>
@@ -435,7 +435,7 @@ function Auth() {
                 </p>
             </form>}
 
-            {!signUp && <form className="auth-form" type="submit">
+            {window.localStorage.getItem('Auth') === 'Login' && <form className="auth-form" type="submit">
                 <div className="auth-heading">
                     <h1 className="auth-title">LOGIN</h1>
                     <p className="auth-description">{welcomeMessage}</p>
@@ -467,7 +467,7 @@ function Auth() {
                                     aria-label="toggle password visibility"
                                     onClick={handleClickShowPassword}
                                 >
-                                {showPassword ? <Visibility /> : <VisibilityOff />}
+                                {showPassword ? <VisibilityOff /> : <Visibility />}
                                 </IconButton>
                             </InputAdornment>
                             }

@@ -30,12 +30,12 @@ function SideNav() {
 
     function handleNavigateSignUp() {
         setIsActive(false)
-        setSignUp(true)
+        window.localStorage.setItem('Auth', 'Sign Up')
     }
 
     function handleNavigateLogin() {
         setIsActive(false)
-        setSignUp(false)
+        window.localStorage.setItem('Auth', 'Login')
     }
 
     function handleLogout() {
