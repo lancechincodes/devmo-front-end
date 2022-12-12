@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
+import '../Loading/Loading.css'
 
 function Gallery() {
     const { isActive } = useContext(DataContext)
@@ -19,6 +20,12 @@ function Gallery() {
     const [discoverProjectsArr, setDiscoverProjectsArr] = useState([])
     const [profileProjectsArr, setProfileProjectsArr] = useState([])
     const [favoritesProjectsArr, setFavoritesProjectsArr] = useState([])
+
+    // Loading state management
+    const [loadingTechnologies, setLoadingTechnologies] = useState(true)
+    const [loadingFeatured, setLoadingFeatured] = useState(true)
+    const [loadingDiscover, setLoadingDiscover] = useState(true)
+    const [loadingFavorites, setLoadingFavorites] = useState(true)
 
     // Set name and total technologies of logged on user
     useEffect(() => {
@@ -44,8 +51,10 @@ function Gallery() {
                             setTotalTechnologies(Object.values(hash).length)
                         })
                         .catch(err => console.log(err))
+                        .finally(() => setLoadingTechnologies(false))
                 })
                 .catch(err => console.log(err))
+
         }
     },[totalTechnologies]) // re-mount if state updates
 
@@ -72,6 +81,7 @@ function Gallery() {
                     }
                 })
                 .catch(err => console.log(err))
+                .finally(() => setLoadingDiscover(false))
     }, [])
 
     // Set featured projects
@@ -88,6 +98,7 @@ function Gallery() {
                     }
                 })
                 .catch(err => console.log(err))
+                .finally(() => setLoadingFeatured(false))
         }
     }, [])
 
@@ -120,6 +131,7 @@ function Gallery() {
                                         setFavoritesProjectsArr(likedProjects)
                                     })
                                     .catch(err => console.log(err))
+                                    .finally(() => setLoadingFavorites(false))
                             }
 
                         })
@@ -128,6 +140,18 @@ function Gallery() {
                 .catch(err => console.log(err))
         }
     }, [])
+
+
+    if ((window.localStorage.getItem('Display') === 'Profile' && loadingTechnologies) ||
+        (window.localStorage.getItem('Display') === 'Featured' && loadingFeatured) ||
+        (window.localStorage.getItem('Display') === 'Discover' && loadingDiscover) ||
+        (window.localStorage.getItem('Display') === 'Favorites' && loadingFavorites)) {
+        return (
+            <div className="loading-page">
+                <span className="loader"></span>
+            </div>
+        )
+    }
 
     return (
         <div className="gallery-page">
