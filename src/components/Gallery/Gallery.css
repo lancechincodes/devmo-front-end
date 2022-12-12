@@ -7,7 +7,7 @@
 
 .gallery-heading {
     text-align: center;
-    margin: 30px 0;
+    margin: 20px 0 0 0;
 }
 
 .gallery-title {
@@ -52,12 +52,12 @@
     align-items: flex-start;
     width: 90%;
     justify-content: space-evenly;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .swiper-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic, .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
     position: relative;
-    margin-top: 5vh;
+    margin-top: 20px;
 }
 
 .swiper-pagination {
@@ -114,4 +114,10 @@
     }
 }
 
+/***********LEVEL 2 (HEIGHT)***********/
+@media screen and (max-height: 800px) {
+    .gallery-main {
+      height: 92vh;
+    }
+  }
 
