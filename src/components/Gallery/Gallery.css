@@ -21,6 +21,7 @@
 
 .gallery-description {
     margin: 0;
+    font-size: 16px;
 }
 
 #dark .gallery-description {
@@ -32,6 +33,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    overflow-y: hidden;
 }
 
 .swiper-slide {
@@ -84,8 +86,20 @@
     display: none;
 }
 
+.breakpointFour {
+    display: none;
+}
+
+.breakpointFive {
+    display: none;
+}
+
+.breakpointSix {
+    display: none;
+}
+
 /***********LEVEL 2***********/
-@media screen and (min-width: 750px) and (max-width: 1200px) {
+@media screen and (min-width: 800px) and (max-width: 1200px) {
     .breakpointOne {
         display: none;
     }
@@ -93,31 +107,73 @@
     .breakpointTwo {
         display: block;
     }
-
-    .breakpointThree {
-        display: none;
-    }
 }
 
 /***********LEVEL 3***********/
-@media screen and (min-width: 1201px) {
+@media screen and (min-width: 1201px) and (max-width: 1700px) {
     .breakpointOne {
         display: none;
     }
 
-    .breakpointTwo {
+    .breakpointThree {
+        display: block;
+    }
+}
+
+/***********LEVEL 4***********/
+@media screen and (min-width: 1701px) and (max-width: 2000px) {
+    .breakpointOne {
         display: none;
     }
 
-    .breakpointThree {
+    .breakpointFour {
+        display: block;
+    }
+}
+
+/***********LEVEL 5***********/
+@media screen and (min-width: 2001px) and (max-width: 2600px) {
+    .breakpointOne {
+        display: none;
+    }
+
+    .breakpointFive {
+        display: block;
+    }
+}
+
+/***********LEVEL 6***********/
+@media screen and (min-width: 2601px) {
+    .breakpointOne {
+        display: none;
+    }
+
+    .breakpointSix {
         display: block;
     }
 }
 
 /***********LEVEL 2 (HEIGHT)***********/
-@media screen and (max-height: 800px) {
+@media screen and (min-height: 900px) {
+    .gallery-heading {
+        text-align: center;
+        margin: 40px 0 0 0;
+    }
+
     .gallery-main {
-      height: 92vh;
+        height: 92vh;
+    }
+
+    .gallery-title {
+        font-size: 50px;
+    }
+
+    .gallery-description {
+        font-size: 19.2px;
+    }
+
+    .swiper-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic, .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+        margin-top: 100px;
     }
   }
 

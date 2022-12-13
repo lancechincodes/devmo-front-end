@@ -7,7 +7,7 @@ import axios from 'axios'
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper";
+import {Pagination } from "swiper";
 import '../Loading/Loading.css'
 
 function Gallery() {
@@ -162,7 +162,6 @@ function Gallery() {
                         <div className="gallery-heading">
                             <h1 className="gallery-title">FEATURED</h1>
                             <p className="gallery-description">Our top-rated picks.</p>
-
                         </div>
                         
                         <div className="swiper-container">
@@ -215,6 +214,82 @@ function Gallery() {
                                 }}
                                 modules={[Pagination]}
                                 className="breakpointThree"
+                            >   
+                                {featuredProjectsArr !== [] && featuredProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={4}
+                                spaceBetween={10}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointFour"
+                            >   
+                                {featuredProjectsArr !== [] && featuredProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={5}
+                                spaceBetween={10}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointFive"
+                            >   
+                                {featuredProjectsArr !== [] && featuredProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={6}
+                                spaceBetween={10}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointSix"
+                            >   
+                                {featuredProjectsArr !== [] && featuredProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={7}
+                                spaceBetween={10}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointSix"
                             >   
                                 {featuredProjectsArr !== [] && featuredProjectsArr.map((project, idx) => (
                                     <SwiperSlide className="swiper-slide" key={idx}>

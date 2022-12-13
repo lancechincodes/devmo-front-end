@@ -3,28 +3,30 @@
     background-color: #264DE4;
     color: white;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    height: 93.9vh;
+    height: 92vh;
     width: 175px;
     left: -100%;
     transition: .8s;
     z-index: 10;
     overflow-y: hidden;
+    border-bottom-right-radius: 10px;
 }
 
 .side-nav.active {
     left: 0px;
+    overflow-y: hidden;
 }
 
 .side-nav-list {
     padding: 0;
+    overflow-y: hidden;
 }
 
 .nav-lists {
-    height: 94vh;
+    height: 92.5vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow-y: hidden;
 }
 
 .link {

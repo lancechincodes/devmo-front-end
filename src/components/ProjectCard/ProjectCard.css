@@ -3,7 +3,7 @@
     box-shadow: rgba(4, 0, 86, 0.35) 0px 5px 15px;
     background-color: white;
     margin: 35px 0px;
-    height: 500px;
+    height: 485px;
     width: 320px;
 }
 
@@ -158,4 +158,11 @@ a {
 
 #dark .update-delete-icon {
     color: white;
+}
+
+/***********LEVEL 2 (HEIGHT)***********/
+@media screen and (min-height: 900px) {
+    .project-card {
+        scale: 1.1;
+    }
 }

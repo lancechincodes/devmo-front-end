@@ -83,8 +83,12 @@
 }
 
 /***********LEVEL 2 (HEIGHT)***********/
-@media screen and (max-height: 800px) {
-  .top-nav {
-    height: 8vh;
+@media screen and (min-height: 900px) {
+  .post-btn {
+    margin: 0px 7.5px;
+  }
+
+  .profile-btn {
+    margin: 0px 15px 0px 7.5px;
   }
 }

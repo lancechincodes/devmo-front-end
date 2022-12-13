@@ -1,7 +1,7 @@
 #dark {
-    background-color: rgb(24, 24, 24);
+    background-image: linear-gradient(to bottom right, rgb(12, 12, 12), rgb(24, 24, 24));
 }
 
 #light {
-    background-color: white;
+    background-image: linear-gradient(to bottom right, rgb(225, 225, 225), rgb(255, 255, 255));
 }
