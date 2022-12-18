@@ -1,3 +1,4 @@
+/***********LEVEL 1***********/
 .gallery-page {
     height: 100vh;
     overflow-y: hidden;
@@ -26,20 +27,41 @@
     color: white;
 }
 
-
 .gallery-main {
-    height: 100vh;
+    height: 94vh;
     position: relative;
-
+    display: flex;
+    flex-direction: column;
 }
 
 .swiper-slide {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
+}
+
+.swiper-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-items: center;
 }
 
 .swiper {
-    height: 72vh;
+    display: flex;
+    align-items: flex-start;
+    width: 90%;
+    justify-content: space-evenly;
+    margin: auto;
+}
+
+.swiper-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic, .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+    position: relative;
+    margin-top: 5vh;
+}
+
+.swiper-pagination {
+    position: relative;
 }
 
 #light .swiper-pagination-bullet {
@@ -49,3 +71,47 @@
 #dark .swiper-pagination-bullet {
     background-color: white;
 }
+
+.breakpointOne {
+    display: block;
+}
+
+.breakpointTwo {
+    display: none;
+}
+
+.breakpointThree {
+    display: none;
+}
+
+/***********LEVEL 2***********/
+@media screen and (min-width: 750px) and (max-width: 1200px) {
+    .breakpointOne {
+        display: none;
+    }
+
+    .breakpointTwo {
+        display: block;
+    }
+
+    .breakpointThree {
+        display: none;
+    }
+}
+
+/***********LEVEL 3***********/
+@media screen and (min-width: 1201px) {
+    .breakpointOne {
+        display: none;
+    }
+
+    .breakpointTwo {
+        display: none;
+    }
+
+    .breakpointThree {
+        display: block;
+    }
+}
+
+

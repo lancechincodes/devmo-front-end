@@ -140,8 +140,8 @@ function Gallery() {
                 .catch(err => console.log(err))
         }
     }, [])
-
-
+    
+    // Loading spinners conditional
     if ((window.localStorage.getItem('Display') === 'Profile' && loadingTechnologies) ||
         (window.localStorage.getItem('Display') === 'Featured' && loadingFeatured) ||
         (window.localStorage.getItem('Display') === 'Discover' && loadingDiscover) ||
@@ -152,7 +152,7 @@ function Gallery() {
             </div>
         )
     }
-
+    
     return (
         <div className="gallery-page">
             <TopNav/>
@@ -164,24 +164,65 @@ function Gallery() {
                             <p className="gallery-description">Our top-rated picks.</p>
 
                         </div>
-                        <Swiper
-                            direction={"horizontal"}
-                            slidesPerView={1}
-                            spaceBetween={30}
-                            grabCursor={true}
-                            pagination={{
-                                clickable: true,
-                                dynamicBullets: true
-                            }}
-                            modules={[Pagination]}
-                            className="mySwiper"
-                        >   
-                            {featuredProjectsArr !== [] && featuredProjectsArr.map((project, idx) => (
-                                <SwiperSlide className="swiper-slide" key={idx}>
-                                    <ProjectCard key={idx} project={project}/>
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
+                        
+                        <div className="swiper-container">
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={1}
+                                spaceBetween={10}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointOne"
+                            >   
+                                {featuredProjectsArr !== [] && featuredProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={2}
+                                spaceBetween={10}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointTwo"
+                            >   
+                                {featuredProjectsArr !== [] && featuredProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                    
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={3}
+                                spaceBetween={10}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointThree"
+                            >   
+                                {featuredProjectsArr !== [] && featuredProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                        </div>
                     </>
                 }
 
@@ -191,24 +232,65 @@ function Gallery() {
                             <h1 className="gallery-title">DISCOVER</h1>
                             <p className="gallery-description">Our newest showcase.</p>
                         </div>
-                        <Swiper
-                            direction={"horizontal"}
-                            slidesPerView={1}
-                            spaceBetween={30}
-                            grabCursor={true}
-                            pagination={{
-                                clickable: true,
-                                dynamicBullets: true
-                            }}
-                            modules={[Pagination]}
-                            className="mySwiper"
-                        >   
-                            {discoverProjectsArr !== [] && discoverProjectsArr.map((project, idx) => (
-                                <SwiperSlide className="swiper-slide" key={idx}>
-                                    <ProjectCard key={idx} project={project}/>
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
+
+                        <div className="swiper-container">
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={1}
+                                spaceBetween={30}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointOne"
+                            >   
+                                {discoverProjectsArr !== [] && discoverProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                        
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={2}
+                                spaceBetween={30}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointTwo"
+                            >   
+                                {discoverProjectsArr !== [] && discoverProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={3}
+                                spaceBetween={30}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointThree"
+                            >   
+                                {discoverProjectsArr !== [] && discoverProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                        </div>
                     </>
                 }
 
@@ -223,23 +305,65 @@ function Gallery() {
                                 <p className="gallery-description">{profileProjects.length} Projects. &nbsp;&nbsp; {totalTechnologies} Technologies. &nbsp;&nbsp; {totalLikes} Likes.</p>
                             )}
                         </div>
-                        <Swiper
-                            direction={"horizontal"}
-                            slidesPerView={1}
-                            spaceBetween={30}
-                            grabCursor={true}
-                            pagination={{
-                                clickable: true,
-                                dynamicBullets: true
-                            }}
-                            modules={[Pagination]}
-                        >
-                            {profileProjectsArr !== [] && profileProjectsArr.map((project, idx) => (
-                                <SwiperSlide className="swiper-slide" key={idx}>
-                                    <ProjectCard key={idx} project={project}/>
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
+
+                        <div className="swiper-container">
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={1}
+                                spaceBetween={30}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointOne"
+                            >
+                                {profileProjectsArr !== [] && profileProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={2}
+                                spaceBetween={30}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointTwo"
+                            >
+                                {profileProjectsArr !== [] && profileProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={3}
+                                spaceBetween={30}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointThree"
+                            >
+                                {profileProjectsArr !== [] && profileProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                        </div>
                     </>
                 }
 
@@ -249,23 +373,65 @@ function Gallery() {
                             <h1 className="gallery-title">FAVORITES</h1>
                             <p className="gallery-description">Your inspiration collection.</p>
                         </div>
-                        <Swiper
-                            direction={"horizontal"}
-                            slidesPerView={1}
-                            spaceBetween={30}
-                            grabCursor={true}
-                            pagination={{
-                                clickable: true,
-                                dynamicBullets: true
-                            }}
-                            modules={[Pagination]}
-                        >
-                            {favoritesProjectsArr !== [] && favoritesProjectsArr.map((project, idx) => (
-                                <SwiperSlide className="swiper-slide" key={idx}>
-                                    <ProjectCard key={idx} project={project}/>
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
+
+                        <div className="swiper-container">
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={1}
+                                spaceBetween={30}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointOne"
+                            >
+                                {favoritesProjectsArr !== [] && favoritesProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={2}
+                                spaceBetween={30}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointTwo"
+                            >
+                                {favoritesProjectsArr !== [] && favoritesProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={3}
+                                spaceBetween={30}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointThree"
+                            >
+                                {favoritesProjectsArr !== [] && favoritesProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                        </div>
                     </>
                 }
             </div>
