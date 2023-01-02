@@ -289,7 +289,7 @@ function Gallery() {
                                     dynamicBullets: true
                                 }}
                                 modules={[Pagination]}
-                                className="breakpointSix"
+                                className="breakpointSeven"
                             >   
                                 {featuredProjectsArr !== [] && featuredProjectsArr.map((project, idx) => (
                                     <SwiperSlide className="swiper-slide" key={idx}>

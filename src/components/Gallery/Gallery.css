@@ -98,6 +98,10 @@
     display: none;
 }
 
+.breakpointSeven {
+    display: none;
+}
+
 /***********LEVEL 2***********/
 @media screen and (min-width: 800px) and (max-width: 1200px) {
     .breakpointOne {
@@ -143,12 +147,23 @@
 }
 
 /***********LEVEL 6***********/
-@media screen and (min-width: 2601px) {
+@media screen and (min-width: 2601px) and (max-width: 3000px) {
     .breakpointOne {
         display: none;
     }
 
     .breakpointSix {
+        display: block;
+    }
+}
+
+/***********LEVEL 7***********/
+@media screen and (min-width: 3001px) {
+    .breakpointOne {
+        display: none;
+    }
+
+    .breakpointSeven {
         display: block;
     }
 }

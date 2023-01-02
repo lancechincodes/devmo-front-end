@@ -60,12 +60,13 @@
 
 .creator-sig {
     margin: 0;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .creator-title {
     margin: 0;
     font-size: 15px;
+    font-weight: 100;
 }
 
 .creator-statement {
@@ -88,6 +89,10 @@
     margin-right: 20px;
 }
 
+.about-inquiries-text {
+    font-size: 15px;
+}
+
 #dark .about-inquiries-icon {
     color: white;
 }
@@ -95,3 +100,430 @@
 #dark .about-inquiries-text {
     color: white;
 }
+
+.mission-text {
+    font-size: 25px;
+    margin: 30px 0px;
+}
+
+/***********LEVEL 2***********/
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+    .image-statement-container {
+        display: flex;
+        justify-content: start;
+        align-items: flex-start;
+    }
+
+    .creator-image-sig-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .creator-sig-title-container {
+        width: 100%;
+        margin: 15px;
+    }
+
+    .creator-image {
+        width: 250px;
+        margin: 20px 20px 0 0;
+    }
+
+    .about-content {
+        margin: 0 100px;
+    }
+
+    .about-inquiries {
+        margin: 0 100px;
+    }
+
+    .creator-sig {
+        margin: 0;
+        font-size: 30px;
+    }
+    
+    .creator-title {
+        margin: 0;
+        font-size: 20px;
+    }
+    
+    .creator-statement {
+        font-size: 25px;
+    }
+
+    .mission-text {
+        font-size: 30px;
+    }
+
+    .about-inquiries-icon {
+        width: 40px
+    }    
+
+    .about-inquiries-text {
+        font-size: 20px;
+    }
+}
+
+/***********LEVEL 3***********/
+@media screen and (min-width: 1201px) and (max-width: 1700px) {
+    .image-statement-container {
+        display: flex;
+        justify-content: start;
+        align-items: flex-start;
+    }
+
+    .creator-image-sig-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .creator-sig-title-container {
+        width: 100%;
+        margin: 15px;
+    }
+
+    .creator-image {
+        width: 250px;
+        margin: 20px 20px 0 0;
+    }
+
+    .about-content {
+        margin: 0 300px;
+    }
+
+    .about-inquiries {
+        margin: 0 300px;
+    }
+
+    .creator-sig {
+        margin: 0;
+        font-size: 30px;
+    }
+    
+    .creator-title {
+        margin: 0;
+        font-size: 20px;
+    }
+    
+    .creator-statement {
+        font-size: 25px;
+    }
+
+    .mission-text {
+        font-size: 30px;
+    }
+
+    .about-inquiries-icon {
+        width: 40px
+    }    
+
+    .about-inquiries-text {
+        font-size: 20px;
+    }
+}
+
+/***********LEVEL 4***********/
+@media screen and (min-width: 1701px) and (max-width: 2000px) {
+    .image-statement-container {
+        display: flex;
+        justify-content: start;
+        align-items: flex-start;
+    }
+
+    .creator-image-sig-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .creator-sig-title-container {
+        width: 100%;
+        margin: 15px;
+    }
+
+    .creator-image {
+        width: 250px;
+        margin: 20px 20px 0 0;
+    }
+
+    .about-content {
+        margin: 0 500px;
+    }
+
+    .about-inquiries {
+        margin: 0 500px;
+    }
+
+    .creator-sig {
+        margin: 0;
+        font-size: 30px;
+    }
+    
+    .creator-title {
+        margin: 0;
+        font-size: 20px;
+    }
+    
+    .creator-statement {
+        font-size: 25px;
+    }
+
+    .mission-text {
+        font-size: 30px;
+    }
+
+    .about-inquiries-icon {
+        width: 40px
+    }    
+
+    .about-inquiries-text {
+        font-size: 20px;
+    }
+}
+
+/***********LEVEL 5***********/
+@media screen and (min-width: 2001px) and (max-width: 2600px) {
+    .image-statement-container {
+        display: flex;
+        justify-content: start;
+        align-items: flex-start;
+    }
+
+    .creator-image-sig-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .creator-sig-title-container {
+        width: 100%;
+        margin: 15px;
+    }
+
+    .creator-image {
+        width: 250px;
+        margin: 20px 20px 0 0;
+    }
+
+    .about-content {
+        margin: 0 700px;
+    }
+
+    .about-inquiries {
+        margin: 0 700px;
+    }
+
+    .creator-sig {
+        margin: 0;
+        font-size: 30px;
+    }
+    
+    .creator-title {
+        margin: 0;
+        font-size: 20px;
+    }
+    
+    .creator-statement {
+        font-size: 25px;
+    }
+
+    .mission-text {
+        font-size: 30px;
+    }
+
+    .about-inquiries-icon {
+        width: 40px
+    }    
+
+    .about-inquiries-text {
+        font-size: 20px;
+    }
+}
+
+/***********LEVEL 6***********/
+@media screen and (min-width: 2601px) and (max-width: 3000px) {
+    .image-statement-container {
+        display: flex;
+        justify-content: start;
+        align-items: flex-start;
+    }
+
+    .creator-image-sig-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .creator-sig-title-container {
+        width: 100%;
+        margin: 15px;
+    }
+
+    .creator-image {
+        width: 250px;
+        margin: 20px 20px 0 0;
+    }
+
+    .about-content {
+        margin: 0 900px;
+    }
+
+    .about-inquiries {
+        margin: 0 900px;
+    }
+
+    .creator-sig {
+        margin: 0;
+        font-size: 30px;
+    }
+    
+    .creator-title {
+        margin: 0;
+        font-size: 20px;
+    }
+    
+    .creator-statement {
+        font-size: 25px;
+    }
+
+    .mission-text {
+        font-size: 30px;
+    }
+
+    .about-inquiries-icon {
+        width: 40px
+    }    
+
+    .about-inquiries-text {
+        font-size: 20px;
+    }
+}
+
+/***********LEVEL 7***********/
+@media screen and (min-width: 3001px) and (max-width: 3200px) {
+    .image-statement-container {
+        display: flex;
+        justify-content: start;
+        align-items: flex-start;
+    }
+
+    .creator-image-sig-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .creator-sig-title-container {
+        width: 100%;
+        margin: 15px;
+    }
+
+    .creator-image {
+        width: 250px;
+        margin: 20px 20px 0 0;
+    }
+
+    .about-content {
+        margin: 0 1100px;
+    }
+
+    .about-inquiries {
+        margin: 0 1100px;
+    }
+
+    .creator-sig {
+        margin: 0;
+        font-size: 30px;
+    }
+    
+    .creator-title {
+        margin: 0;
+        font-size: 20px;
+    }
+    
+    .creator-statement {
+        font-size: 25px;
+    }
+
+    .mission-text {
+        font-size: 30px;
+    }
+
+    .about-inquiries-icon {
+        width: 40px
+    }    
+
+    .about-inquiries-text {
+        font-size: 20px;
+    }
+}
+
+/***********LEVEL 8***********/
+@media screen and (min-width: 3201px) {
+    .image-statement-container {
+        display: flex;
+        justify-content: start;
+        align-items: flex-start;
+    }
+
+    .creator-image-sig-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .creator-sig-title-container {
+        width: 100%;
+        margin: 15px;
+    }
+
+    .creator-image {
+        width: 250px;
+        margin: 20px 20px 0 0;
+    }
+
+    .about-content {
+        margin: 0 1300px;
+    }
+
+    .about-inquiries {
+        margin: 0 1300px;
+    }
+
+    .creator-sig {
+        margin: 0;
+        font-size: 30px;
+    }
+    
+    .creator-title {
+        margin: 0;
+        font-size: 20px;
+    }
+    
+    .creator-statement {
+        font-size: 25px;
+    }
+
+    .mission-text {
+        font-size: 30px;
+    }
+
+    .about-inquiries-icon {
+        width: 40px
+    }    
+
+    .about-inquiries-text {
+        font-size: 20px;
+    }
+}
+
+/***********LEVEL 2 (HEIGHT)***********/
+@media screen and (min-height: 900px) {
+    .about-heading {
+        text-align: center;
+        margin: 40px 0 0 0;
+    }
+
+    .about-title {
+        font-size: 50px;
+    }
+
+    .about-description {
+        font-size: 19.2px;
+    }
+  }
