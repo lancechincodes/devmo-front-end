@@ -44,7 +44,7 @@
 }
 
 .devmo-form.MuiFormControl-root.MuiTextField-root.outlined-basic {
-    margin: 10px 10px 10px 10px;
+    margin: 10px 0px 10px 0px;
 }
 
 #dark .MuiOutlinedInput-notchedOutline {
@@ -52,11 +52,11 @@
 }
 
 .MuiFormControl-root.MuiTextField-root.outlined-basic {
-    margin: 10px;
+    margin: 10px 0px;
 }
 
 .MuiFormControl-root.MuiTextField-root.file-name {
-    margin: 12px 10px 10px 10px;
+    margin: 12px 0px 10px 0px;
 }
 
 #dark .MuiInputBase-input {
@@ -80,7 +80,7 @@
 
 .MuiFormControl-root.css-ptt77l-MuiFormControl-root {
     width: auto;
-    margin: 10px;
+    margin: 10px 0px;
 }
 
 .MuiFormHelperText-root.component-helper-text.css-1d1r5q-MuiFormHelperText-root {
@@ -123,3 +123,38 @@
 label .Mui-error {
     color: green;
 }
+
+/***********LEVEL 2***********/
+@media screen and (min-width: 800px) {
+    .field-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+
+    .post-text-fields {
+        width: 800px;
+    }
+
+    .update-btn-div {
+        width: 800px;
+    }
+}
+
+/***********LEVEL 2 (HEIGHT)***********/
+@media screen and (min-height: 900px) {
+    .form-heading {
+        text-align: center;
+        margin: 40px 0 0 0;
+    }
+
+    .gallery-title {
+        font-size: 50px;
+    }
+
+    .gallery-description {
+        font-size: 19.2px;
+    }
+  }

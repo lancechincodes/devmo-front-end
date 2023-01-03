@@ -197,239 +197,240 @@ function Form() {
                         <p className="gallery-description">Refactor and refine.</p>
                     </div>
                 }
-                <div className="post-text-fields">
-                    {!nameError && 
-                        <TextField
-                            className="devmo-form outlined-basic"
-                            label="Project Name"
-                            variant="outlined"
-                            type="text"
-                            onChange={(e) => {
-                                setShowNameCharactersRemaining(true)
-                                dispatch({type: ACTION.SET_NAME, payload: e.target.value})
-                                dispatch({type: ACTION.SET_NAME_CHARACTERS_REMAINING, payload: e.target.value})    
-                            }}
-                            required={true}
-                            inputProps={{ maxLength: 15 }}
-                            defaultValue={window.localStorage.getItem("Form") === "Update" ? project.name : state.name}
-                        />
-                    }
+                <div className="field-container">
+                    <div className="post-text-fields">
+                        {!nameError && 
+                            <TextField
+                                className="devmo-form outlined-basic"
+                                label="Project Name"
+                                variant="outlined"
+                                type="text"
+                                onChange={(e) => {
+                                    setShowNameCharactersRemaining(true)
+                                    dispatch({type: ACTION.SET_NAME, payload: e.target.value})
+                                    dispatch({type: ACTION.SET_NAME_CHARACTERS_REMAINING, payload: e.target.value})    
+                                }}
+                                required={true}
+                                inputProps={{ maxLength: 15 }}
+                                defaultValue={window.localStorage.getItem("Form") === "Update" ? project.name : state.name}
+                            />
+                        }
 
-                    {nameError && 
-                        <TextField
-                            error
-                            className="devmo-form outlined-basic"
-                            label="Project Name"
-                            variant="outlined"
-                            type="text"
-                            onChange={(e) => {
-                                setShowNameCharactersRemaining(true)
-                                dispatch({type: ACTION.SET_NAME, payload: e.target.value})
-                                dispatch({type: ACTION.SET_NAME_CHARACTERS_REMAINING, payload: e.target.value})    
-                            }}
-                            required={true}
-                            inputProps={{ maxLength: 15 }}
-                            defaultValue={state.name}
-                        />
-                    }
-             
-                    {window.localStorage.getItem("Form") === "Update" && showNameCharactersRemaining && (
-                        <FormHelperText className="component-helper-text">
-                            {state.nameCharactersRemaining} characters remaining
-                        </FormHelperText>
-                    )}
-
-                    {window.localStorage.getItem("Form") === "Post" && 
-                        <FormHelperText className="component-helper-text">
-                            {state.nameCharactersRemaining} characters remaining
-                        </FormHelperText>
-                    }
-           
-                    {!descriptionError &&
-                        <TextField
-                            className="devmo-form outlined-basic"
-                            label="Description"
-                            variant="outlined"
-                            type="text"
-                            onChange={(e) => {
-                                setShowDescriptionCharactersRemaining(true)
-                                dispatch({type: ACTION.SET_DESCRIPTION, payload: e.target.value})
-                                dispatch({type: ACTION.SET_DESCRIPTION_CHARACTERS_REMAINING, payload: e.target.value})    
-                            }}
-                            multiline
-                            rows={3}
-                            required={true}
-                            inputProps={{ maxLength: 100 }}
-                            defaultValue={window.localStorage.getItem("Form") === "Update" ? project.description : state.description}
-                        />
-                    }
-
-                    {descriptionError &&
-                        <TextField
-                            error
-                            className="devmo-form outlined-basic"
-                            label="Description"
-                            variant="outlined"
-                            type="text"
-                            onChange={(e) => {
-                                setShowDescriptionCharactersRemaining(true)
-                                dispatch({type: ACTION.SET_DESCRIPTION, payload: e.target.value})
-                                dispatch({type: ACTION.SET_DESCRIPTION_CHARACTERS_REMAINING, payload: e.target.value})    
-                            }}
-                            multiline
-                            rows={3}
-                            required={true}
-                            inputProps={{ maxLength: 100 }}
-                            defaultValue={state.description}
-                        />
-                    }
-
-                    {window.localStorage.getItem("Form") === "Update" && showDescriptionCharactersRemaining && (
-                        <FormHelperText className="component-helper-text">
-                            {state.descriptionCharactersRemaining} characters remaining
-                        </FormHelperText>
-                    )}
-
-                    {window.localStorage.getItem("Form") === "Post" && 
-                        <FormHelperText className="component-helper-text">
-                            {state.descriptionCharactersRemaining} characters remaining
-                        </FormHelperText>
-                    }
-
-                    {!projectUrlError &&
-                        <TextField
-                            className="outlined-basic"
-                            label="Project URL"
-                            variant="outlined"
-                            type="text"
-                            onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
-                            required={true}
-                            defaultValue={window.localStorage.getItem("Form") === "Update" ? project.projectUrl : state.projectUrl}
-                        />
-                    }
-
-                    {projectUrlError &&
-                        <>
+                        {nameError && 
                             <TextField
                                 error
+                                className="devmo-form outlined-basic"
+                                label="Project Name"
+                                variant="outlined"
+                                type="text"
+                                onChange={(e) => {
+                                    setShowNameCharactersRemaining(true)
+                                    dispatch({type: ACTION.SET_NAME, payload: e.target.value})
+                                    dispatch({type: ACTION.SET_NAME_CHARACTERS_REMAINING, payload: e.target.value})    
+                                }}
+                                required={true}
+                                inputProps={{ maxLength: 15 }}
+                                defaultValue={state.name}
+                            />
+                        }
+                
+                        {window.localStorage.getItem("Form") === "Update" && showNameCharactersRemaining && (
+                            <FormHelperText className="component-helper-text">
+                                {state.nameCharactersRemaining} characters remaining
+                            </FormHelperText>
+                        )}
+
+                        {window.localStorage.getItem("Form") === "Post" && 
+                            <FormHelperText className="component-helper-text">
+                                {state.nameCharactersRemaining} characters remaining
+                            </FormHelperText>
+                        }
+            
+                        {!descriptionError &&
+                            <TextField
+                                className="devmo-form outlined-basic"
+                                label="Description"
+                                variant="outlined"
+                                type="text"
+                                onChange={(e) => {
+                                    setShowDescriptionCharactersRemaining(true)
+                                    dispatch({type: ACTION.SET_DESCRIPTION, payload: e.target.value})
+                                    dispatch({type: ACTION.SET_DESCRIPTION_CHARACTERS_REMAINING, payload: e.target.value})    
+                                }}
+                                multiline
+                                rows={3}
+                                required={true}
+                                inputProps={{ maxLength: 100 }}
+                                defaultValue={window.localStorage.getItem("Form") === "Update" ? project.description : state.description}
+                            />
+                        }
+
+                        {descriptionError &&
+                            <TextField
+                                error
+                                className="devmo-form outlined-basic"
+                                label="Description"
+                                variant="outlined"
+                                type="text"
+                                onChange={(e) => {
+                                    setShowDescriptionCharactersRemaining(true)
+                                    dispatch({type: ACTION.SET_DESCRIPTION, payload: e.target.value})
+                                    dispatch({type: ACTION.SET_DESCRIPTION_CHARACTERS_REMAINING, payload: e.target.value})    
+                                }}
+                                multiline
+                                rows={3}
+                                required={true}
+                                inputProps={{ maxLength: 100 }}
+                                defaultValue={state.description}
+                            />
+                        }
+
+                        {window.localStorage.getItem("Form") === "Update" && showDescriptionCharactersRemaining && (
+                            <FormHelperText className="component-helper-text">
+                                {state.descriptionCharactersRemaining} characters remaining
+                            </FormHelperText>
+                        )}
+
+                        {window.localStorage.getItem("Form") === "Post" && 
+                            <FormHelperText className="component-helper-text">
+                                {state.descriptionCharactersRemaining} characters remaining
+                            </FormHelperText>
+                        }
+
+                        {!projectUrlError &&
+                            <TextField
                                 className="outlined-basic"
                                 label="Project URL"
                                 variant="outlined"
                                 type="text"
                                 onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
                                 required={true}
-                                defaultValue={state.projectUrl}
+                                defaultValue={window.localStorage.getItem("Form") === "Update" ? project.projectUrl : state.projectUrl}
                             />
-                            {invalidProjectUrl && 
-                                <FormHelperText className="component-helper-text">
-                                    Invalid URL
-                                </FormHelperText>
-                            }
-                        </>   
-                    }
+                        }
+
+                        {projectUrlError &&
+                            <>
+                                <TextField
+                                    error
+                                    className="outlined-basic"
+                                    label="Project URL"
+                                    variant="outlined"
+                                    type="text"
+                                    onChange={(e) => dispatch({type: ACTION.SET_PROJECT_URL, payload: e.target.value})}
+                                    required={true}
+                                    defaultValue={state.projectUrl}
+                                />
+                                {invalidProjectUrl && 
+                                    <FormHelperText className="component-helper-text">
+                                        Invalid URL
+                                    </FormHelperText>
+                                }
+                            </>   
+                        }
+                        
+                        {!invalidGithubUrl &&
+                            <TextField
+                                className="outlined-basic"
+                                label="GitHub Repo"
+                                variant="outlined"
+                                type="text"
+                                onChange={(e) => dispatch({type: ACTION.SET_GITHUB_REPO, payload: e.target.value})}
+                                defaultValue={window.localStorage.getItem("Form") === "Update" ? project.githubRepo : state.githubRepo}
+                            />
+                        }
+
+                        {invalidGithubUrl && 
+                        <>
+                            <TextField
+                                error
+                                className="outlined-basic"
+                                label="GitHub Repo"
+                                variant="outlined"
+                                type="text"
+                                onChange={(e) => dispatch({type: ACTION.SET_GITHUB_REPO, payload: e.target.value})}
+                                defaultValue= {state.githubRepo}
+                            />
+                            <FormHelperText className="component-helper-text">
+                                Invalid URL
+                            </FormHelperText>
+                        </>
+                        }
+
+                        {!imageError &&
+                            <TextField
+                                className="file-name"
+                                type="file"
+                                onChange={(e) => dispatch({type: ACTION.SET_IMAGE, payload: e.target.files[0]})}
+                                label="Project Thumbnail (Landscape)"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                required={true}
+                            />
+                        }
+
+                        {imageError &&
+                            <TextField
+                                error
+                                className="file-name"
+                                type="file"
+                                onChange={(e) => dispatch({type: ACTION.SET_IMAGE, payload: e.target.files[0]})}
+                                label="Project Thumbnail (Landscape)"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                required={true}
+                            />
+                        }
+            
+                        <MultipleSelectCheckmarks 
+                            selectedTech={selectedTech} 
+                            setSelectedTech={setSelectedTech}
+                            techError={techError}
+                        />
+                    </div>
                     
-                    {!invalidGithubUrl &&
-                        <TextField
-                            className="outlined-basic"
-                            label="GitHub Repo"
-                            variant="outlined"
-                            type="text"
-                            onChange={(e) => dispatch({type: ACTION.SET_GITHUB_REPO, payload: e.target.value})}
-                            defaultValue={window.localStorage.getItem("Form") === "Update" ? project.githubRepo : state.githubRepo}
-                        />
-                    }
-
-                    {invalidGithubUrl && 
-                    <>
-                        <TextField
-                            error
-                            className="outlined-basic"
-                            label="GitHub Repo"
-                            variant="outlined"
-                            type="text"
-                            onChange={(e) => dispatch({type: ACTION.SET_GITHUB_REPO, payload: e.target.value})}
-                            defaultValue= {state.githubRepo}
-                        />
-                         <FormHelperText className="component-helper-text">
-                            Invalid URL
-                        </FormHelperText>
-                    </>
-                    }
-
-                    {!imageError &&
-                        <TextField
-                            className="file-name"
-                            type="file"
-                            onChange={(e) => dispatch({type: ACTION.SET_IMAGE, payload: e.target.files[0]})}
-                            label="Project Thumbnail (Landscape)"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            required={true}
-                        />
-                    }
-
-                    {imageError &&
-                        <TextField
-                            error
-                            className="file-name"
-                            type="file"
-                            onChange={(e) => dispatch({type: ACTION.SET_IMAGE, payload: e.target.files[0]})}
-                            label="Project Thumbnail (Landscape)"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            required={true}
-                        />
-                    }
-        
-                    <MultipleSelectCheckmarks 
-                        selectedTech={selectedTech} 
-                        setSelectedTech={setSelectedTech}
-                        techError={techError}
-                    />
-                </div>
-                
-                {window.localStorage.getItem("Form") === 'Update' ? (
-                    <div className="update-btn-div">
-                        <div
-                        className="update-post-btn"
-                        type="submit"
-                        onClick={handleCancel}
-                        id="cancel-btn"
-                        >
-                        Cancel
+                    {window.localStorage.getItem("Form") === 'Update' ? (
+                        <div className="update-btn-div">
+                            <div
+                            className="update-post-btn"
+                            type="submit"
+                            onClick={handleCancel}
+                            id="cancel-btn"
+                            >
+                            Cancel
+                            </div>
+                            <div
+                            className="update-post-btn"
+                            type="submit"
+                            onClick={handleUpdate}
+                            id="save-btn"
+                            >
+                            Save
+                            </div>
                         </div>
-                        <div
-                        className="update-post-btn"
-                        type="submit"
-                        onClick={handleUpdate}
-                        id="save-btn"
-                        >
-                        Save
+                    ) : (
+                        <div className="update-btn-div">
+                            <div
+                            className="update-post-btn"
+                            type="submit"
+                            onClick={handleCancel}
+                            id="cancel-btn"
+                            >
+                            Cancel
+                            </div>
+                            <div
+                            className="update-post-btn"
+                            type="submit"
+                            onClick={handlePost}
+                            id="share-btn"
+                            >
+                            Share
                         </div>
                     </div>
-                ) : (
-                    <div className="update-btn-div">
-                        <div
-                        className="update-post-btn"
-                        type="submit"
-                        onClick={handleCancel}
-                        id="cancel-btn"
-                        >
-                        Cancel
-                        </div>
-                        <div
-                        className="update-post-btn"
-                        type="submit"
-                        onClick={handlePost}
-                        id="share-btn"
-                        >
-                        Share
-                    </div>
-                    </div>
-                  
                 )}
+                </div>
             </form>
         </div>
     );
