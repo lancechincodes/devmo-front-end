@@ -13,7 +13,7 @@ function About() {
                     <h1 className="about-title">ABOUT US</h1>
                     <p className="about-description">Our story.</p>
                 </div>
-                <div className="about-main">
+                <div className="about-container">
                     <div className="about-content">
                         <h2 className="mission-text">Devmo is <span className="text-emphasis">committed to inspiring</span> people through the lens of technology.</h2>
                         <div className="image-statement-container">
