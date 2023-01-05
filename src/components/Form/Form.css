@@ -44,7 +44,7 @@
 }
 
 .devmo-form.MuiFormControl-root.MuiTextField-root.outlined-basic {
-    margin: 10px 0px 10px 0px;
+    margin: 8px 0px 8px 0px;
 }
 
 #dark .MuiOutlinedInput-notchedOutline {
@@ -52,11 +52,11 @@
 }
 
 .MuiFormControl-root.MuiTextField-root.outlined-basic {
-    margin: 10px 0px;
+    margin: 8px 0px;
 }
 
 .MuiFormControl-root.MuiTextField-root.file-name {
-    margin: 12px 0px 10px 0px;
+    margin: 12px 0px 8px 0px;
 }
 
 #dark .MuiInputBase-input {
@@ -80,11 +80,11 @@
 
 .MuiFormControl-root.css-ptt77l-MuiFormControl-root {
     width: auto;
-    margin: 10px 0px;
+    margin: 8px 0px;
 }
 
 .MuiFormHelperText-root.component-helper-text.css-1d1r5q-MuiFormHelperText-root {
-    margin: 0px 15px 6px 15px;
+    margin: 0px 0px 4px 10px;
 }
 
 #dark .MuiFormHelperText-root.component-helper-text.css-1d1r5q-MuiFormHelperText-root {
@@ -110,18 +110,25 @@
 #cancel-btn {
     background: rgb(235, 234, 234);
     color: black;
+    cursor: pointer;
 }
 
 #save-btn {
     background: #264DE4;
+    cursor: pointer;
 }
 
 #share-btn {
     background: #264DE4;
+    cursor: pointer;
 }
 
 label .Mui-error {
     color: green;
+}
+
+#dark > div > form > div.field-container > div.post-text-fields > div.MuiFormControl-root.css-ptt77l-MuiFormControl-root > div > svg {
+    color: white;
 }
 
 /***********LEVEL 2***********/
