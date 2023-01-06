@@ -44,7 +44,7 @@
 }
 
 .devmo-form.MuiFormControl-root.MuiTextField-root.outlined-basic {
-    margin: 8px 0px 8px 0px;
+    margin: 8px 0px;
 }
 
 #dark .MuiOutlinedInput-notchedOutline {
@@ -164,4 +164,26 @@ label .Mui-error {
     .gallery-description {
         font-size: 19.2px;
     }
+
+    .MuiFormControl-root.MuiTextField-root.outlined-basic {
+        margin: 12px 0px;
+    }
+
+    .devmo-form.MuiFormControl-root.MuiTextField-root.outlined-basic {
+        margin: 12px 0px;
+    }
+
+    .MuiFormControl-root.MuiTextField-root.file-name {
+        margin: 14px 0px 12px 0px;
+    }
+
+    .MuiFormControl-root.css-ptt77l-MuiFormControl-root {
+        width: auto;
+        margin: 12px 0px;
+    }
+    
+    .MuiFormHelperText-root.component-helper-text.css-1d1r5q-MuiFormHelperText-root {
+        margin: 0px 0px 6px 10px;
+    }
+
   }

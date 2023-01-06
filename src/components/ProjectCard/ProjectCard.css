@@ -141,6 +141,7 @@ a {
 .card-user-btn {
     padding: 8px 10px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #light .card-user-btn {
