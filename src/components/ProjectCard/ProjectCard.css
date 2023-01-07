@@ -24,6 +24,10 @@
     position: relative;
 }
 
+.show-hide-icon {
+    cursor: pointer;
+}
+
 .show-hide-icon-div {
     position: absolute;
     bottom: 0px;
