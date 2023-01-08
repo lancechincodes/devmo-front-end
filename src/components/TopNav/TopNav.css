@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: .2px solid black; 
-  height: 6vh;
+  height: 60px;
 }
 
 #dark .top-nav {
@@ -58,4 +58,37 @@
   margin: 0;
   font-size: 13px;
   color: white;
+}
+
+/***********LEVEL 2***********/
+@media screen and (min-width: 750px) and (max-width: 1200px) {
+  .post-btn {
+    margin: 0 7.5px;
+  }
+
+  .profile-btn {
+    margin: 0 12.5px 0 6.25px;
+  }
+}
+
+/***********LEVEL 3***********/
+@media screen and (min-width: 1201px) {
+  .post-btn {
+    margin: 0 7.5px;
+  }
+
+  .profile-btn {
+    margin: 0 12.5px 0 6.25px;
+  }
+}
+
+/***********LEVEL 2 (HEIGHT)***********/
+@media screen and (min-height: 900px) {
+  .post-btn {
+    margin: 0px 7.5px;
+  }
+
+  .profile-btn {
+    margin: 0px 15px 0px 7.5px;
+  }
 }

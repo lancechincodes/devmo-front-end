@@ -45,7 +45,10 @@ function Auth() {
     const [invalidPassword, setInvalidPassword] = useState(false)
     const [invalidConfirmPassword, setInvalidConfirmPassword] = useState(false)
     const [emailInUseError, setEmailInUseError] = useState(false)
+
+    // Login page validation
     const [loginError, setLoginError] = useState(false)
+    const [loginErrorMessage, setLoginErrorMessage] = useState('')
     
     // Regex for checking validity of email
     function isValidEmail(email) {
@@ -58,7 +61,6 @@ function Auth() {
         let filter = /^(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // min 8 characters, at least one uppercase letter, and one special character
         return String(password).search (filter) !== -1
     }
-
 
     // Welcome message state
     const [welcomeMessage, setWelcomeMessage] = useState('Welcome back to Devmo.')
@@ -177,7 +179,9 @@ function Auth() {
                     navigate('/gallery')
                 })
                 .catch(err => {
-                    // setError("Provided email or password is incorrect")
+                    setLoginError(true)
+                    if (state.email !== '' && state.password !== '') setLoginErrorMessage(err.response.data)
+                    else setLoginErrorMessage('')
                 })
         }
     }
@@ -441,40 +445,92 @@ function Auth() {
                     <p className="auth-description">{welcomeMessage}</p>
                 </div>
                 <div className="text-fields">
-                    <TextField
-                        className="auth-form outlined-basic" 
-                        label="Email"
-                        variant="outlined" 
-                        required={true}
-                        type="email"
-                        onChange={(e) => dispatch({ type: loginFields[0].reducerType, payload: e.target.value})}
-                    />
-                    <FormControl 
-                        sx={{ m: 1, width: '25ch' }} 
-                        variant="outlined" 
-                        className="auth-form outlined-basic"                                 
-                        required={true}
-                    >
-                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                        <OutlinedInput
-                            className="outlined-adornment-password"
-                            type={showPassword ? 'text' : 'password'}
-                            value={state.password}
-                            onChange={(e) => dispatch({ type: loginFields[1].reducerType, payload: e.target.value})}
-                            endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    aria-label="toggle password visibility"
-                                    onClick={handleClickShowPassword}
-                                >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                            }
-                            label={"Password"}
+                    {!loginError &&
+                        <TextField
+                            className="auth-form outlined-basic" 
+                            label="Email"
+                            variant="outlined" 
                             required={true}
+                            type="email"
+                            onChange={(e) => dispatch({ type: loginFields[0].reducerType, payload: e.target.value})}
                         />
-                    </FormControl>
+                    } 
+
+                    {loginError && 
+                         <TextField
+                            error
+                            className="auth-form outlined-basic" 
+                            label="Email"
+                            variant="outlined" 
+                            required={true}
+                            type="email"
+                            onChange={(e) => dispatch({ type: loginFields[0].reducerType, payload: e.target.value})}
+                        />
+                    }
+
+                    {!loginError &&
+                        <FormControl 
+                            sx={{ m: 1, width: '25ch' }} 
+                            variant="outlined" 
+                            className="auth-form outlined-basic"                                 
+                            required={true}
+                            >
+                            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                            <OutlinedInput
+                                className="outlined-adornment-password"
+                                type={showPassword ? 'text' : 'password'}
+                                value={state.password}
+                                onChange={(e) => dispatch({ type: loginFields[1].reducerType, payload: e.target.value})}
+                                endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                    >
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                                }
+                                label={"Password"}
+                                required={true}
+                            />
+                        </FormControl>
+                    }
+
+                    {loginError && 
+                        <>
+                            <FormControl 
+                                error
+                                sx={{ m: 1, width: '25ch' }} 
+                                variant="outlined" 
+                                className="auth-form outlined-basic"                                 
+                                required={true}
+                            >
+                                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                <OutlinedInput
+                                    className="outlined-adornment-password"
+                                    type={showPassword ? 'text' : 'password'}
+                                    value={state.password}
+                                    onChange={(e) => dispatch({ type: loginFields[1].reducerType, payload: e.target.value})}
+                                    endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                        >
+                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                    }
+                                    label={"Password"}
+                                    required={true}
+                                />
+                            </FormControl>
+                            <FormHelperText className="component-helper-text">
+                                {loginErrorMessage}
+                            </FormHelperText> 
+                        </>
+                    }
                 </div>
                 <div
                     className="auth-button"
