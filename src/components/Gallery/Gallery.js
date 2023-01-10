@@ -658,6 +658,82 @@ function Gallery() {
                                     </SwiperSlide>
                                 ))}
                             </Swiper>
+
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={4}
+                                spaceBetween={30}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointFour"
+                            >
+                                {favoritesProjectsArr !== [] && favoritesProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={5}
+                                spaceBetween={30}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointFive"
+                            >
+                                {favoritesProjectsArr !== [] && favoritesProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={6}
+                                spaceBetween={30}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointSix"
+                            >
+                                {favoritesProjectsArr !== [] && favoritesProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+
+                            <Swiper
+                                direction={"horizontal"}
+                                slidesPerView={7}
+                                spaceBetween={30}
+                                grabCursor={true}
+                                pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true
+                                }}
+                                modules={[Pagination]}
+                                className="breakpointSeven"
+                            >
+                                {favoritesProjectsArr !== [] && favoritesProjectsArr.map((project, idx) => (
+                                    <SwiperSlide className="swiper-slide" key={idx}>
+                                        <ProjectCard key={idx} project={project}/>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
                         </div>
                     </>
                 }
