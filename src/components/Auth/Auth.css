@@ -73,3 +73,19 @@ div > form > div.text-fields > div.MuiFormControl-root.auth-form.outlined-basic.
 #dark .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
     border-color: #d32f2f;
 }
+
+/***********LEVEL 2 (HEIGHT)***********/
+@media screen and (min-height: 900px) {
+    .auth-heading {
+        text-align: center;
+        margin: 40px 0 0 0;
+    }
+
+    .auth-title {
+        font-size: 50px;
+    }
+
+    .auth-description {
+        font-size: 19.2px;
+    }
+}
