@@ -197,7 +197,7 @@ function Form() {
                         <p className="gallery-description">Refactor and refine.</p>
                     </div>
                 }
-                <div className="field-container">
+                <div className="form-container">
                     <div className="post-text-fields">
                         {!nameError && 
                             <TextField

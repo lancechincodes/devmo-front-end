@@ -176,7 +176,7 @@
 @media screen and (min-height: 900px) {
     .about-heading {
         text-align: center;
-        margin: 40px 0 0 0;
+        margin: 40px 0;
     }
 
     .about-title {

@@ -133,7 +133,7 @@ label .Mui-error {
 
 /***********LEVEL 2***********/
 @media screen and (min-width: 850px) {
-    .field-container {
+    .form-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -154,7 +154,7 @@ label .Mui-error {
 @media screen and (min-height: 900px) {
     .form-heading {
         text-align: center;
-        margin: 40px 0 0 0;
+        margin: 40px 0;
     }
 
     .gallery-title {
