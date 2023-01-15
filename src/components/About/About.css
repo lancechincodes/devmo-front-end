@@ -141,26 +141,26 @@
     }
 
     .creator-image {
-        width: 250px;
+        width: 225px;
         margin: 20px 20px 0 0;
     }
 
     .creator-sig {
         margin: 0;
-        font-size: 30px;
+        font-size: 28px;
     }
     
     .creator-title {
         margin: 0;
-        font-size: 20px;
+        font-size: 18px;
     }
     
     .creator-statement {
-        font-size: 25px;
+        font-size: 24px;
     }
 
     .mission-text {
-        font-size: 30px;
+        font-size: 28px;
     }
 
     .about-inquiries-icon {
@@ -168,7 +168,7 @@
     }    
 
     .about-inquiries-text {
-        font-size: 20px;
+        font-size: 18px;
     }
 }
 

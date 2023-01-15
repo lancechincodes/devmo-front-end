@@ -29,7 +29,7 @@ function About() {
                     </div>
                     <div className="about-inquiries">
                         <FontAwesomeIcon className="about-inquiries-icon" icon={faComments}/>
-                        <p className="about-inquiries-text">For questions or feedback, contact us at devmo@gmail.com!</p>
+                        <p className="about-inquiries-text">For questions or feedback, feel free to contact us at devmo@gmail.com.</p>
                     </div>
                 </div>         
             </div>   
