@@ -23,7 +23,7 @@
 }
 
 .nav-lists {
-    height: calc(100vh - 65px);
+    height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
