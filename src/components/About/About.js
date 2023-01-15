@@ -24,7 +24,7 @@ function About() {
                                     <h4 className="creator-title">Creator of Devmo</h4>
                                 </div>
                             </div>
-                            <p className="creator-statement">"Devmo (<span className="text-italics">short for developer demo</span>) originates from a story of aspiration, growth, and inspiration. It provides a platform for developers to showcase projects they are proud of, and shine light on how exciting, transformational, and fun coding can be. Always free – Devmo is powered by people like you and dedicated to the next generation of programmers. Enjoy!"</p>    
+                            <p className="creator-statement">"Devmo (<span className="text-italics">short for developer demo</span>) originates from a story of aspiration, growth, and inspiration. It provides a platform for developers to showcase projects they are proud of, and shine light on how exciting, transformational, and fun coding can be to others. Always free – Devmo is powered by people like you and dedicated to the next generation of programmers. Enjoy, and remember to aspire to inspire!"</p>    
                         </div>
                     </div>
                     <div className="about-inquiries">
