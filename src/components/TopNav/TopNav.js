@@ -17,6 +17,7 @@ function TopNav() {
 
     function handleNavigateFeatured() {
         window.localStorage.setItem('Display', 'Featured')
+        setIsActive(false)
     }
 
     function handleNavigatePost() {
@@ -26,6 +27,7 @@ function TopNav() {
 
     function handleNavigateProfile() {
         window.localStorage.setItem('Display', 'Profile')
+        setIsActive(false)
     }
 
     // find user and set initials of profile btn
