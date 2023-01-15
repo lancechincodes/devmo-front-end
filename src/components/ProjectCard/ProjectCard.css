@@ -117,15 +117,30 @@
 
 .demo-btn {
     background-color: #264DE4;
-    padding: 10px 30px;
+    padding: 10px 20px;
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    position: relative;
+}
+
+.open-demo-icon {
+    margin: 0 10px 0 0;
+    width: 12px;
 }
 
 .demo-btn:hover {
     background: #1f42cd;
-    box-shadow: 0 0 10px blue; /* add a blue box shadow on hover */
+}
+
+.demo-btn.open-demo-icon {
+    transition: transform 0.5s;
+}
+
+.demo-btn:hover .open-demo-icon {
+    transform: rotate(10deg);
+    animation: rock 0.5s infinite;
 }
 
 .card-number {

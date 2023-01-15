@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Heart from "react-heart"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithubAlt } from '@fortawesome/free-brands-svg-icons'
-import { faPen, faTrash, faCaretUp, faCaretDown, faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faTrash, faCaretUp, faCaretDown, faCheck, faXmark, faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import { Link, useNavigate } from 'react-router-dom'
 
 function ProjectCard({project}) {
@@ -155,6 +155,10 @@ function ProjectCard({project}) {
                     <h1 className="card-lg-text card-number">#{project.popularity}</h1>
                     <a href={project.projectUrl} target="_blank" rel="noopener noreferrer">
                         <div className="demo-btn">
+                            <FontAwesomeIcon
+                                className="open-demo-icon"
+                                icon={faUpRightFromSquare}
+                            />
                             <p className="card-sm-text">DEMO</p>
                         </div>
                     </a>
