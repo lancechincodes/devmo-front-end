@@ -15,6 +15,10 @@ function TopNav() {
     const { isActive, setIsActive } = useContext(DataContext)
     const [initials, setInitials] = useState('')
 
+    function handleNavigateFeatured() {
+        window.localStorage.setItem('Display', 'Featured')
+    }
+
     function handleNavigatePost() {
         window.localStorage.setItem('Form', 'Post')
         setIsActive(false)
@@ -48,7 +52,9 @@ function TopNav() {
                             toggle={setOpen} 
                         />
                     </div>
-                    <Logo size="sm"/>
+                    <Link to="/gallery" onClick={handleNavigateFeatured}>
+                        <Logo size="sm"/>
+                    </Link>
                 </div>
                 <div className="right-nav">
                     {window.localStorage.getItem('Email') && 
@@ -66,7 +72,9 @@ function TopNav() {
                     <Toggle/>
                 </div>
             </nav>
+            {/* <div className="side-nav-container"> */}
             <SideNav/>
+            {/* </div> */}
         </>
     );
 };

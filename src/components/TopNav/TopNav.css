@@ -60,6 +60,10 @@
   color: white;
 }
 
+.side-nav-container {
+  display: flex;
+}
+
 /***********LEVEL 2***********/
 @media screen and (min-width: 750px) and (max-width: 1200px) {
   .post-btn {

@@ -207,70 +207,58 @@ function Auth() {
                     <h1 className="auth-title">SIGN UP</h1>
                     <p className="auth-description">Favorite, save, and share projects.</p>
                 </div>
-                <div className="text-fields">
-                    {!firstNameError && 
-                        <TextField 
-                            className="auth-form outlined-basic" 
-                            label={signUpFields[0].label}
-                            variant="outlined" 
-                            required={true}
-                            type={signUpFields[0].type}
-                            onChange={(e) => dispatch({ type: signUpFields[0].reducerType, payload: e.target.value})}
-                            defaultValue={state.firstName}
-                        />  
-                    }
-                    {firstNameError && 
-                        <TextField 
-                            error
-                            className="auth-form outlined-basic" 
-                            label={signUpFields[0].label}
-                            variant="outlined" 
-                            required={true}
-                            type={signUpFields[0].type}
-                            onChange={(e) => dispatch({ type: signUpFields[0].reducerType, payload: e.target.value})}
-                            defaultValue={state.firstName}
-                        />  
-                    }
+                <div className="auth-container">
+                    <div className="text-fields">
+                        {!firstNameError && 
+                            <TextField 
+                                className="auth-form outlined-basic" 
+                                label={signUpFields[0].label}
+                                variant="outlined" 
+                                required={true}
+                                type={signUpFields[0].type}
+                                onChange={(e) => dispatch({ type: signUpFields[0].reducerType, payload: e.target.value})}
+                                defaultValue={state.firstName}
+                            />  
+                        }
+                        {firstNameError && 
+                            <TextField 
+                                error
+                                className="auth-form outlined-basic" 
+                                label={signUpFields[0].label}
+                                variant="outlined" 
+                                required={true}
+                                type={signUpFields[0].type}
+                                onChange={(e) => dispatch({ type: signUpFields[0].reducerType, payload: e.target.value})}
+                                defaultValue={state.firstName}
+                            />  
+                        }
 
-                    {!lastNameError && 
-                        <TextField 
-                            className="auth-form outlined-basic" 
-                            label={signUpFields[1].label}
-                            variant="outlined" 
-                            required={true}
-                            type={signUpFields[1].type}
-                            onChange={(e) => dispatch({ type: signUpFields[1].reducerType, payload: e.target.value})}
-                            defaultValue={state.lastName}
-                        />
-                    }
-                    {lastNameError && 
-                        <TextField 
-                            error
-                            className="auth-form outlined-basic" 
-                            label={signUpFields[1].label}
-                            variant="outlined" 
-                            required={true}
-                            type={signUpFields[1].type}
-                            onChange={(e) => dispatch({ type: signUpFields[1].reducerType, payload: e.target.value})}
-                            defaultValue={state.lastName}
-                        />
-                    }
+                        {!lastNameError && 
+                            <TextField 
+                                className="auth-form outlined-basic" 
+                                label={signUpFields[1].label}
+                                variant="outlined" 
+                                required={true}
+                                type={signUpFields[1].type}
+                                onChange={(e) => dispatch({ type: signUpFields[1].reducerType, payload: e.target.value})}
+                                defaultValue={state.lastName}
+                            />
+                        }
+                        {lastNameError && 
+                            <TextField 
+                                error
+                                className="auth-form outlined-basic" 
+                                label={signUpFields[1].label}
+                                variant="outlined" 
+                                required={true}
+                                type={signUpFields[1].type}
+                                onChange={(e) => dispatch({ type: signUpFields[1].reducerType, payload: e.target.value})}
+                                defaultValue={state.lastName}
+                            />
+                        }
 
-                    {!emailError &&
-                        <TextField 
-                            className="auth-form outlined-basic" 
-                            label={signUpFields[2].label}
-                            variant="outlined" 
-                            required={true}
-                            type={signUpFields[2].type}
-                            onChange={(e) => dispatch({ type: signUpFields[2].reducerType, payload: e.target.value})}
-                            defaultValue={state.email}
-                        />
-                    }
-                    {emailError &&
-                        <>
-                            <TextField
-                                error 
+                        {!emailError &&
+                            <TextField 
                                 className="auth-form outlined-basic" 
                                 label={signUpFields[2].label}
                                 variant="outlined" 
@@ -279,54 +267,36 @@ function Auth() {
                                 onChange={(e) => dispatch({ type: signUpFields[2].reducerType, payload: e.target.value})}
                                 defaultValue={state.email}
                             />
-                            {invalidEmail && 
-                                <FormHelperText className="component-helper-text">
-                                    Invalid email
-                                </FormHelperText>
-                            }
-                            {emailInUseError && 
-                                <FormHelperText className="component-helper-text">
-                                    Email is already in use
-                                </FormHelperText>
-
-                            }
-                        </>
-                       
-                    }
-
-                    {!passwordError &&
-                        <FormControl 
-                            sx={{ m: 1, width: '25ch' }} 
-                            variant="outlined" 
-                            className="auth-form outlined-basic"                                 
-                            required={true}
-                            defaultValue={state.password}
-                        >
-                            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                            <OutlinedInput
-                                className="outlined-adornment-password"
-                                type={showPassword ? 'text' : 'password'}
-                                value={state.password}
-                                onChange={(e) => dispatch({ type: signUpFields[3].reducerType, payload: e.target.value})}
-                                endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                    >
-                                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
+                        }
+                        {emailError &&
+                            <>
+                                <TextField
+                                    error 
+                                    className="auth-form outlined-basic" 
+                                    label={signUpFields[2].label}
+                                    variant="outlined" 
+                                    required={true}
+                                    type={signUpFields[2].type}
+                                    onChange={(e) => dispatch({ type: signUpFields[2].reducerType, payload: e.target.value})}
+                                    defaultValue={state.email}
+                                />
+                                {invalidEmail && 
+                                    <FormHelperText className="component-helper-text">
+                                        Invalid email
+                                    </FormHelperText>
                                 }
-                                label={"Password"}
-                                required={true}
-                            />
-                        </FormControl>
-                    }
-                    {passwordError &&
-                        <>
+                                {emailInUseError && 
+                                    <FormHelperText className="component-helper-text">
+                                        Email is already in use
+                                    </FormHelperText>
+
+                                }
+                            </>
+                        
+                        }
+
+                        {!passwordError &&
                             <FormControl 
-                                error
                                 sx={{ m: 1, width: '25ch' }} 
                                 variant="outlined" 
                                 className="auth-form outlined-basic"                                 
@@ -353,151 +323,75 @@ function Auth() {
                                     required={true}
                                 />
                             </FormControl>
-                            {invalidPassword && 
-                                <FormHelperText className="component-helper-text">
-                                    Password must contain at least 8 characters, 1 uppercase character, and 1 special character
-                                </FormHelperText>
-                            }
-                        </>
-                    }
-
-                    {!confirmPasswordError &&
-                        <FormControl 
-                            sx={{ m: 1, width: '25ch' }} 
-                            variant="outlined" 
-                            className="auth-form outlined-basic"                                 
-                            required={true}
-                            defaultValue={state.confirmPassword}
-                        >
-                            <InputLabel htmlFor="outlined-adornment-password">Confirm password</InputLabel>
-                            <OutlinedInput
-                                className="outlined-adornment-password"
-                                type={showConfirmPassword ? 'text' : 'password'}
-                                value={state.confirmPassword}
-                                onChange={(e) => dispatch({ type: signUpFields[4].reducerType, payload: e.target.value})}
-                                endAdornment={
-                                    <InputAdornment position="end">
-                                        <IconButton
-                                            aria-label="toggle password visibility"
-                                            onClick={handleClickShowConfirmPassword}
-                                        >
-                                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                                        </IconButton>
-                                    </InputAdornment>
-                                }
-                                label={"Confirm password"}
-                                required={true}
-                            />
-                        </FormControl>
-                    }
-                    {confirmPasswordError &&
-                    <>
-                        <FormControl 
-                            error
-                            sx={{ m: 1, width: '25ch' }} 
-                            variant="outlined" 
-                            className="auth-form outlined-basic"                                 
-                            required={true}
-                            defaultValue={state.confirmPassword}
-                        >
-                            <InputLabel htmlFor="outlined-adornment-password">Confirm password</InputLabel>
-                            <OutlinedInput
-                                className="outlined-adornment-password"
-                                type={showConfirmPassword ? 'text' : 'password'}
-                                value={state.confirmPassword}
-                                onChange={(e) => dispatch({ type: signUpFields[4].reducerType, payload: e.target.value})}
-                                endAdornment={
-                                    <InputAdornment position="end">
-                                        <IconButton
-                                            aria-label="toggle password visibility"
-                                            onClick={handleClickShowConfirmPassword}
-                                        >
-                                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                                        </IconButton>
-                                    </InputAdornment>
-                                }
-                                label={"Confirm password"}
-                                required={true}
-                            />
-                        </FormControl>
-                        {invalidConfirmPassword && 
-                                <FormHelperText className="component-helper-text">
-                                    Password and confirmation password do not match
-                                </FormHelperText>
                         }
-                    </>
-                    }
-                </div>
-                <div
-                    className="auth-button"
-                    onClick={handleSubmit}
-                >
-                    Sign up
-                </div>
-                <p className="switch">Already have an account?  
-                    <span className="bold" onClick={handleSwitch}> Login</span>
-                </p>
-            </form>}
-
-            {window.localStorage.getItem('Auth') === 'Login' && <form className="auth-form" type="submit">
-                <div className="auth-heading">
-                    <h1 className="auth-title">LOGIN</h1>
-                    <p className="auth-description">{welcomeMessage}</p>
-                </div>
-                <div className="text-fields">
-                    {!loginError &&
-                        <TextField
-                            className="auth-form outlined-basic" 
-                            label="Email"
-                            variant="outlined" 
-                            required={true}
-                            type="email"
-                            onChange={(e) => dispatch({ type: loginFields[0].reducerType, payload: e.target.value})}
-                        />
-                    } 
-
-                    {loginError && 
-                         <TextField
-                            error
-                            className="auth-form outlined-basic" 
-                            label="Email"
-                            variant="outlined" 
-                            required={true}
-                            type="email"
-                            onChange={(e) => dispatch({ type: loginFields[0].reducerType, payload: e.target.value})}
-                        />
-                    }
-
-                    {!loginError &&
-                        <FormControl 
-                            sx={{ m: 1, width: '25ch' }} 
-                            variant="outlined" 
-                            className="auth-form outlined-basic"                                 
-                            required={true}
-                            >
-                            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                            <OutlinedInput
-                                className="outlined-adornment-password"
-                                type={showPassword ? 'text' : 'password'}
-                                value={state.password}
-                                onChange={(e) => dispatch({ type: loginFields[1].reducerType, payload: e.target.value})}
-                                endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                    >
-                                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
+                        {passwordError &&
+                            <>
+                                <FormControl 
+                                    error
+                                    sx={{ m: 1, width: '25ch' }} 
+                                    variant="outlined" 
+                                    className="auth-form outlined-basic"                                 
+                                    required={true}
+                                    defaultValue={state.password}
+                                >
+                                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                    <OutlinedInput
+                                        className="outlined-adornment-password"
+                                        type={showPassword ? 'text' : 'password'}
+                                        value={state.password}
+                                        onChange={(e) => dispatch({ type: signUpFields[3].reducerType, payload: e.target.value})}
+                                        endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                            >
+                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                        }
+                                        label={"Password"}
+                                        required={true}
+                                    />
+                                </FormControl>
+                                {invalidPassword && 
+                                    <FormHelperText className="component-helper-text">
+                                        Password must contain at least 8 characters, 1 uppercase character, and 1 special character
+                                    </FormHelperText>
                                 }
-                                label={"Password"}
-                                required={true}
-                            />
-                        </FormControl>
-                    }
+                            </>
+                        }
 
-                    {loginError && 
+                        {!confirmPasswordError &&
+                            <FormControl 
+                                sx={{ m: 1, width: '25ch' }} 
+                                variant="outlined" 
+                                className="auth-form outlined-basic"                                 
+                                required={true}
+                                defaultValue={state.confirmPassword}
+                            >
+                                <InputLabel htmlFor="outlined-adornment-password">Confirm password</InputLabel>
+                                <OutlinedInput
+                                    className="outlined-adornment-password"
+                                    type={showConfirmPassword ? 'text' : 'password'}
+                                    value={state.confirmPassword}
+                                    onChange={(e) => dispatch({ type: signUpFields[4].reducerType, payload: e.target.value})}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowConfirmPassword}
+                                            >
+                                            {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                    label={"Confirm password"}
+                                    required={true}
+                                />
+                            </FormControl>
+                        }
+                        {confirmPasswordError &&
                         <>
                             <FormControl 
                                 error
@@ -505,7 +399,86 @@ function Auth() {
                                 variant="outlined" 
                                 className="auth-form outlined-basic"                                 
                                 required={true}
+                                defaultValue={state.confirmPassword}
                             >
+                                <InputLabel htmlFor="outlined-adornment-password">Confirm password</InputLabel>
+                                <OutlinedInput
+                                    className="outlined-adornment-password"
+                                    type={showConfirmPassword ? 'text' : 'password'}
+                                    value={state.confirmPassword}
+                                    onChange={(e) => dispatch({ type: signUpFields[4].reducerType, payload: e.target.value})}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowConfirmPassword}
+                                            >
+                                            {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                    label={"Confirm password"}
+                                    required={true}
+                                />
+                            </FormControl>
+                            {invalidConfirmPassword && 
+                                    <FormHelperText className="component-helper-text">
+                                        Password and confirmation password do not match
+                                    </FormHelperText>
+                            }
+                        </>
+                        }
+                    </div>
+                    <div
+                        className="auth-button"
+                        onClick={handleSubmit}
+                    >
+                        Sign up
+                    </div>
+                    <p className="switch">Already have an account?  
+                        <span className="bold" onClick={handleSwitch}> Login</span>
+                    </p>
+                </div>
+            </form>}
+
+            {window.localStorage.getItem('Auth') === 'Login' && <form className="auth-form" type="submit">
+                <div className="auth-heading">
+                    <h1 className="auth-title">LOGIN</h1>
+                    <p className="auth-description">{welcomeMessage}</p>
+                </div>
+
+                <div className="auth-container">
+                    <div className="text-fields">
+                        {!loginError &&
+                            <TextField
+                                className="auth-form outlined-basic" 
+                                label="Email"
+                                variant="outlined" 
+                                required={true}
+                                type="email"
+                                onChange={(e) => dispatch({ type: loginFields[0].reducerType, payload: e.target.value})}
+                            />
+                        } 
+
+                        {loginError && 
+                            <TextField
+                                error
+                                className="auth-form outlined-basic" 
+                                label="Email"
+                                variant="outlined" 
+                                required={true}
+                                type="email"
+                                onChange={(e) => dispatch({ type: loginFields[0].reducerType, payload: e.target.value})}
+                            />
+                        }
+
+                        {!loginError &&
+                            <FormControl 
+                                sx={{ m: 1, width: '25ch' }} 
+                                variant="outlined" 
+                                className="auth-form outlined-basic"                                 
+                                required={true}
+                                >
                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                 <OutlinedInput
                                     className="outlined-adornment-password"
@@ -526,21 +499,53 @@ function Auth() {
                                     required={true}
                                 />
                             </FormControl>
-                            <FormHelperText className="component-helper-text">
-                                {loginErrorMessage}
-                            </FormHelperText> 
-                        </>
-                    }
+                        }
+
+                        {loginError && 
+                            <>
+                                <FormControl 
+                                    error
+                                    sx={{ m: 1, width: '25ch' }} 
+                                    variant="outlined" 
+                                    className="auth-form outlined-basic"                                 
+                                    required={true}
+                                >
+                                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                    <OutlinedInput
+                                        className="outlined-adornment-password"
+                                        type={showPassword ? 'text' : 'password'}
+                                        value={state.password}
+                                        onChange={(e) => dispatch({ type: loginFields[1].reducerType, payload: e.target.value})}
+                                        endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                            >
+                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                        }
+                                        label={"Password"}
+                                        required={true}
+                                    />
+                                </FormControl>
+                                <FormHelperText className="component-helper-text">
+                                    {loginErrorMessage}
+                                </FormHelperText> 
+                            </>
+                        }
+                    </div>
+                    <div
+                        className="auth-button"
+                        onClick={handleSubmit}
+                    >
+                        Log in
+                    </div>
+                    <p className="switch">Need an account?  
+                        <span className="bold" onClick={handleSwitch}> Sign up</span>
+                    </p>
                 </div>
-                <div
-                    className="auth-button"
-                    onClick={handleSubmit}
-                >
-                    Log in
-                </div>
-                <p className="switch">Need an account?  
-                    <span className="bold" onClick={handleSwitch}> Sign up</span>
-                </p>
             </form>}
         </div>
 

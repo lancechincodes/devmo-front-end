@@ -24,6 +24,10 @@
     position: relative;
 }
 
+.show-hide-icon {
+    cursor: pointer;
+}
+
 .show-hide-icon-div {
     position: absolute;
     bottom: 0px;
@@ -141,6 +145,7 @@ a {
 .card-user-btn {
     padding: 8px 10px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #light .card-user-btn {

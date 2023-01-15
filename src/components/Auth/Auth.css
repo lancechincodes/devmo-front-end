@@ -7,7 +7,7 @@
 .text-fields {
     display: flex;
     flex-direction: column;
-    margin: 7px 20px;
+    margin: 10px 20px;
 }
 
 .auth-heading {
@@ -34,19 +34,22 @@
 
 .auth-form.MuiFormControl-root.MuiTextField-root.outlined-basic {
     margin: 10px;
+    width: auto;
 }
 
-div > form > div.text-fields > div.MuiFormControl-root.auth-form.outlined-basic.css-r47a1p-MuiFormControl-root {
+.MuiFormControl-root.auth-form.outlined-basic.css-r47a1p-MuiFormControl-root {
+    margin: 10px;
     width: auto;
 }
 
 .auth-button {
-    margin: 0px 28px;
+    margin: 30px auto 10px auto;
     text-align: center;
     background: #264DE4;
     color: white;
     padding: 15px;
     border-radius: 5px;
+    width: 120px;
 }
 
 .auth-button:hover {
@@ -66,10 +69,42 @@ div > form > div.text-fields > div.MuiFormControl-root.auth-form.outlined-basic.
     text-decoration: underline;
 }
 
-#dark > div > form > div.text-fields > div.MuiFormControl-root.auth-form.outlined-basic.css-r47a1p-MuiFormControl-root > div > div > button > svg {
+#dark > div > form > div.auth-container > div.text-fields > div.MuiFormControl-root.auth-form.outlined-basic.css-r47a1p-MuiFormControl-root > div > div > button > svg {
     color: white;
 }
 
 #dark .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
     border-color: #d32f2f;
+}
+
+/***********LEVEL 2***********/
+@media screen and (min-width: 850px) {
+    .auth-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+
+    .text-fields {
+        width: 800px;
+    }
+}
+
+
+/***********LEVEL 2 (HEIGHT)***********/
+@media screen and (min-height: 900px) {
+    .auth-heading {
+        text-align: center;
+        margin: 40px 0;
+    }
+
+    .auth-title {
+        font-size: 50px;
+    }
+
+    .auth-description {
+        font-size: 19.2px;
+    }
 }

@@ -60,12 +60,13 @@
 
 .creator-sig {
     margin: 0;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .creator-title {
     margin: 0;
     font-size: 15px;
+    font-weight: 100;
 }
 
 .creator-statement {
@@ -88,6 +89,10 @@
     margin-right: 20px;
 }
 
+.about-inquiries-text {
+    font-size: 15px;
+}
+
 #dark .about-inquiries-icon {
     color: white;
 }
@@ -95,3 +100,90 @@
 #dark .about-inquiries-text {
     color: white;
 }
+
+.mission-text {
+    font-size: 25px;
+    margin: 15px 0px;
+}
+
+/***********LEVEL 2***********/
+@media screen and (min-width: 850px) {
+    .about-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+
+    .about-content {
+        width: 800px;
+    }
+
+    .about-inquiries {
+        width: 800px;
+    }
+
+    .image-statement-container {
+        display: flex;
+        justify-content: start;
+        align-items: flex-start;
+    }
+
+    .creator-image-sig-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .creator-sig-title-container {
+        width: 100%;
+        margin: 15px;
+    }
+
+    .creator-image {
+        width: 225px;
+        margin: 20px 20px 0 0;
+    }
+
+    .creator-sig {
+        margin: 0;
+        font-size: 28px;
+    }
+    
+    .creator-title {
+        margin: 0;
+        font-size: 18px;
+    }
+    
+    .creator-statement {
+        font-size: 24px;
+    }
+
+    .mission-text {
+        font-size: 28px;
+    }
+
+    .about-inquiries-icon {
+        width: 40px
+    }    
+
+    .about-inquiries-text {
+        font-size: 18px;
+    }
+}
+
+/***********LEVEL 2 (HEIGHT)***********/
+@media screen and (min-height: 900px) {
+    .about-heading {
+        text-align: center;
+        margin: 40px 0;
+    }
+
+    .about-title {
+        font-size: 50px;
+    }
+
+    .about-description {
+        font-size: 19.2px;
+    }
+  }
