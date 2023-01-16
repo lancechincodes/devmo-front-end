@@ -15,11 +15,11 @@ function ProjectCard({project}) {
     const navigate = useNavigate()
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/users')
+        axios.get('https://devmo-api.up.railway.app/api/users')
             .then(res => {
                 const usersArr = res.data
                 const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email')) 
-                axios.get(`http://localhost:8000/api/users/${loggedOnUser._id}`)
+                axios.get(`https://devmo-api.up.railway.app/api/users/${loggedOnUser._id}`)
                     .then(res => {
                         let likedBefore
                         if (res.data.likedProjects.includes(project._id)) {
@@ -35,11 +35,11 @@ function ProjectCard({project}) {
 
     useEffect(() => {
          // Set new popularity rank when like occurs
-         axios.get('http://localhost:8000/api/projects')
+         axios.get('https://devmo-api.up.railway.app/api/projects')
          .then(res => {
              const allProjects = res.data
              const rankedProjects = allProjects.sort((a,b) => (a.likes < b.likes) ? 1 : -1)
-             axios.patch('http://localhost:8000/api/projects/popularity', {
+             axios.patch('https://devmo-api.up.railway.app/api/projects/popularity', {
                  'rankedProjects': rankedProjects
              }) 
                  .then(res => {
@@ -51,11 +51,11 @@ function ProjectCard({project}) {
     }, [isActive])
 
     function handleLike() {
-        axios.get('http://localhost:8000/api/users')
+        axios.get('https://devmo-api.up.railway.app/api/users')
             .then(res => {
                 const usersArr = res.data
                 const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email')) 
-                axios.patch(`http://localhost:8000/api/projects/likeProject/${project._id}/${loggedOnUser._id}`)
+                axios.patch(`https://devmo-api.up.railway.app/api/projects/likeProject/${project._id}/${loggedOnUser._id}`)
                     .then(res => {
                         // console.log(res)
                         setUpdatedLikes(res.data.likes)
@@ -80,7 +80,7 @@ function ProjectCard({project}) {
     }
 
     function handleDeleteProject() {
-        axios.delete(`http://localhost:8000/api/projects/${project._id}`)
+        axios.delete(`https://devmo-api.up.railway.app/api/projects/${project._id}`)
             .then(() => {
                 navigate('/gallery')
             })

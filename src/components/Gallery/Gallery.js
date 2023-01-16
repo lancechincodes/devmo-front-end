@@ -30,14 +30,14 @@ function Gallery() {
     // Set name and total technologies of logged on user
     useEffect(() => {
         if (window.localStorage.getItem('Display') === 'Profile') {
-            axios.get('http://localhost:8000/api/users')
+            axios.get('https://devmo-api.up.railway.app/api/users')
                 .then(res => {
                     const usersArr = res.data
                     const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email'))
                     setName(loggedOnUser.firstName.toUpperCase() + ' ' + loggedOnUser.lastName.toUpperCase())
                     const loggedOnUserId = loggedOnUser.id
 
-                    axios.get(`http://localhost:8000/api/projects/${loggedOnUserId}`)
+                    axios.get(`https://devmo-api.up.railway.app/api/projects/${loggedOnUserId}`)
                         .then(res => {
                             setProfileProjects(res.data)
 
@@ -61,7 +61,7 @@ function Gallery() {
     // Set discover and profile projects
     useEffect(() => {
         if (window.localStorage.getItem('Display') === 'Discover' || window.localStorage.getItem('Display') === 'Profile')
-            axios.get('http://localhost:8000/api/projects')
+            axios.get('https://devmo-api.up.railway.app/api/projects')
                 .then(res => {
                     // console.log(res.data)
                     const allProjects = res.data
@@ -88,7 +88,7 @@ function Gallery() {
     // .sort was altering res.data in place so I opted to separate the discoverProjects and featuredProjects logic into 2 useEffects
     useEffect(() => { 
         if (window.localStorage.getItem('Display') === 'Featured') {
-            axios.get('http://localhost:8000/api/projects')
+            axios.get('https://devmo-api.up.railway.app/api/projects')
                 .then(res => {
                     // console.log(res.data)
                     const allProjects2 = res.data
@@ -107,18 +107,18 @@ function Gallery() {
     useEffect(() => {
         if (window.localStorage.getItem('Display') === 'Favorites') {
             // 1) get all project ids liked by the user
-            axios.get('http://localhost:8000/api/users')
+            axios.get('https://devmo-api.up.railway.app/api/users')
                 .then(res => {
                     const usersArr = res.data
                     const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email'))
                     const loggedOnUserId = loggedOnUser.id
-                    axios.get(`http://localhost:8000/api/users/${loggedOnUserId}`)
+                    axios.get(`https://devmo-api.up.railway.app/api/users/${loggedOnUserId}`)
                         .then(res => {
                             const likedProjectIds = res.data.likedProjects
                             
                             if (likedProjectIds.length > 0) {
                                 // 2) get all projects and find liked ones
-                                axios.get('http://localhost:8000/api/projects')
+                                axios.get('https://devmo-api.up.railway.app/api/projects')
                                     .then(res => {
                                         // console.log(res.data)
                                         const allProjects3 = res.data

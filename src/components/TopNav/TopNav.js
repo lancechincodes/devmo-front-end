@@ -33,7 +33,7 @@ function TopNav() {
     // find user and set initials of profile btn
     useEffect(() => {
         if (window.localStorage.getItem('Email')) {
-            axios.get('http://localhost:8000/api/users')
+            axios.get('https://devmo-api.up.railway.app/api/users')
                 .then(res => {
                     const usersArr = res.data
                     const loggedOnUser = usersArr.find(user => user.email === window.localStorage.getItem('Email')) 
