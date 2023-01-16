@@ -67,6 +67,7 @@
 
 .bold {
     text-decoration: underline;
+    cursor: pointer;
 }
 
 #dark > div > form > div.auth-container > div.text-fields > div.MuiFormControl-root.auth-form.outlined-basic.css-r47a1p-MuiFormControl-root > div > div > button > svg {
