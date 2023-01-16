@@ -74,9 +74,7 @@ function TopNav() {
                     <Toggle/>
                 </div>
             </nav>
-            {/* <div className="side-nav-container"> */}
             <SideNav/>
-            {/* </div> */}
         </>
     );
 };

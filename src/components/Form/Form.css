@@ -5,7 +5,7 @@
 
 .form-heading {
     text-align: center;
-    margin: 30px 0 0 0;
+    margin: 25px 0 0 0;
 }
 
 .form-title {
@@ -105,7 +105,7 @@
     padding: 15px 55px;
     border-radius: 5px;
     text-align: center;
-    margin: 15px 30px;
+    margin: 0px 30px;
 }
 
 #cancel-btn {
