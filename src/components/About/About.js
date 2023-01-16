@@ -28,8 +28,10 @@ function About() {
                         </div>
                     </div>
                     <div className="about-inquiries">
-                        <FontAwesomeIcon className="about-inquiries-icon" icon={faComments}/>
-                        <p className="about-inquiries-text">For questions or feedback, feel free to contact us at devmo@gmail.com.</p>
+                        <a href="mailto:devmo@gmail.com?subject=I have questions/feedback for Devmo!">
+                            <FontAwesomeIcon className="about-inquiries-icon" icon={faComments}/>
+                        </a>
+                        <p className="about-inquiries-text">For questions or feedback, feel free to contact us at devmoproduction@gmail.com.</p>
                     </div>
                 </div>         
             </div>   
