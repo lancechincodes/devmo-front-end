@@ -61,7 +61,7 @@ function Form() {
         e.preventDefault()
 
         // add owner to form data
-        axios.get('http://localhost:8000/api/users')
+        axios.get('https://devmo-api.up.railway.app/api/users')
             .then(res => {
                 // console.log(res)
                 const usersArr = res.data
@@ -76,10 +76,10 @@ function Form() {
                 if (selectedTech.length !== 0) formData.append("technologies", JSON.stringify(selectedTech)) // must stringify arrays in formData
                 formData.append("githubRepo", state.githubRepo)
 
-                axios.get('http://localhost:8000/api/projects')
+                axios.get('https://devmo-api.up.railway.app/api/projects')
                     .then(res => {
                         formData.append("popularity", res.data.length + 1) // res.data.length + 1 = nth project uploaded
-                        axios.post(`http://localhost:8000/api/projects`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
+                        axios.post(`https://devmo-api.up.railway.app/api/projects`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
                             .then(() => {
                                 navigate('/gallery') // navigate to successful submission page
                             })
@@ -136,7 +136,7 @@ function Form() {
         formData.append("popularity", project.popularity)
         formData.append("likes", project.likes)
 
-        axios.patch(`http://localhost:8000/api/projects/${project._id}`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
+        axios.patch(`https://devmo-api.up.railway.app/api/projects/${project._id}`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
             .then(() => {
                 navigate(-1)
             })

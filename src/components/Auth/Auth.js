@@ -119,7 +119,7 @@ function Auth() {
                 setInvalidConfirmPassword(false)
             }
 
-            axios.post('http://localhost:8000/api/users/signup', {
+            axios.post('https://devmo-api.up.railway.app/api/users/signup', {
                 firstName: state.firstName,
                 lastName: state.lastName,
                 email: state.email,
@@ -166,7 +166,7 @@ function Auth() {
                 })
         }
         else {
-            axios.post(`http://localhost:8000/api/users/login`, {
+            axios.post(`https://devmo-api.up.railway.app/api/users/login`, {
                 email: state.email,
                 password: state.password
             })
