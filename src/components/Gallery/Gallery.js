@@ -161,7 +161,7 @@ function Gallery() {
                     <>
                         <div className="gallery-heading">
                             <h1 className="gallery-title">FEATURED</h1>
-                            <p className="gallery-description">Our top-rated picks.</p>
+                            <p className="gallery-description">Our top-rated projects.</p>
                         </div>
                         
                         <div className="swiper-container">

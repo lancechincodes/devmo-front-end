@@ -5,7 +5,7 @@
 
 .form-heading {
     text-align: center;
-    margin: 30px 0 0 0;
+    margin: 25px 0 0 0;
 }
 
 .form-title {
@@ -97,14 +97,15 @@
 
 .update-btn-div {
     display: flex;
-    justify-content: space-between;
-    margin: 0 30px;
+    justify-content: center;
 }
 
 .update-post-btn {
     color: white;
     padding: 15px 55px;
     border-radius: 5px;
+    text-align: center;
+    margin: 0px 30px;
 }
 
 #cancel-btn {
@@ -129,6 +130,18 @@ label .Mui-error {
 
 #dark > div > form > div.field-container > div.post-text-fields > div.MuiFormControl-root.css-ptt77l-MuiFormControl-root > div > svg {
     color: white;
+}
+
+#share-btn:hover {
+    background: #1f42cd;
+}
+
+#save-btn:hover {
+    background: #1f42cd;
+}
+
+#cancel-btn:hover {
+    background: rgb(215,215,215);
 }
 
 /***********LEVEL 2***********/
@@ -185,5 +198,4 @@ label .Mui-error {
     .MuiFormHelperText-root.component-helper-text.css-1d1r5q-MuiFormHelperText-root {
         margin: 0px 0px 6px 10px;
     }
-
   }

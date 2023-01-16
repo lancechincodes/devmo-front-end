@@ -426,7 +426,7 @@ function Form() {
                             onClick={handlePost}
                             id="share-btn"
                             >
-                            Share
+                            Submit
                         </div>
                     </div>
                 )}

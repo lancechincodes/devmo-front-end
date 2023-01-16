@@ -117,10 +117,30 @@
 
 .demo-btn {
     background-color: #264DE4;
-    padding: 10px 30px;
+    padding: 10px 20px;
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    position: relative;
+}
+
+.open-demo-icon {
+    margin: 0 10px 0 0;
+    width: 12px;
+}
+
+.demo-btn:hover {
+    background: #1f42cd;
+}
+
+.demo-btn.open-demo-icon {
+    transition: transform 0.5s;
+}
+
+.demo-btn:hover .open-demo-icon {
+    transform: rotate(10deg);
+    animation: rock 0.5s infinite;
 }
 
 .card-number {
@@ -163,6 +183,46 @@ a {
 
 #dark .update-delete-icon {
     color: white;
+}
+
+.card-github-icon .heart-icon {
+    transition: transform 0.5s;
+}
+
+.card-github-icon:hover {
+    transform: rotate(10deg);
+    animation: rock 0.5s infinite;
+}
+
+.heart-icon:hover {
+    transform: rotate(10deg);
+    animation: rock 0.5s infinite;
+}
+
+.card-user-btn {
+    position: relative;
+}
+
+.card-user-btn.update-delete-icon {
+    position: absolute;
+    transition: transform 0.5s;
+}
+
+.card-user-btn:hover .update-delete-icon {
+    transform: rotate(10deg);
+    animation: rock 0.5s infinite;
+}
+
+@keyframes rock {
+    0% {
+        transform: rotate(10deg);
+    }
+    50% {
+        transform: rotate(-10deg);
+    }
+    100% {
+        transform: rotate(10deg);
+    }
 }
 
 /***********LEVEL 2 (HEIGHT)***********/
