@@ -84,7 +84,7 @@
 }
 
 .MuiFormHelperText-root.component-helper-text {
-    margin: 0px 0px 4px 10px;
+    margin: 0px 0px 2px 15px;
 }
 
 #dark .MuiFormHelperText-root.component-helper-text {
@@ -101,7 +101,7 @@
     padding: 15px 55px;
     border-radius: 5px;
     text-align: center;
-    margin: 0px 30px;
+    margin: 0px 15px;
 }
 
 #cancel-btn {
