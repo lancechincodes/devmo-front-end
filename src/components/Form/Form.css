@@ -78,20 +78,16 @@
     height: 190px;
 }
 
-.MuiFormControl-root.css-ptt77l-MuiFormControl-root {
+.MuiFormControl-root {
     width: auto;
     margin: 8px 0px;
 }
 
-.MuiFormHelperText-root.component-helper-text.css-1d1r5q-MuiFormHelperText-root {
+.MuiFormHelperText-root.component-helper-text {
     margin: 0px 0px 4px 10px;
 }
 
-#dark .MuiFormHelperText-root.component-helper-text.css-1d1r5q-MuiFormHelperText-root {
-    color: white;
-}
-
-#dark > div > form > div.post-text-fields > div.MuiFormControl-root.css-ptt77l-MuiFormControl-root > div > svg {
+#dark .MuiFormHelperText-root.component-helper-text {
     color: white;
 }
 
