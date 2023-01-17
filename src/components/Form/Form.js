@@ -258,7 +258,7 @@ function Form() {
                                     dispatch({type: ACTION.SET_DESCRIPTION_CHARACTERS_REMAINING, payload: e.target.value})    
                                 }}
                                 multiline
-                                rows={3}
+                                rows={2}
                                 required={true}
                                 inputProps={{ maxLength: 100 }}
                                 defaultValue={window.localStorage.getItem("Form") === "Update" ? project.description : state.description}
@@ -278,7 +278,7 @@ function Form() {
                                     dispatch({type: ACTION.SET_DESCRIPTION_CHARACTERS_REMAINING, payload: e.target.value})    
                                 }}
                                 multiline
-                                rows={3}
+                                rows={2}
                                 required={true}
                                 inputProps={{ maxLength: 100 }}
                                 defaultValue={state.description}

@@ -140,6 +140,10 @@ function Gallery() {
                 .catch(err => console.log(err))
         }
     }, [])
+
+    useEffect(() => {
+        console.log(profileProjects)
+    },[profileProjects])
     
     // Loading spinners conditional
     if ((window.localStorage.getItem('Display') === 'Profile' && loadingTechnologies) ||
