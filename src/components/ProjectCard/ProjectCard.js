@@ -168,7 +168,7 @@ function ProjectCard({project}) {
                             className="heart-icon" 
                             isActive={isActive} 
                             onClick={handleLike}
-                            inactiveColor={window.localStorage.getItem('Theme') === 'dark' ? 'white' : 'black'}
+                            inactiveColor={window.localStorage.getItem('Theme') === 'light' ? 'black' : 'white'}
                             activeColor={'red'}
                         />
                     </div>
