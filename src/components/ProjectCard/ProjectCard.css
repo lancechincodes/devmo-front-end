@@ -213,20 +213,6 @@ a {
     animation: rock 0.5s infinite;
 }
 
-.css-r47a1p-MuiFormControl-root {
-    display: inline-flex;
-    flex-direction: column;
-    position: relative;
-    min-width: 0;
-    padding: 0;
-    border: 0;
-    vertical-align: top;
-}
-
-#dark .css-i4bv87-MuiSvgIcon-root {
-    color: white;
-}
-
 @keyframes rock {
     0% {
         transform: rotate(10deg);

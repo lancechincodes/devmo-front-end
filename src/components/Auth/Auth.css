@@ -78,6 +78,20 @@
     border-color: #d32f2f;
 }
 
+.css-r47a1p-MuiFormControl-root .css-kzv9dm {
+    display: inline-flex;
+    flex-direction: column;
+    position: relative;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: top;
+}
+
+#dark .css-i4bv87-MuiSvgIcon-root .css-vubbuv {
+    color: white;
+}
+
 /***********LEVEL 2***********/
 @media screen and (min-width: 850px) {
     .auth-container {
