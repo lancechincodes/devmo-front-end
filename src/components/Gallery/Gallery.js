@@ -70,6 +70,7 @@ function Gallery() {
                         setDiscoverProjectsArr(discoverProjects)
 
                         const profileProjects = allProjects.filter(project => project.owner.email === window.localStorage.getItem('Email'))
+                        console.log(profileProjects)
                         setProfileProjectsArr(profileProjects)
                         
                         // set total likes for logged on user
@@ -140,10 +141,6 @@ function Gallery() {
                 .catch(err => console.log(err))
         }
     }, [])
-
-    useEffect(() => {
-        console.log(profileProjects)
-    },[profileProjects])
     
     // Loading spinners conditional
     if ((window.localStorage.getItem('Display') === 'Profile' && loadingTechnologies) ||
@@ -453,11 +450,11 @@ function Gallery() {
                     <>
                         <div className="gallery-heading">
                             <h1 className="gallery-title">{name}</h1>
-                            {profileProjects.length === 0 ? (
+                            {profileProjectsArr.length === 0 ? (
                                 <p className="gallery-description">No projects yet.</p>
 
                             ) : (
-                                <p className="gallery-description">{profileProjects.length} Projects. &nbsp;&nbsp; {totalTechnologies} Technologies. &nbsp;&nbsp; {totalLikes} Likes.</p>
+                                <p className="gallery-description">{profileProjectsArr.length} Projects. &nbsp;&nbsp; {totalTechnologies} Technologies. &nbsp;&nbsp; {totalLikes} Likes.</p>
                             )}
                         </div>
 
