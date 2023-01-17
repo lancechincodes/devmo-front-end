@@ -27,24 +27,24 @@
     color: rgba(255, 247, 247, 0.919);
 }
 
-#dark .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+#dark .Mui-error .MuiOutlinedInput-notchedOutline {
     border-color: #d32f2f;
 }
 
-#dark .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root.Mui-error { 
+#dark .Mui-error { 
     color: #d32f2f;
 }
 
-#dark .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-error {
+#dark .Mui-error {
     color: #d32f2f;
 }
 
-#dark .css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+#dark .Mui-error .MuiOutlinedInput-notchedOutline {
     border-color: #d32f2f;
 }
 
 .devmo-form.MuiFormControl-root.MuiTextField-root.outlined-basic {
-    margin: 8px 0px;
+    margin: 10px;
 }
 
 #dark .MuiOutlinedInput-notchedOutline {
@@ -52,11 +52,11 @@
 }
 
 .MuiFormControl-root.MuiTextField-root.outlined-basic {
-    margin: 8px 0px;
+    margin: 10px;
 }
 
 .MuiFormControl-root.MuiTextField-root.file-name {
-    margin: 12px 0px 8px 0px;
+    margin: 10px;
 }
 
 #dark .MuiInputBase-input {
@@ -124,10 +124,6 @@ label .Mui-error {
     color: green;
 }
 
-#dark > div > form > div.field-container > div.post-text-fields > div.MuiFormControl-root.css-ptt77l-MuiFormControl-root > div > svg {
-    color: white;
-}
-
 #share-btn:hover {
     background: #1f42cd;
 }
@@ -138,6 +134,11 @@ label .Mui-error {
 
 #cancel-btn:hover {
     background: rgb(215,215,215);
+}
+
+div > form > div.form-container > div.post-text-fields > div.MuiFormControl-root {
+    margin: 10px;
+    width: auto;
 }
 
 /***********LEVEL 2***********/
@@ -186,12 +187,12 @@ label .Mui-error {
         margin: 14px 0px 12px 0px;
     }
 
-    .MuiFormControl-root.css-ptt77l-MuiFormControl-root {
+    .MuiFormControl-root {
         width: auto;
         margin: 12px 0px;
     }
     
-    .MuiFormHelperText-root.component-helper-text.css-1d1r5q-MuiFormHelperText-root {
+    .MuiFormHelperText-root.component-helper-text{
         margin: 0px 0px 6px 10px;
     }
   }
